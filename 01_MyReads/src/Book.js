@@ -10,11 +10,14 @@ class Book extends React.Component {
   render() {
   	const {title, authors, imageLinks} = this.props.book
   	const {bookshelves} = this.props
+  	let imageURL = ''
+  	imageLinks !== undefined && (imageURL = imageLinks.smallThumbnail)
+
     return (
     	<li>
 	      <div className="book">
 	        <div className="book-top">
-	          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${imageLinks.smallThumbnail})` }}></div>
+	          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${imageURL})` }}></div>
 	          <div className="book-shelf-changer">
 	            <select 
 	            	onChange ={this.handleShelfUpdate}
