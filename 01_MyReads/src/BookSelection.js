@@ -18,7 +18,7 @@ class BookSelection extends React.Component {
                 <BookSection 
                   bookshelfTitle= {bookshelf.name}
                   shelves= {bookshelves}
-                  books = {bookSelection.filter(book => book.bookshelfID === bookshelf.id)}
+                  books = {bookSelection.filter(book => book.shelf === bookshelf.shelf)}
                   />
                 )}
             </div>

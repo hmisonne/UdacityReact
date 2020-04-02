@@ -1,5 +1,5 @@
 import React from 'react'
-// import * as BooksAPI from './BooksAPI'
+import * as BooksAPI from './BooksAPI'
 import './App.css'
 import BookSelection from './BookSelection'
 
@@ -7,15 +7,19 @@ import BookSelection from './BookSelection'
 const bookshelves = [
   {
     id: 1,
+    shelf:"currentlyReading",
     name:'Currently Reading'
   },
   {
     id: 2,
+    shelf:"wantToRead",
     name:'Want to Read'
   },
   {
     id:3,
+    shelf:"read",
     name:'Read'
+
   }]
 
 
@@ -28,21 +32,20 @@ class BooksApp extends React.Component {
      * pages, as well as provide a good URL they can bookmark and share.
      */
     showSearchPage: false,
-    bookSelection: [{
-        title: "",
-        author:"",
-        picture:"",
-        bookshelfID:1,
-      },
-      {
-        title: "",
-        author:"",
-        picture:"",
-        bookshelfID:3,
-      }]
+    books:[]
+  }
+
+  componentDidMount() {
+    BooksAPI.getAll()
+      .then((books) => {
+        this.setState((currState)=> ({
+          books
+        }))
+      })
   }
 
   render() {
+    console.log(this.state.books[1])
     return (
       <div className="app">
         {this.state.showSearchPage ? (
@@ -69,7 +72,7 @@ class BooksApp extends React.Component {
         ) : 
         (<BookSelection
             bookshelves={bookshelves}
-            bookSelection={this.state.bookSelection}
+            bookSelection={this.state.books}
           />)
       }
       </div>
