@@ -2,6 +2,32 @@ import React from 'react'
 // import * as BooksAPI from './BooksAPI'
 import './App.css'
 
+// Data Structure Draft
+// const bookshelves = [
+//   {
+//     id: 1,
+//     name:'Currently Reading'
+//   },
+//   {
+//     id: 2,
+//     name:'Want to Read'
+//   },
+//   {
+//     id:3,
+//     name:'Read'
+//   }]
+
+//    state= { bookSelection: [{
+//         title: "",
+//         author:"",
+//         bookshelfID:1,
+//       },
+//       {
+//         title: "",
+//         author:"",
+//         bookshelfID:1,
+//       }]} 
+
 class BooksApp extends React.Component {
   state = {
     /**
@@ -11,7 +37,8 @@ class BooksApp extends React.Component {
      * pages, as well as provide a good URL they can bookmark and share.
      */
     showSearchPage: false
-  }
+
+      
 
   render() {
     return (
