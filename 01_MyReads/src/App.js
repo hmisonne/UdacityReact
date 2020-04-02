@@ -47,6 +47,7 @@ class BooksApp extends React.Component {
         this.loadBooks())
   }
 
+
   render() {
     return (
       <div className="app">
@@ -60,7 +61,6 @@ class BooksApp extends React.Component {
         <Route path='/search' render={() => (
           <SearchBooks 
             bookshelves={bookshelves}
-            books = {this.state.books}
             updateBookShelfLocation={this.updateBookShelfLocation}/>
           )}/>
       </div>

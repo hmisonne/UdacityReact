@@ -1,10 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import SearchBookResults from './SearchBookResults'
+import * as BooksAPI from './BooksAPI'
 
 class SearchBooks extends React.Component {
 	state = {
-		query: ''
+		query: '',
+		books:[]
 	}
 
 	updateQuery = (event) => {
@@ -12,12 +14,31 @@ class SearchBooks extends React.Component {
 		this.setState(() => ({
 			query: query.trim()
 		}))
+		if (query.length>2){
+			this.searchBooks(query)
+		}
+	}
+
+	searchBooks = (query) => {
+	    BooksAPI.search(query)
+	      .then((books) => {
+	      	if (books.error){
+				books = []
+	      	}
+	      	this.setState(()=>({
+	      		books
+	      	}))
+	      }
+
+	    ).catch((error) => {
+			console.log(error)
+	    }
+		)
 	}
 
 	render() {
-		const {books, updateBookShelfLocation, bookshelves} = this.props
-		const {query} = this.state
-
+		const {updateBookShelfLocation, bookshelves} = this.props
+		const {books, query} = this.state
 		return (
 		  <div className="search-books">
 		        <div className="search-books-bar">
