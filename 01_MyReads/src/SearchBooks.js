@@ -15,9 +15,9 @@ class SearchBooks extends React.Component {
 	}
 
 	render() {
-		const {books} = this.props
+		const {books, updateBookShelfLocation, bookshelves} = this.props
 		const {query} = this.state
-		
+
 		return (
 		  <div className="search-books">
 		        <div className="search-books-bar">
@@ -42,7 +42,11 @@ class SearchBooks extends React.Component {
 
 		          </div>
 		        </div>
-		        <SearchBookResults/>
+		        <SearchBookResults
+		        	books = {books}
+		        	bookshelves ={bookshelves}
+		        	updateBookShelfLocation = {updateBookShelfLocation}
+		        />
 		      </div>
 		  )
 	}

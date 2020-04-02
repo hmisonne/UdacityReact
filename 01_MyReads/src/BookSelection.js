@@ -18,7 +18,7 @@ class BookSelection extends React.Component {
               {bookshelves.map(bookshelf => 
                 <BookSection 
                   bookshelfTitle= {bookshelf.formatedName}
-                  shelves= {bookshelves}
+                  bookshelves= {bookshelves}
                   books = {bookSelection.filter(book => book.shelf === bookshelf.name)}
                   updateBookShelfLocation={updateBookShelfLocation}
                   />

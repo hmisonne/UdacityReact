@@ -2,7 +2,7 @@ import React from 'react'
 import Book from './Book'
 
 const BookSection = props => {
-  	const {bookshelfTitle, books, shelves, updateBookShelfLocation} = props
+  	const {bookshelfTitle, books, bookshelves, updateBookShelfLocation} = props
     return (
     	<div>
 	    	<h2 className="bookshelf-title">{bookshelfTitle}</h2>
@@ -11,7 +11,7 @@ const BookSection = props => {
 			      {books.map(book => 
 			      	<Book 
 			      		book={book}
-			      		shelves={shelves}
+			      		bookshelves={bookshelves}
 			      		updateBookShelfLocation={updateBookShelfLocation}
 			      	/>
 			      	)}

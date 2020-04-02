@@ -4,14 +4,12 @@ class Book extends React.Component {
 
 
 	handleShelfUpdate = (e) => {
-		if (e.target.value !== this.props.shelves.shelf){
-			this.props.updateBookShelfLocation(this.props.book, e.target.value)
-		}
+		this.props.updateBookShelfLocation(this.props.book, e.target.value)
 	}
 
   render() {
   	const {title, authors, imageLinks} = this.props.book
-  	const shelves = this.props.shelves
+  	const {bookshelves} = this.props
     return (
     	<li>
 	      <div className="book">
@@ -22,7 +20,7 @@ class Book extends React.Component {
 	            	onChange ={this.handleShelfUpdate}
 	            	defaultValue = {this.props.book.shelf}>
 	            	<option value="move" disabled>Move to...</option>
-	            	{shelves.map(shelf => 
+	            	{bookshelves.map(shelf => 
 		    			<option
 		    				value={shelf.name}
 		    				key={shelf.id}
