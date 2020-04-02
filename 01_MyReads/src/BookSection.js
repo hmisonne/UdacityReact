@@ -2,7 +2,7 @@ import React from 'react'
 import Book from './Book'
 
 const BookSection = props => {
-  	const {bookshelfTitle, books, bookshelves, updateBookShelfLocation} = props
+  	const {bookshelfTitle, books, bookshelves, updateBookShelfLocation, BookIDtoShelf} = props
     return (
     	<div>
 	    	<h2 className="bookshelf-title">{bookshelfTitle}</h2>
@@ -14,6 +14,7 @@ const BookSection = props => {
 			      		key={book.id}
 			      		bookshelves={bookshelves}
 			      		updateBookShelfLocation={updateBookShelfLocation}
+			      		BookIDtoShelf={BookIDtoShelf}
 			      	/>
 			      	)}
 			    </ol>

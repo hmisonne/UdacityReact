@@ -8,11 +8,12 @@ class Book extends React.Component {
 	}
 
   render() {
-  	const {title, authors, imageLinks} = this.props.book
+  	const {title, authors, imageLinks, BookIDtoShelf} = this.props.book
   	const {bookshelves} = this.props
   	let imageURL = ''
   	imageLinks !== undefined && (imageURL = imageLinks.smallThumbnail)
-
+  	console.log('BookIDtoShelf value on Book item',BookIDtoShelf)
+  	console.log('book id',this.props.book.id)
     return (
     	<li>
 	      <div className="book">
@@ -42,3 +43,5 @@ class Book extends React.Component {
 }
 
 export default Book
+
+// BookIDtoShelf[this.props.book.id]

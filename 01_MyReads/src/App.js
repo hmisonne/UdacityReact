@@ -25,7 +25,8 @@ const bookshelves = [
 
 class BooksApp extends React.Component {
   state = {
-    books:[]
+    books:[],
+    BookIDtoShelf:{}
   }
 
   componentDidMount() {
@@ -39,29 +40,48 @@ class BooksApp extends React.Component {
           books
         }))
       })
+      .then(() =>
+        this.loadShelves()
+        )
+  }
+
+  loadShelves = () => {
+      this.state.books.map(book => this.updateBookIDtoShelf(book))
+    }
+
+  updateBookIDtoShelf = (book) => {
+      this.setState(prevState => ({
+        BookIDtoShelf: {...prevState.BookIDtoShelf,
+          [book.id]: book.shelf}
+      }))
   }
 
   updateBookShelfLocation = (book, shelf) => {
     BooksAPI.update(book, shelf)
       .then((bookIDperShelf) => 
-        this.loadBooks())
+        this.loadBooks());
+    this.updateBookIDtoShelf(book)
   }
 
 
   render() {
+    const {books, BookIDtoShelf} = this.state
+    console.log('BookIDtoShelf App state',BookIDtoShelf)
     return (
       <div className="app">
         <Route exact path='/' render={()=> (
           <BookSelection
             bookshelves={bookshelves}
-            bookSelection={this.state.books}
+            bookSelection={books}
             updateBookShelfLocation={this.updateBookShelfLocation}
+            BookIDtoShelf={BookIDtoShelf}
           />
           )} />
         <Route path='/search' render={() => (
           <SearchBooks 
             bookshelves={bookshelves}
-            updateBookShelfLocation={this.updateBookShelfLocation}/>
+            updateBookShelfLocation={this.updateBookShelfLocation}
+            BookIDtoShelf={BookIDtoShelf}/>
           )}/>
       </div>
     )

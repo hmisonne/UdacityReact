@@ -12,7 +12,7 @@ class SearchBooks extends React.Component {
 	updateQuery = (event) => {
 		const query = event.target.value
 		this.setState(() => ({
-			query: query.trim()
+			query: query
 		}))
 		if (query.length>2){
 			this.searchBooks(query)
@@ -37,7 +37,7 @@ class SearchBooks extends React.Component {
 	}
 
 	render() {
-		const {updateBookShelfLocation, bookshelves} = this.props
+		const {updateBookShelfLocation, bookshelves, BookIDtoShelf} = this.props
 		const {books, query} = this.state
 		console.log(books)
 		return (
@@ -68,6 +68,7 @@ class SearchBooks extends React.Component {
 		        	books = {books}
 		        	bookshelves ={bookshelves}
 		        	updateBookShelfLocation = {updateBookShelfLocation}
+		        	BookIDtoShelf={BookIDtoShelf}
 		        />
 		      </div>
 		  )

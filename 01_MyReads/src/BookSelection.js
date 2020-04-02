@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 class BookSelection extends React.Component {
 
   render() {
-    const {bookshelves, bookSelection, updateBookShelfLocation} = this.props
+    const {bookshelves, bookSelection, updateBookShelfLocation, BookIDtoShelf} = this.props
 
     return (
       <div className="list-books">
@@ -21,6 +21,7 @@ class BookSelection extends React.Component {
                   bookshelves= {bookshelves}
                   books = {bookSelection.filter(book => book.shelf === bookshelf.name)}
                   updateBookShelfLocation={updateBookShelfLocation}
+                  BookIDtoShelf={BookIDtoShelf}
                   key={bookshelf.name}
                   />
                 )}

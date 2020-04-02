@@ -3,7 +3,7 @@ import Book from './Book'
 
 const SearchBookResults = props => {
 
-    const {books, bookshelves, updateBookShelfLocation} = props
+    const {books, bookshelves, updateBookShelfLocation, BookIDtoShelf} = props
     return (
             <div className="search-books-results">
               <ol className="books-grid">
@@ -13,6 +13,7 @@ const SearchBookResults = props => {
                   key={book.id}
                   bookshelves={bookshelves}
                   updateBookShelfLocation={updateBookShelfLocation}
+                  BookIDtoShelf={BookIDtoShelf}
                 />
                 )}
               </ol>
