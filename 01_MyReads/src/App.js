@@ -7,18 +7,18 @@ import BookSelection from './BookSelection'
 const bookshelves = [
   {
     id: 1,
-    shelf:"currentlyReading",
-    name:'Currently Reading'
+    name:"currentlyReading",
+    formatedName:'Currently Reading'
   },
   {
     id: 2,
-    shelf:"wantToRead",
-    name:'Want to Read'
+    name:"wantToRead",
+    formatedName:'Want to Read'
   },
   {
     id:3,
-    shelf:"read",
-    name:'Read'
+    name:"read",
+    formatedName:'Read'
 
   }]
 

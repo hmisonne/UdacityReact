@@ -2,8 +2,11 @@ import React from 'react'
 
 class Book extends React.Component {
 
+
 	handleShelfUpdate = (e) => {
-		this.props.updateBookShelfLocation(this.props.book, e.target.value)
+		if (e.target.value !== this.props.shelves.shelf){
+			this.props.updateBookShelfLocation(this.props.book, e.target.value)
+		}
 	}
 
   render() {
@@ -15,13 +18,15 @@ class Book extends React.Component {
 	        <div className="book-top">
 	          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${imageLinks.smallThumbnail})` }}></div>
 	          <div className="book-shelf-changer">
-	            <select onChange ={this.handleShelfUpdate}>
+	            <select 
+	            	onChange ={this.handleShelfUpdate}
+	            	defaultValue = {this.props.book.shelf}>
 	            	<option value="move" disabled>Move to...</option>
 	            	{shelves.map(shelf => 
 		    			<option
-		    				value={shelf.shelf}
+		    				value={shelf.name}
 		    				key={shelf.id}
-		    			>{shelf.name}</option>
+		    			>{shelf.formatedName}</option>
 		    			)}
 		    		<option value="none">None</option>
 	            </select>
