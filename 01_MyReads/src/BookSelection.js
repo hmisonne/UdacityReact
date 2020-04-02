@@ -21,6 +21,7 @@ class BookSelection extends React.Component {
                   bookshelves= {bookshelves}
                   books = {bookSelection.filter(book => book.shelf === bookshelf.name)}
                   updateBookShelfLocation={updateBookShelfLocation}
+                  key={bookshelf.name}
                   />
                 )}
             </div>

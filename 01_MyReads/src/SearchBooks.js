@@ -39,6 +39,7 @@ class SearchBooks extends React.Component {
 	render() {
 		const {updateBookShelfLocation, bookshelves} = this.props
 		const {books, query} = this.state
+		console.log(books)
 		return (
 		  <div className="search-books">
 		        <div className="search-books-bar">

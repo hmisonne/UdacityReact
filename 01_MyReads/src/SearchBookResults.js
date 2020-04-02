@@ -10,6 +10,7 @@ const SearchBookResults = props => {
               {books.map(book =>
                 <Book 
                   book={book}
+                  key={book.id}
                   bookshelves={bookshelves}
                   updateBookShelfLocation={updateBookShelfLocation}
                 />

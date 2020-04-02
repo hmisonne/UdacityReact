@@ -11,6 +11,7 @@ const BookSection = props => {
 			      {books.map(book => 
 			      	<Book 
 			      		book={book}
+			      		key={book.id}
 			      		bookshelves={bookshelves}
 			      		updateBookShelfLocation={updateBookShelfLocation}
 			      	/>
