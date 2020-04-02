@@ -1,14 +1,9 @@
 import React from 'react'
 
 class Book extends React.Component {
-	state = {
-		currShelf: '',
-	}
 
-	handleShelfUpdate = shelf => {
-		this.setState({
-			currShelf: shelf
-		})
+	handleShelfUpdate = (e) => {
+		this.props.updateBookShelfLocation(this.props.book, e.target.value)
 	}
 
   render() {
@@ -24,7 +19,7 @@ class Book extends React.Component {
 	            	<option value="move" disabled>Move to...</option>
 	            	{shelves.map(shelf => 
 		    			<option
-		    				value={shelf.name}
+		    				value={shelf.shelf}
 		    				key={shelf.id}
 		    			>{shelf.name}</option>
 		    			)}

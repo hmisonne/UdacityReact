@@ -4,7 +4,7 @@ import BookSection from './BookSection'
 class BookSelection extends React.Component {
 
   render() {
-    const {bookshelves, bookSelection} = this.props
+    const {bookshelves, bookSelection, updateBookShelfLocation} = this.props
 
     return (
       <div className="list-books">
@@ -19,6 +19,7 @@ class BookSelection extends React.Component {
                   bookshelfTitle= {bookshelf.name}
                   shelves= {bookshelves}
                   books = {bookSelection.filter(book => book.shelf === bookshelf.shelf)}
+                  updateBookShelfLocation={updateBookShelfLocation}
                   />
                 )}
             </div>

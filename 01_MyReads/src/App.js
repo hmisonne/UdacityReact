@@ -36,6 +36,10 @@ class BooksApp extends React.Component {
   }
 
   componentDidMount() {
+    this.loadBooks()
+  }
+
+  loadBooks = () => {
     BooksAPI.getAll()
       .then((books) => {
         this.setState((currState)=> ({
@@ -44,8 +48,13 @@ class BooksApp extends React.Component {
       })
   }
 
+  updateBookShelfLocation = (book, shelf) => {
+    BooksAPI.update(book, shelf)
+      .then((bookIDperShelf) => 
+        this.loadBooks())
+  }
+
   render() {
-    console.log(this.state.books[1])
     return (
       <div className="app">
         {this.state.showSearchPage ? (
@@ -73,6 +82,7 @@ class BooksApp extends React.Component {
         (<BookSelection
             bookshelves={bookshelves}
             bookSelection={this.state.books}
+            updateBookShelfLocation={this.updateBookShelfLocation}
           />)
       }
       </div>
