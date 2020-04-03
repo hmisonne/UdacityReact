@@ -17,6 +17,11 @@ class SearchBooks extends React.Component {
 		if (query.length>2){
 			this.searchBooks(query)
 		}
+		else {
+			this.setState(() => ({
+					books:[]
+			}))
+		}
 	}
 
 	searchBooks = (query) => {
@@ -39,7 +44,6 @@ class SearchBooks extends React.Component {
 	render() {
 		const {updateBookShelfLocation, bookshelves, BookIDtoShelf} = this.props
 		const {books, query} = this.state
-		console.log(books)
 		return (
 		  <div className="search-books">
 		        <div className="search-books-bar">
