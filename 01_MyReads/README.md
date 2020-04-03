@@ -5,6 +5,7 @@ This project is part of the Udacity React NanoDegree Program. A template as been
 ## App functionalities
 
 This apps allows users to organize their books into 3 categories (shelves): "Currently Reading", "Want to Read" and "Read". The user can search for new books and add or remove books from their shelves.
+This app is using react-router-dom for the navigation between pages.
 
 ## Getting started
 

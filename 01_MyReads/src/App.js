@@ -31,6 +31,7 @@ class BooksApp extends React.Component {
 
   componentDidMount() {
     this.loadBooks()
+    
   }
 
   loadBooks = () => {
@@ -39,14 +40,19 @@ class BooksApp extends React.Component {
         this.setState((currState)=> ({
           books
         }))
+        })
+      .then(()=> {
+        const newBookIDtoShelf = {}
+        this.state.books.map(book => 
+          newBookIDtoShelf[book.id]=book.shelf)
+        this.loadShelves(newBookIDtoShelf)
       })
-      .then(() =>
-        this.loadShelves()
-        )
   }
 
-  loadShelves = () => {
-      this.state.books.map(book => this.updateBookIDtoShelf(book))
+  loadShelves = (BookIDtoShelf) => {
+      this.setState(prevState => ({
+        BookIDtoShelf
+      }))
     }
 
   updateBookIDtoShelf = (book) => {
