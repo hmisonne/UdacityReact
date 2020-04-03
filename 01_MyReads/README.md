@@ -1,10 +1,10 @@
 # MyReads Project
 
-This project is part of the Udacity React NanoDegree Program. A template as been provided with a static example with CSS and HTML markup. The goal of this project is to add interactivity to the app by refactoring the static code with React.js.
+This project is part of the Udacity React NanoDegree Program. The goal was to convert a static example of the CSS and HTML markup into a dynamic React App with interactivity. 
 
 ## App functionalities
 
-This apps allows users to organize their books into 3 categories (shelves): "Currently Reading", "Want to Read" and "Read". The user can search for new books and add or remove books from their shelves.
+This app allows users to organize their books into 3 categories (shelves): "Currently Reading", "Want to Read" and "Read". The user can search for new books and add or remove books from their shelves.
 This app is using react-router-dom for the navigation between pages.
 
 ## Getting started
@@ -17,10 +17,12 @@ Developers using this project should already have node installed on their local 
 
 ### Frontend Server
 
-To run this app, from the source folder :
+To run this app, on your terminal, cd to 01_MyReads :
 
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
+
+Open the localhost:3000 to view the App in development mode on the local server.
 
 ### Backend Server
 
