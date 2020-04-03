@@ -72,7 +72,6 @@ class BooksApp extends React.Component {
 
   render() {
     const {books, BookIDtoShelf} = this.state
-    console.log('BookIDtoShelf App state',BookIDtoShelf)
     return (
       <div className="app">
         <Route exact path='/' render={()=> (
