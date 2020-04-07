@@ -4,6 +4,10 @@ import { formatTweet, formatDate } from '../utils/helpers'
 import { TiArrowBackOutline, TiHeartOutline, TiHeartFullOutline} from 'react-icons/ti/index'
 
 class Tweet extends Component {
+	handleLike = (e,) => {
+		e.preventDefault()
+		// Todo handle like tweet
+	}
 	toParent = (e, id) => {
 		e.preventDefault()
 		// Todo redirect to parent tweet
