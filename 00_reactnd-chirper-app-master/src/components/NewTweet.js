@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { handleSaveTweets } from '../actions/tweets'
+import { handleAddTweets } from '../actions/tweets'
 
 class NewTweet extends Component {
   state = {
@@ -8,18 +8,20 @@ class NewTweet extends Component {
   }
   handleChange = (e) => {
     const text = e.target.value
-
+    
     this.setState(()=>({
       text
     }))
   }
   handleSubmit = (e) => {
     e.preventDefault()
-
+    const {dispatch, id } = this.props
     const {text} = this.state
-        this.setState(()=>({
-          text: ''
-        }))
+    
+    dispatch(handleAddTweets(text, id))
+    this.setState(()=>({
+      text: ''
+    }))
   }
 	render() {
     const {text} = this.state
@@ -48,15 +50,5 @@ class NewTweet extends Component {
   }
 }
 
-// function mapStateToProps({authedUser, users, tweets}, {id}){
-// 	const tweet = tweets[id]
-// 	const parentTweet = tweet ? tweets[tweet.replyingTo] : null
-// 	return {
-// 		authedUser,
-// 		tweet: tweet 
-// 			? formatTweet(tweet, users[tweet.author], authedUser, parentTweet)
-// 			:  null
-// 	}
-// }
 
 export default connect()(NewTweet)

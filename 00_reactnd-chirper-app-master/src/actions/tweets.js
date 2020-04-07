@@ -40,7 +40,7 @@ export function addTweet(tweet) {
 	}
 }
 
-export function handleSaveTweets(text, replyingTo) {
+export function handleAddTweets(text, replyingTo) {
 	return (dispatch, getState) => {
 		const {authedUser} = getState()
 

@@ -9,7 +9,7 @@ class Tweet extends Component {
 		e.preventDefault()
 
 		const {dispatch, authedUser, tweet} = this.props
-		console.log('liking:',this.props)
+
 		dispatch(handleToggleTweets({
 			id: tweet.id,
 			hasLiked: tweet.hasLiked,

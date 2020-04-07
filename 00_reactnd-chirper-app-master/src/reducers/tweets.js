@@ -35,7 +35,8 @@ export default function tweets (state={}, action) {
 			}
 			return {
 				...state, 
-				[tweet.id]: tweet
+				[tweet.id]: tweet,
+				...replyingTo,
 			}
 		default:
 			return state
