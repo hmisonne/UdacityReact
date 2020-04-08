@@ -41,11 +41,10 @@ export function addTweet(tweet) {
 	}
 }
 
-
 export function handleDeleteTweet(tweet) {
 	return (dispatch) => {
-		dispatch(deleteTweet(tweet.id))
-		return removeTweet(tweet.id)
+		dispatch(deleteTweet(tweet))
+		return removeTweet(tweet)
 			.catch(e => {
 				console.warn('Error in handleDeleteTweet: ',e)
 				dispatch(addTweet(tweet.text, tweet.replyingTo))
@@ -54,10 +53,10 @@ export function handleDeleteTweet(tweet) {
 	}
 }
 
-export function deleteTweet(id) {
+export function deleteTweet(tweet) {
 	return {
 		type: DELETE_TWEET,
-		id,
+		tweet,
 	}
 }
 

@@ -278,10 +278,10 @@ export function _saveTweet ({ text, author, replyingTo }) {
 }
 
 
-export function _removeTweet(id) {
+export function _removeTweet(tweet) {
   return new Promise((res, rej) => {
     setTimeout(() => {
-      tweets = omit(tweets, id);
+      tweets = omit(tweets, tweet.id);
       res()
     },1000)
   })

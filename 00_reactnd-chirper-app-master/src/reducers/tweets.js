@@ -43,7 +43,21 @@ export default function tweets (state={}, action) {
 			}
 
 		case DELETE_TWEET:
-			return omit(state, action.id)
+			const tweet2 = action.tweet
+			let replyingToTweet = {}
+			if (tweet2.parent !== null) {
+				replyingToTweet = {
+					[tweet2.parent.id]: {
+						...state[tweet2.parent.id],
+						replies: state[tweet2.parent.id].replies.filter(tweetID => tweetID !== tweet2.id)
+					}
+				}
+			}
+			const newState = {
+				...state,
+				...replyingToTweet
+			}
+			return omit(newState, tweet2.id)
 		default:
 			return state
 	}

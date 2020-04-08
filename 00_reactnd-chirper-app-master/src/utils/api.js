@@ -24,6 +24,6 @@ export function saveTweet (info) {
   return _saveTweet(info)
 }
 
-export function removeTweet (id) {
-  return _removeTweet(id)
+export function removeTweet (tweet) {
+  return _removeTweet(tweet)
 }
