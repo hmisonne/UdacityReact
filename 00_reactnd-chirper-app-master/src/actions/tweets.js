@@ -4,6 +4,7 @@ export const RECEIVE_TWEETS = 'RECEIVE_TWEETS'
 export const TOGGLE_TWEET = 'TOGGLE_TWEET'
 export const ADD_TWEET = 'ADD_TWEET'
 export const DELETE_TWEET = 'DELETE_TWEET'
+export const UPDATE_TWEET_TEXT ='UPDATE_TWEET_TEXT'
 
 export function receiveTweets(tweets) {
 	return {
@@ -36,7 +37,7 @@ export function handleToggleTweets(info){
 
 export function addTweet(tweet) {
 	return {
-		type: ADD_TWEET,
+		type: UPDATE_TWEET_TEXT,
 		tweet,
 	}
 }
@@ -57,6 +58,14 @@ export function deleteTweet(tweet) {
 	return {
 		type: DELETE_TWEET,
 		tweet,
+	}
+}
+
+export function updateTweet({id, text}) {
+	return {
+		type: UPDATE_TWEET_TEXT,
+		text,
+		id
 	}
 }
 

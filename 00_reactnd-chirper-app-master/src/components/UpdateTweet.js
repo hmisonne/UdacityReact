@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { handleAddTweets } from '../actions/tweets'
+import { updateTweet } from '../actions/tweets'
 import { Redirect } from 'react-router-dom'
 
 class UpdateTweet extends Component {
@@ -16,16 +16,19 @@ class UpdateTweet extends Component {
   }
   handleChange = (e) => {
     const text = e.target.value
+    this.setState(()=>({
+      text
+    }))
   }
   handleSubmit = (e) => {
     e.preventDefault()
-    const {dispatch, id } = this.props
+    const {dispatch, tweet } = this.props
     const {text, toHome} = this.state
 
-    dispatch(handleAddTweets(text, id))
+    dispatch(updateTweet({text, id: tweet.id}))
     this.setState(()=>({
       text: '',
-      toHome: id ? false : true
+      toHome: true
     }))
   }
 	render() {

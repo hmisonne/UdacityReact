@@ -2,6 +2,7 @@ import {
 	RECEIVE_TWEETS,
 	TOGGLE_TWEET,
 	ADD_TWEET,
+	UPDATE_TWEET_TEXT,
 	DELETE_TWEET 
 } from '../actions/tweets'
 
@@ -58,6 +59,15 @@ export default function tweets (state={}, action) {
 				...replyingToTweet
 			}
 			return omit(newState, tweet2.id)
+		case UPDATE_TWEET_TEXT:
+			return {
+				...state,
+				[action.id]: {
+					...state[action.id],
+					text: action.text
+				}
+			}
+
 		default:
 			return state
 	}
