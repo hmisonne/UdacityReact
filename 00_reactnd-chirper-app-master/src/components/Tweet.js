@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatTweet, formatDate } from '../utils/helpers'
-import { TiArrowBackOutline, TiHeartOutline, TiHeartFullOutline} from 'react-icons/ti/index'
+import { TiArrowBackOutline, TiHeartOutline, TiHeartFullOutline, TiTrash} from 'react-icons/ti/index'
 import { handleToggleTweets, handleDeleteTweet } from '../actions/tweets'
 import { Link, withRouter } from 'react-router-dom'
 
@@ -64,7 +64,11 @@ class Tweet extends Component {
                 : <TiHeartOutline className='tweet-icon'/>}
             </button>
             <span>{likes !== 0 && likes}</span>
-            {authedUser === author_id && <button onClick={this.handleDelete}>Delete</button>}
+            {authedUser === author_id && 
+              <button className='trash-button' onClick={this.handleDelete}>
+                <TiTrash className='tweet-icon' />
+              </button>
+              }
             
           </div>
         </div>

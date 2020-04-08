@@ -139,6 +139,11 @@ li {
   border: none;
 }
 
+.trash-button {
+  background: transparent;
+  border: none;
+}
+
 .new-tweet {
   width: 100%;
   max-width: 590px;
