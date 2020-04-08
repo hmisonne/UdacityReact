@@ -1,10 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { handleInitialData } from '../actions/shared'
 import { connect } from 'react-redux'
 import Dashboard from './Dashboard'
 import NewTweet from './NewTweet'
 import LoadingBar from 'react-redux-loading'
 import TweetPage from './TweetPage'
+import Nav from './Nav'
 
 class App extends Component {
 	
@@ -13,13 +15,28 @@ class App extends Component {
 	}
 	render() {
 		return (
-		  <div>
-		  <LoadingBar />
-		  {this.props.loading === true 
-		  	? null
-		  	: <TweetPage match={{params: {id: '8xf0y6ziyjabvozdd253nd'}}}/>}
-		    
-		  </div>
+			<Router>
+				<Fragment>
+					<LoadingBar />
+					  <div className='container'>
+					  
+					  <Nav />
+					  {this.props.loading === true 
+					  	? null
+					  	: <div>
+					  		<Route exact path='/' render={() => (
+					  		<Dashboard/>
+					  		)}/>
+					  		<Route path='/tweet/:id' component={TweetPage}/>
+					  		<Route path='/new' render={() => (
+				  			<NewTweet/>
+				  			)}/>
+
+					  	</div>
+						   }
+					  </div>
+				</Fragment>
+		  </Router>
 		)
 	}
 }
@@ -31,3 +48,6 @@ function mapStateToProps ({authedUser}) {
 }
 
 export default connect(mapStateToProps)(App)
+
+// <TweetPage match={{params: {id: '8xf0y6ziyjabvozdd253nd'}}}/>}
+
