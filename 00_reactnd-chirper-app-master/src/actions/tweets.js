@@ -1,8 +1,9 @@
-import { saveLikeToggle, saveTweet } from '../utils/api'
+import { saveLikeToggle, saveTweet, removeTweet } from '../utils/api'
 import { showLoading, hideLoading } from 'react-redux-loading'
 export const RECEIVE_TWEETS = 'RECEIVE_TWEETS'
 export const TOGGLE_TWEET = 'TOGGLE_TWEET'
 export const ADD_TWEET = 'ADD_TWEET'
+export const DELETE_TWEET = 'DELETE_TWEET'
 
 export function receiveTweets(tweets) {
 	return {
@@ -37,6 +38,26 @@ export function addTweet(tweet) {
 	return {
 		type: ADD_TWEET,
 		tweet,
+	}
+}
+
+
+export function handleDeleteTweet(tweet) {
+	return (dispatch) => {
+		dispatch(deleteTweet(tweet.id))
+		return removeTweet(tweet.id)
+			.catch(e => {
+				console.warn('Error in handleDeleteTweet: ',e)
+				dispatch(addTweet(tweet.text, tweet.replyingTo))
+				alert('There was an error deleting the tweet. Try again')
+			})
+	}
+}
+
+export function deleteTweet(id) {
+	return {
+		type: DELETE_TWEET,
+		id,
 	}
 }
 

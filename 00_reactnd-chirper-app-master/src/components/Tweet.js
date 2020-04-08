@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatTweet, formatDate } from '../utils/helpers'
 import { TiArrowBackOutline, TiHeartOutline, TiHeartFullOutline} from 'react-icons/ti/index'
-import { handleToggleTweets } from '../actions/tweets'
+import { handleToggleTweets, handleDeleteTweet } from '../actions/tweets'
 import { Link, withRouter } from 'react-router-dom'
 
 class Tweet extends Component {
-	handleLike = (e,) => {
+	handleLike = (e) => {
 		e.preventDefault()
 
 		const {dispatch, authedUser, tweet} = this.props
@@ -17,6 +17,12 @@ class Tweet extends Component {
 			authedUser, 
 		}))
 	}
+  handleDelete = (e) => {
+    console.log('e',e)
+    e.preventDefault()
+    const {dispatch, authedUser, tweet} = this.props
+    dispatch(handleDeleteTweet(tweet))
+  }
 	toParent = (e, id) => {
 		e.preventDefault()
 		this.props.history.push(`/tweet/${id}`)
@@ -28,7 +34,7 @@ class Tweet extends Component {
 			return(<p>This tweet does not exist</p>)
 		}
 		const {
-      name, avatar, timestamp, text, hasLiked, likes, replies, parent, id
+      name, avatar, timestamp, text, hasLiked, likes, replies, parent, id, author_id
     } = tweet
 
     return (
@@ -58,6 +64,8 @@ class Tweet extends Component {
                 : <TiHeartOutline className='tweet-icon'/>}
             </button>
             <span>{likes !== 0 && likes}</span>
+            {authedUser === author_id && <button onClick={this.handleDelete}>Delete</button>}
+            
           </div>
         </div>
       </Link>

@@ -3,6 +3,7 @@ import {
   _getTweets,
   _saveLikeToggle,
   _saveTweet,
+  _removeTweet,
 } from './_DATA.js'
 
 export function getInitialData () {
@@ -21,4 +22,8 @@ export function saveLikeToggle (info) {
 
 export function saveTweet (info) {
   return _saveTweet(info)
+}
+
+export function removeTweet (id) {
+  return _removeTweet(id)
 }

@@ -1,8 +1,11 @@
 import { 
 	RECEIVE_TWEETS,
 	TOGGLE_TWEET,
-	ADD_TWEET } 
-from '../actions/tweets'
+	ADD_TWEET,
+	DELETE_TWEET 
+} from '../actions/tweets'
+
+import { omit } from 'lodash'
 
 export default function tweets (state={}, action) {
 	switch (action.type) {
@@ -38,8 +41,10 @@ export default function tweets (state={}, action) {
 				[tweet.id]: tweet,
 				...replyingTo,
 			}
+
+		case DELETE_TWEET:
+			return omit(state, action.id)
 		default:
 			return state
 	}
 }
-

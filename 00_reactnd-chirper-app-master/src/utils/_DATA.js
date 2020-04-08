@@ -1,3 +1,5 @@
+import { omit } from 'lodash'
+
 let users = {
   sarah_edo: {
     id: "sarah_edo",
@@ -272,5 +274,15 @@ export function _saveTweet ({ text, author, replyingTo }) {
 
       res(formattedTweet)
     }, 1000)
+  })
+}
+
+
+export function _removeTweet(id) {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      tweets = omit(tweets, id);
+      res()
+    },1000)
   })
 }
