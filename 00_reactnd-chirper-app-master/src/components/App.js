@@ -6,6 +6,7 @@ import Dashboard from './Dashboard'
 import NewTweet from './NewTweet'
 import LoadingBar from 'react-redux-loading'
 import TweetPage from './TweetPage'
+import UpdateTweet from './UpdateTweet'
 import Nav from './Nav'
 
 class App extends Component {
@@ -23,16 +24,15 @@ class App extends Component {
 					  <Nav />
 					  {this.props.loading === true 
 					  	? null
-					  	: <div>
-					  		<Route exact path='/' render={() => (
-					  		<Dashboard/>
-					  		)}/>
+					  	: 
+					  	<div>
+					  		<Route exact path='/' component={Dashboard}/>
 					  		<Route path='/tweet/:id' component={TweetPage}/>
-					  		<Route path='/new' render={() => (
-				  			<NewTweet/>
-				  			)}/>
+					  		<Route path='/new' component={NewTweet}/>
+				  			<Route path='/update/:id' component={UpdateTweet}/>
 
 					  	</div>
+					  	
 						   }
 					  </div>
 				</Fragment>

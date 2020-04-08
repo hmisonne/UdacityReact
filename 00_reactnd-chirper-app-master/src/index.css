@@ -143,6 +143,10 @@ li {
   background: transparent;
   border: none;
 }
+.update-button {
+  background: transparent;
+  border: none;
+}
 
 .new-tweet {
   width: 100%;

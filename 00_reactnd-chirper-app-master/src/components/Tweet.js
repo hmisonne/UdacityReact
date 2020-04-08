@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatTweet, formatDate } from '../utils/helpers'
-import { TiArrowBackOutline, TiHeartOutline, TiHeartFullOutline, TiTrash} from 'react-icons/ti/index'
+import { TiArrowBackOutline, TiHeartOutline, TiHeartFullOutline, TiTrash, TiPencil} from 'react-icons/ti/index'
 import { handleToggleTweets, handleDeleteTweet } from '../actions/tweets'
 import { Link, withRouter } from 'react-router-dom'
 
@@ -17,10 +17,13 @@ class Tweet extends Component {
 			authedUser, 
 		}))
 	}
-  handleDelete = (e) => {
-    console.log('e',e)
+  toUpdate = (e, id) => {
     e.preventDefault()
-    const {dispatch, authedUser, tweet} = this.props
+    this.props.history.push(`/update/${id}`)
+  }
+  handleDelete = (e) => {
+    e.preventDefault()
+    const {dispatch, tweet} = this.props
     dispatch(handleDeleteTweet(tweet))
   }
 	toParent = (e, id) => {
@@ -65,9 +68,14 @@ class Tweet extends Component {
             </button>
             <span>{likes !== 0 && likes}</span>
             {authedUser === author_id && 
+              <div>
               <button className='trash-button' onClick={this.handleDelete}>
                 <TiTrash className='tweet-icon' />
               </button>
+              <button className='update-button' onClick={(e) => this.toUpdate(e, id)}>
+                <TiPencil className='tweet-icon' />
+              </button>
+              </div>
               }
             
           </div>

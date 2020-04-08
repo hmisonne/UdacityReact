@@ -25,6 +25,7 @@ class TweetPage extends Component {
 }
 
 function mapStateToProps ({ authedUser, tweets, users }, props) {
+  console.log('params', props)
 	const { id } = props.match.params
 
   return {
