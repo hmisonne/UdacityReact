@@ -37,7 +37,7 @@ export function handleToggleTweets(info){
 
 export function addTweet(tweet) {
 	return {
-		type: UPDATE_TWEET_TEXT,
+		type: ADD_TWEET,
 		tweet,
 	}
 }
