@@ -4,7 +4,7 @@ import Question from './Question'
 
 class Dashboard extends Component {
 	state = {
-		showUnanswered: false,
+		showUnanswered: true,
 	}
 
 	onToggle = () => {
@@ -15,15 +15,20 @@ class Dashboard extends Component {
 
 	render(){
 		const {unansweredQuestions, answeredQuestions} = this.props
+		const {showUnanswered}= this.state
 		let visibleQuestions
-		this.state.showUnanswered 
+		showUnanswered 
 		? visibleQuestions = unansweredQuestions
 		: visibleQuestions = answeredQuestions
 		return(
 			<div>
 				<h4>Dashboard</h4>
-				<button onClick = {this.onToggle}>Answered</button>
-				<button onClick = {this.onToggle}>Unanswered</button>
+				<button 
+					onClick = {this.onToggle}
+					disabled={!showUnanswered}>Answered</button>
+				<button 
+					onClick = {this.onToggle}
+					disabled={showUnanswered}>Unanswered</button>
 				<ul>
 					{visibleQuestions.map((question) => (
 						<li key={question.id}>

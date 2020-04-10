@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatQuestion, formatDate } from '../utils/helpers'
 import { withRouter } from 'react-router-dom'
+
 class Question extends Component {
 	
 	toPoll = (e, id) => {
@@ -15,11 +16,17 @@ class Question extends Component {
 		optionTwo,
 		hasReplied,
 		author_id,
-		avatar: avatarURL,
+		avatar,
 		timestamp} = question
 		return(
 			<div className='question'>
 				<div>{author} asks:</div>
+				<img
+		          src={avatar}
+		          alt={`Avatar of ${author}`}
+		          className='avatar'
+		        />
+				
 				<div>
 					Would you rather? {question.optionOne.text} Vs {question.optionTwo.text}
 				</div>
