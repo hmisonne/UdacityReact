@@ -1,4 +1,5 @@
 import React, { Component, Fragment} from 'react';
+import LoadingBar from 'react-redux-loading'
 import { handleInitialData } from '../actions/shared'
 import { connect } from 'react-redux'
 import Dashboard from './Dashboard'
@@ -8,6 +9,7 @@ import QuestionDetails from './QuestionDetails'
 import Nav from './Nav'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
+
 class App extends Component {
 	componentDidMount(){
 		this.props.dispatch(handleInitialData())
@@ -16,17 +18,24 @@ class App extends Component {
 		return (
 			<Router>
 				<Fragment>
-				    <div className="container">
-				    	<Nav />
-						<Route exact path='/' component={Dashboard}/>
-						<Route path='/add' component={NewQuestions}/>
-						<Route path='/questions/:id' component={QuestionDetails}/>
-				        <Route exact path='/leaderboard' render={() => (
-				          <Leaderboard
-				            sortedUsers={this.props.sortedUsers}
-				            users={this.props.users}
-				          />
-				        )} />
+					<LoadingBar />
+					    <div className="container">
+					    	<Nav />
+					    	{this.props.loading === true 
+							  	? null
+							  	: 
+							  	<div>
+									<Route exact path='/' component={Dashboard}/>
+									<Route path='/add' component={NewQuestions}/>
+									<Route path='/questions/:id' component={QuestionDetails}/>
+							        <Route exact path='/leaderboard' render={() => (
+							          <Leaderboard
+							            sortedUsers={this.props.sortedUsers}
+							            users={this.props.users}
+							          />
+							        )} />
+							    </div>
+						}
 				    </div>
 			    </Fragment>
 			</Router>
@@ -39,6 +48,7 @@ function mapStateToProps ({ questions, authedUser, users }) {
 	const sortedUsers = Object.keys(users)
 		.sort((a,b) => users[b].score - users[a].score)
 	return {
+		loading: authedUser === null,
 		users,
 		questions,
 		sortedUsers
