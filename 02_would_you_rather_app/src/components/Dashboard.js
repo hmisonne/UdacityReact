@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Question from './Question'
+import Button from 'react-bootstrap/Button';
 
 class Dashboard extends Component {
 	state = {
@@ -23,12 +24,12 @@ class Dashboard extends Component {
 		return(
 			<div>
 				<h4>Dashboard</h4>
-				<button 
+				<Button 
 					onClick = {this.onToggle}
-					disabled={!showUnanswered}>Answered</button>
-				<button 
+					disabled={!showUnanswered}>Answered</Button>
+				<Button 
 					onClick = {this.onToggle}
-					disabled={showUnanswered}>Unanswered</button>
+					disabled={showUnanswered}>Unanswered</Button>
 				<ul>
 					{visibleQuestions.map((question) => (
 						<li key={question.id}>
