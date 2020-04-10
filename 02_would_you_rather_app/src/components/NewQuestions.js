@@ -15,7 +15,8 @@ class NewQuestion extends Component {
 		}))
 	}
 
-	handleSubmit = () => {
+	handleSubmit = (e) => {
+		e.preventDefault()
 		const { dispatch } = this.props
 		const { optionOne, optionTwo } = this.state
 		dispatch(handleAddQuestion(optionOne, optionTwo))

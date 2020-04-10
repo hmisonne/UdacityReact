@@ -8,7 +8,6 @@ class Dashboard extends Component {
 	}
 
 	onToggle = () => {
-		console.log('toggle')
 		this.setState((prevState) => ({
 			showUnanswered: !prevState.showUnanswered
 		}))
