@@ -13,7 +13,7 @@ class Question extends Component {
 		timestamp} = question
 		return(
 			<div>
-				Question: {question.id}
+				Would you rather? {question.optionOne.text} Vs {question.optionTwo.text}
 			</div>
 		)
 	}
