@@ -23,3 +23,20 @@ export function formatQuestion(question, author, authedUser){
 		timestamp,
 	}
 }
+
+export function formatUser(user){
+	const {name,
+		avatarURL,
+		answers,
+		score,
+		questions} = user
+	const createdQuestions = questions.length
+	const answeredQuestions = Object.keys(answers).length
+	return {
+		name,
+		avatarURL,
+		answeredQuestions,
+		createdQuestions,
+		score,
+	}
+}

@@ -18,6 +18,7 @@ class Dashboard extends Component {
 		console.log('v',visibleQuestions)
 		return(
 			<div>
+				<h4>Dashboard</h4>
 				<ul>
 					{visibleQuestions.map((question) => (
 						<li key={question.id}>

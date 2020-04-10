@@ -2,6 +2,7 @@ import React, { Component} from 'react';
 import { handleInitialData } from '../actions/shared'
 import { connect } from 'react-redux'
 import Dashboard from './Dashboard'
+import Leaderboard from './Leaderboard'
 
 class App extends Component {
 	componentDidMount(){
@@ -10,11 +11,21 @@ class App extends Component {
 	render(){
 		return (
 		    <div className="App">
-		      <Dashboard/>
+		      <Dashboard />
+		      <Leaderboard sortedUsers={this.props.sortedUsers} users={this.props.users}/>
 		    </div>
 		  );
 	}
   
 }
 
-export default connect()(App);
+function mapStateToProps ({ questions, authedUser, users }) {
+	const sortedUsers = Object.keys(users)
+		.sort((a,b) => users[b].score - users[a].score)
+	return {
+		users,
+		sortedUsers
+	}
+}
+
+export default connect(mapStateToProps)(App);
