@@ -5,19 +5,26 @@ import QuestionDetailsPoll from './QuestionDetailsPoll'
 
 class QuestionDetail extends Component {
 	render(){
-		
+		const {question} = this.props
+
 		return(
 			<div className='question'>
 				<div>... asks:</div>
 				<div>
 					Would you rather?
 				</div>
-				<QuestionDetailsPoll/>
+				<QuestionDetailsPoll question={question}/>
 			</div>
 		)
 	}
 }
 
+function mapStateToProps ({authedUser, questions}, props) {
+  const { id } = props.match.params
 
+  return {
+    question: questions[id]
+  }
+}
 
-export default connect()(QuestionDetail)
+export default connect(mapStateToProps)(QuestionDetail)

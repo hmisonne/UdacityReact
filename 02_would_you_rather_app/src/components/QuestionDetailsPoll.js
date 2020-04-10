@@ -2,20 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatQuestion, formatDate } from '../utils/helpers'
 
-const question = {
-    id: '6ni6ok3ym7mf1p33lnez',
-    author: 'johndoe',
-    timestamp: 1468479767190,
-    optionOne: {
-      votes: [],
-      text: 'become a superhero',
-    },
-    optionTwo: {
-      votes: ['johndoe', 'sarahedo'],
-      text: 'become a supervillain'
-    }
-}
-
 class QuestionDetailsPoll extends Component {
 	state = {
 		selectedOption: 'optionOne'
@@ -30,6 +16,7 @@ class QuestionDetailsPoll extends Component {
 		}))
 	}
 	render(){
+		const {question} = this.props
 
 		return(
 				<form onSubmit={this.handleVote}>
