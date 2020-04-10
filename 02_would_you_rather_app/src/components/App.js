@@ -5,6 +5,7 @@ import Dashboard from './Dashboard'
 import Leaderboard from './Leaderboard'
 import NewQuestions from './NewQuestions'
 import QuestionDetails from './QuestionDetails'
+import Nav from './Nav'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
 			<Router>
 				<Fragment>
 				    <div className="container">
+				    	<Nav />
 						<Route exact path='/' component={Dashboard}/>
 						<Route path='/add' component={NewQuestions}/>
 						<Route path='/questions/:id' component={QuestionDetails}/>

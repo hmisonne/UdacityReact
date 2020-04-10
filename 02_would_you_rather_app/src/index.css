@@ -54,3 +54,7 @@ code {
 .center {
   text-align: center;
 }
+
+.active {
+  font-weight: bold;
+}
