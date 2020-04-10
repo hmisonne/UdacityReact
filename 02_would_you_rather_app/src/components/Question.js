@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatQuestion, formatDate } from '../utils/helpers'
 import { withRouter } from 'react-router-dom'
-
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 class Question extends Component {
 	
 	toPoll = (e, id) => {
@@ -19,19 +20,22 @@ class Question extends Component {
 		avatar,
 		timestamp} = question
 		return(
-			<div className='question'>
-				<div>{author} asks:</div>
-				<img
-		          src={avatar}
-		          alt={`Avatar of ${author}`}
-		          className='avatar'
-		        />
-				
-				<div>
-					Would you rather? {question.optionOne.text} Vs {question.optionTwo.text}
-				</div>
-				<button onClick={(e) => this.toPoll(e, id)}>View Poll</button>
-			</div>
+			<Card>
+			  <Card.Header>{author} asks:</Card.Header>
+			  <Card.Body>
+				  <img
+			          src={avatar}
+			          alt={`Avatar of ${author}`}
+			          className='avatar'
+			        />
+			    <Card.Title>Would you rather?</Card.Title>
+
+			    <Card.Text>
+			       {question.optionOne.text} Vs {question.optionTwo.text}
+			    </Card.Text>
+			    <Button variant="primary"onClick={(e) => this.toPoll(e, id)}>View Poll</Button>
+			  </Card.Body>
+			</Card>
 		)
 	}
 }
