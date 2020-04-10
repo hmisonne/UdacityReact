@@ -7,7 +7,12 @@ class Dashboard extends Component {
 		showUnanswered: false,
 	}
 
-
+	onToggle = () => {
+		console.log('toggle')
+		this.setState((prevState) => ({
+			showUnanswered: !prevState.showUnanswered
+		}))
+	}
 
 	render(){
 		const {unansweredQuestions, answeredQuestions} = this.props
@@ -15,10 +20,11 @@ class Dashboard extends Component {
 		this.state.showUnanswered 
 		? visibleQuestions = unansweredQuestions
 		: visibleQuestions = answeredQuestions
-		console.log('v',visibleQuestions)
 		return(
 			<div>
 				<h4>Dashboard</h4>
+				<button onClick = {this.onToggle}>Answered</button>
+				<button onClick = {this.onToggle}>Unanswered</button>
 				<ul>
 					{visibleQuestions.map((question) => (
 						<li key={question.id}>

@@ -3,6 +3,7 @@ import { handleInitialData } from '../actions/shared'
 import { connect } from 'react-redux'
 import Dashboard from './Dashboard'
 import Leaderboard from './Leaderboard'
+import NewQuestions from './NewQuestions'
 
 class App extends Component {
 	componentDidMount(){
@@ -10,9 +11,10 @@ class App extends Component {
 	}
 	render(){
 		return (
-		    <div className="App">
+		    <div className="container">
 		      <Dashboard />
 		      <Leaderboard sortedUsers={this.props.sortedUsers} users={this.props.users}/>
+		      <NewQuestions/>
 		    </div>
 		  );
 	}

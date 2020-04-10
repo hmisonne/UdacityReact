@@ -9,7 +9,9 @@ const Leaderboard = (props) => {
 			<h4>Leaderboard</h4>
 			<ul>
 				{props.sortedUsers.map(id => 
-					<User user={props.users[id]}/>
+					<User 
+						key={props.users[id].id}
+						user={props.users[id]}/>
 					)
 					
 				}
