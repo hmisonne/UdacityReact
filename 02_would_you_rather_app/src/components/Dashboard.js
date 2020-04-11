@@ -26,10 +26,10 @@ class Dashboard extends Component {
 				<h4>Dashboard</h4>
 				<Button 
 					onClick = {this.onToggle}
-					disabled={!showUnanswered}>Answered</Button>
+					disabled={showUnanswered}>Unanswered</Button>
 				<Button 
 					onClick = {this.onToggle}
-					disabled={showUnanswered}>Unanswered</Button>
+					disabled={!showUnanswered}>Answered</Button>
 				<ul>
 					{visibleQuestions.map((question) => (
 						<li key={question.id}>
@@ -63,17 +63,10 @@ function mapStateToProps ({ questions, authedUser, users }) {
 
 
 	return {
-		unansweredQuestions,
-		answeredQuestions
+		unansweredQuestions: unansweredQuestions
+			.sort((b, a) => a.timestamp - b.timestamp),
+		answeredQuestions: answeredQuestions
+			.sort((b, a) => a.timestamp - b.timestamp)
 	}
 }
 export default connect(mapStateToProps)(Dashboard)
-
-
-	// return {
-	// 	answeredQuestionIds,
-	// 	allQuestions: Object.keys(questions)
-	// 		.sort((a,b) => questions[b].timestamp - questions[a].timestamp)
-	// }
-
-								// 
