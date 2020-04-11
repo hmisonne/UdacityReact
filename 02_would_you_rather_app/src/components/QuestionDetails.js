@@ -4,6 +4,7 @@ import { formatQuestion, formatDate } from '../utils/helpers'
 import QuestionDetailsPoll from './QuestionDetailsPoll'
 import QuestionDetailsResult from './QuestionDetailsResult'
 import { handleAnswerQuestion } from '../actions/questions'
+import Card from 'react-bootstrap/Card';
 
 class QuestionDetail extends Component {
 	submitAnswer = (answer) => {
@@ -16,10 +17,10 @@ class QuestionDetail extends Component {
 		const {question, author, userReply} = this.props
 		return(
 			<div className='question'>
-				<div>{author.name} asks:</div>
-				<div>
-					Would you rather?
-				</div>
+			<Card>
+			<Card.Header>{author.name} asks:</Card.Header>
+			  <Card.Body>
+			  	<Card.Title>Would you rather?</Card.Title>
 				{userReply === null 
 					? <QuestionDetailsPoll 
 						question={question} 
@@ -28,7 +29,8 @@ class QuestionDetail extends Component {
 						question={question}
 						userReply={userReply}/>
 				}
-				
+			</Card.Body>
+			</Card>
 			</div>
 		)
 	}

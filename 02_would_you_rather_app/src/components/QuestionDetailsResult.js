@@ -1,32 +1,48 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { formatQuestion, formatDate } from '../utils/helpers'
-import ProgressBar from 'react-bootstrap/ProgressBar'
+import React from 'react'
+import Card from 'react-bootstrap/Card';
+import QuestionDetailsResultCard from './QuestionDetailsResultCard'
 
+const QuestionDetailsResult = props => {
 
-class QuestionDetailsResult extends Component {
-
-	render(){
-		const {question, userReply} = this.props
-		const optionOneVotes = question.optionOne.votes.length;
-		const optionTwoVotes = question.optionTwo.votes.length;
-		const totalVotes = optionOneVotes + optionTwoVotes
-		const optionOneResult = optionOneVotes / (totalVotes)*100
-		const optionTwoResult = Math.abs(optionOneResult - 100)
-		return(
-			<div>
-				<div> Would you rather ...</div>
-				<ProgressBar now={optionOneResult} label={`${optionOneResult}%`} />
-				<div>{optionOneVotes} out of {totalVotes}</div>
-				<div> Would you rather ...</div>
-				<ProgressBar now={optionTwoResult} label={`${optionTwoResult}%`} />
-				<div>{optionTwoVotes} out of {totalVotes}</div>
-			</div>
-		)
+	const {question, userReply} = props
+	let styleCard
+	if (userReply === 'optionOne'){
+		styleCard = {
+		'optionOne':"#94f2bd",
+		'optionTwo': ""}
 	}
+	else {
+		styleCard = {
+		'optionOne':"",
+		'optionTwo': "#94f2bd"}
+	}
+
+	const optionOneVotes = question.optionOne.votes.length;
+	const optionTwoVotes = question.optionTwo.votes.length;
+	const totalVotes = optionOneVotes + optionTwoVotes
+	const optionOneResult = Math.round(optionOneVotes / (totalVotes)*100)
+	const optionTwoResult = Math.abs(optionOneResult - 100)
+	return(
+		<div>
+			<QuestionDetailsResultCard 
+				optionVotes={optionOneVotes}
+				optionResult={optionOneResult}
+				totalVotes={totalVotes}
+				selection={userReply === "optionOne"}
+				questionText={question.optionOne.text}
+				styleCard={styleCard.optionOne}/>
+			<QuestionDetailsResultCard 
+				optionVotes={optionTwoVotes}
+				optionResult={optionTwoResult}
+				totalVotes={totalVotes}
+				selection={userReply === "optionTwo"}
+				questionText={question.optionTwo.text}
+				styleCard={styleCard.optionTwo}/>
+		</div>
+	)
+
 }
 
 
 
-
-export default connect()(QuestionDetailsResult)
+export default QuestionDetailsResult
