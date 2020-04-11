@@ -14,7 +14,6 @@ class QuestionDetail extends Component {
 	
 	render(){
 		const {question, author, userReply} = this.props
-		console.log(userReply)
 		return(
 			<div className='question'>
 				<div>{author.name} asks:</div>
@@ -26,7 +25,8 @@ class QuestionDetail extends Component {
 						question={question} 
 						submitAnswer = {this.submitAnswer}/>
 					: <QuestionDetailsResult
-						question={question}/>
+						question={question}
+						userReply={userReply}/>
 				}
 				
 			</div>
