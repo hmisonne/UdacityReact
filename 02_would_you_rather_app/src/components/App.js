@@ -20,7 +20,7 @@ class App extends Component {
 				<Fragment>
 					<LoadingBar />
 					    <div className="container">
-					    	<Nav />
+					    	<Nav authedUserName={this.props.authedUserName}/>
 					    	{this.props.loading === true 
 							  	? null
 							  	: 
@@ -45,15 +45,17 @@ class App extends Component {
 }
 
 function mapStateToProps ({ questions, authedUser, users }) {
+	let authedUserName = null
+	if (users[authedUser] !== undefined) { authedUserName=users[authedUser].name }
 	const sortedUsers = Object.keys(users)
 		.sort((a,b) => users[b].score - users[a].score)
 	return {
 		loading: authedUser === null,
 		users,
+		authedUserName,
 		questions,
 		sortedUsers
 	}
 }
 
 export default connect(mapStateToProps)(App);
-// <QuestionDetails id='8xf0y6ziyjabvozdd253nd'/>

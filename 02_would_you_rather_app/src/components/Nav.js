@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-export default function Nav () {
+const Nav = (props) => {
   return (
     <nav className='nav'>
       <ul>
@@ -20,6 +20,13 @@ export default function Nav () {
             Leader Board
           </NavLink>
         </li>
+      </ul>
+      <ul style={{textAlign: "center"}}>  
+        <li>
+          <div>
+            Hello, {props.authedUserName}
+          </div>
+        </li>
         <li>
           <NavLink to='/' activeClassName='active'>
             Logout
@@ -29,3 +36,5 @@ export default function Nav () {
     </nav>
   )
 } 
+
+export default Nav

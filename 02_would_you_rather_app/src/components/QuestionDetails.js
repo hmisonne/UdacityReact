@@ -19,7 +19,13 @@ class QuestionDetail extends Component {
 			<div className='question'>
 			<Card>
 			<Card.Header>{author.name} asks:</Card.Header>
+
 			  <Card.Body>
+		  			<img
+		          src={author.avatarURL}
+		          alt={`Avatar of ${author.name}`}
+		          className='avatar'
+		        />
 			  	<Card.Title>Would you rather?</Card.Title>
 				{userReply === null 
 					? <QuestionDetailsPoll 
