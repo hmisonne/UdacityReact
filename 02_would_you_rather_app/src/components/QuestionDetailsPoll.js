@@ -8,6 +8,7 @@ class QuestionDetailsPoll extends Component {
 	}
 	handleVote = (e) => {
 		e.preventDefault()
+		this.props.submitAnswer(this.state.selectedOption)
 	}
 	handleOptionChange = (e) => {
 		const {value} = e.target
