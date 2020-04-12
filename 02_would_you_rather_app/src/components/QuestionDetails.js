@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { formatQuestion, formatDate } from '../utils/helpers'
 import QuestionDetailsPoll from './QuestionDetailsPoll'
 import QuestionDetailsResult from './QuestionDetailsResult'
 import { handleAnswerQuestion } from '../actions/questions'

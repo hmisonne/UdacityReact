@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { formatQuestion, formatDate } from '../utils/helpers'
 import { withRouter } from 'react-router-dom'
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 class Question extends Component {
@@ -12,45 +9,29 @@ class Question extends Component {
 		this.props.history.push(`/questions/${id}`)
 	}
 	render(){
-		const {question, authedUser, author} = this.props
-		const {id,
-		optionOne,
-		optionTwo,
-		hasReplied,
-		author_id,
-		avatar,
-		timestamp} = question
+		const {question, author} = this.props
+
 		return(
 			<Card>
-			  <Card.Header>{author} asks:</Card.Header>
+			  <Card.Header>{author.name} asks:</Card.Header>
 			  <Card.Body>
 				  <img
-			          src={avatar}
-			          alt={`Avatar of ${author}`}
+			          src={author.avatarURL}
+			          alt={`Avatar of ${author.name}`}
 			          className='avatar'
 			        />
 			    <Card.Title>Would you rather?</Card.Title>
 
 			    <Card.Text>
-			       {question.optionOne.text} Vs {question.optionTwo.text}
+			       {question.optionOne.text} Or {question.optionTwo.text}
 			    </Card.Text>
-			    <Button variant="primary"onClick={(e) => this.toPoll(e, id)}>View Poll</Button>
+			    <button class="btn btn-primary" onClick={(e) => this.toPoll(e, question.id)}>View Poll</button>
 			  </Card.Body>
 			</Card>
 		)
 	}
 }
 
-function mapStateToProps({questions, authedUser, users}, {id}){
-	const question = questions[id]
-	const author = users[question.author].name
-	return{
-		author,
-		authedUser,
-		question: question
-		? formatQuestion(question, users[question.author], authedUser)
-		: null
-	}
-}
 
-export default withRouter(connect(mapStateToProps)(Question))
+
+export default withRouter(Question)

@@ -1,5 +1,4 @@
 import React from 'react'
-import Card from 'react-bootstrap/Card';
 import QuestionDetailsResultCard from './QuestionDetailsResultCard'
 
 const QuestionDetailsResult = props => {

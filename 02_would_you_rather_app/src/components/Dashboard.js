@@ -14,7 +14,7 @@ class Dashboard extends Component {
 	}
 
 	render(){
-		const {unansweredQuestions, answeredQuestions} = this.props
+		const {unansweredQuestions, answeredQuestions, users} = this.props
 		const {showUnanswered}= this.state
 		let visibleQuestions
 		showUnanswered 
@@ -37,7 +37,9 @@ class Dashboard extends Component {
 				<ul>
 					{visibleQuestions.map((question) => (
 						<li key={question.id}>
-							<Question id = {question.id} /> 
+							<Question 
+								question = {question}
+								author = {users[question.author]} /> 
 						</li>
 					))}
 				</ul>
@@ -50,7 +52,7 @@ class Dashboard extends Component {
 
 function mapStateToProps ({ questions, authedUser, users }) {
 	// Sort questions based on authedUser response status
-	
+
 	const user = users[authedUser]
 	let answeredQuestionIds = []
 	if (user !== undefined) {answeredQuestionIds = user.answers} 
@@ -69,6 +71,7 @@ function mapStateToProps ({ questions, authedUser, users }) {
 
 
 	return {
+		users,
 		unansweredQuestions: unansweredQuestions
 			.sort((b, a) => a.timestamp - b.timestamp),
 		answeredQuestions: answeredQuestions

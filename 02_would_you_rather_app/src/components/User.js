@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React from 'react'
 import { formatUser} from '../utils/helpers'
 import Card from 'react-bootstrap/Card';
 
