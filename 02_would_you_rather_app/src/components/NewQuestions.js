@@ -27,7 +27,6 @@ class NewQuestion extends Component {
 	}
 
 	render(){
-		console.log(this.state)
 		return(
 			<div>
 				<h4>Create New Question</h4>
