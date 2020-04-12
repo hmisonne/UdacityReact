@@ -3,29 +3,37 @@ import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
 
 class Login extends Component{
-
+	state = {
+		value: ''
+	}
+	handleChange = (e) => {
+		const {value} = e.target
+		this.setState({value})
+	}
 	handleLogin = (e) => {
 		e.preventDefault()
-		console.log(e)
-		// const { dispatch } = dispatch
-		// dispatch(setAuthedUser(user))
-
+		const user = this.state.value
+		const { dispatch } = this.props
+		dispatch(setAuthedUser(user))
 	}
+
 	render(){
 		const {users} = this.props
-		console.log(users)
+		const {value} = this.state
 		return(
 			<div>
-			<h4>Sign In</h4>
-				<select>
-				<option value="" disabled>Select User</option>
-				{users.map(user => 
-					<option value={user}>{user}</option>
-					)
-					
-				}
-			</select>
-			<button onClick={this.handleLogin}>Sign In</button>
+				<h4>Sign In</h4>
+				<form onSubmit={this.handleLogin}>
+					<select value={value} onChange={this.handleChange}>
+					<option value="">Select User</option>
+					{users.map(user => 
+						<option value={user}>{user}</option>
+						)
+						
+					}
+				</select>
+				<button disabled = {value ===''}>Sign In</button>
+				</form>
 			</div>
 		)
 
