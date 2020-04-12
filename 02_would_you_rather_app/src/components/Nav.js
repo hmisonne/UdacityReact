@@ -21,7 +21,7 @@ const Nav = (props) => {
           </NavLink>
         </li>
       </ul>
-      <ul style={{textAlign: "center"}}>  
+      <ul style={{position: 'absolute', right: 0}}>  
         <li>
           <div>
             Hello, {props.authedUserName}

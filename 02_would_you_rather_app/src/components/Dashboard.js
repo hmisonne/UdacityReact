@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Question from './Question'
-import Button from 'react-bootstrap/Button';
 
 class Dashboard extends Component {
 	state = {
@@ -23,13 +22,18 @@ class Dashboard extends Component {
 		: visibleQuestions = answeredQuestions
 		return(
 			<div>
-				<h4>Dashboard</h4>
-				<Button 
-					onClick = {this.onToggle}
-					disabled={showUnanswered}>Unanswered</Button>
-				<Button 
-					onClick = {this.onToggle}
-					disabled={!showUnanswered}>Answered</Button>
+				<div className='center'>
+					<h4>Dashboard</h4>
+					<button 
+						class="btn btn-primary"
+						onClick = {this.onToggle}
+						disabled={showUnanswered}>Unanswered</button>
+					<button 
+						class="btn btn-primary"
+						onClick = {this.onToggle}
+						disabled={!showUnanswered}>Answered</button>
+				</div>
+
 				<ul>
 					{visibleQuestions.map((question) => (
 						<li key={question.id}>
@@ -45,6 +49,8 @@ class Dashboard extends Component {
 
 
 function mapStateToProps ({ questions, authedUser, users }) {
+	// Sort questions based on authedUser response status
+	
 	const user = users[authedUser]
 	let answeredQuestionIds = []
 	if (user !== undefined) {answeredQuestionIds = user.answers} 

@@ -1,15 +1,17 @@
 import React, { Component, Fragment} from 'react';
 import LoadingBar from 'react-redux-loading'
 import { handleInitialData } from '../actions/shared'
+import { setAuthedUser } from '../actions/authedUser'
 import { connect } from 'react-redux'
 import Dashboard from './Dashboard'
 import Leaderboard from './Leaderboard'
 import NewQuestions from './NewQuestions'
 import QuestionDetails from './QuestionDetails'
 import Nav from './Nav'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import { setAuthedUser } from '../actions/authedUser'
 import Login from './Login'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+
+
 
 class App extends Component {
 	componentDidMount(){
@@ -58,8 +60,11 @@ class App extends Component {
 }
 
 function mapStateToProps ({ questions, authedUser, users }) {
+	// Retrieve authed username for NavBar
 	let authedUserName = null
 	if (users[authedUser] !== undefined) { authedUserName=users[authedUser].name }
+	
+	// Sort users for leaderboard
 	const sortedUsers = Object.keys(users)
 		.sort((a,b) => users[b].score - users[a].score)
 	return {

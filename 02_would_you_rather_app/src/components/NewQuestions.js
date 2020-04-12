@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { handleAddQuestion } from '../actions/questions'
 import { withRouter } from 'react-router-dom'
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 
 class NewQuestion extends Component {
 	state = {
@@ -28,11 +27,11 @@ class NewQuestion extends Component {
 
 	render(){
 		return(
-			<div>
+			<div className='center'>
 				<h4>Create New Question</h4>
 
 				<Form onSubmit={this.handleSubmit}>
-				  <Form.Group controlId="formBasicEmail">
+				  <Form.Group>
 				  	<Form.Label>Would you rather... </Form.Label>
 				    <Form.Control 
 				    	value = {this.state.optionOne}
@@ -42,7 +41,7 @@ class NewQuestion extends Component {
 				    	name = 'optionOne'/>
 				  </Form.Group>
 
-				  <Form.Group controlId="formBasicPassword">
+				  <Form.Group>
 				    <Form.Label>OR</Form.Label>
 				    <Form.Control
 					    value = {this.state.optionTwo}
@@ -51,9 +50,9 @@ class NewQuestion extends Component {
 					    placeholder="Enter option two text here" 
 					    name = 'optionTwo'/>
 				  </Form.Group>
-				  <Button variant="primary" type="submit">
+				  <button class="btn btn-primary" type="submit">
 				    Submit
-				  </Button>
+				  </button>
 				</Form>
 
 			</div>

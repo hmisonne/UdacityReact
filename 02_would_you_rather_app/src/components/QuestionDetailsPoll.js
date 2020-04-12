@@ -40,7 +40,7 @@ class QuestionDetailsPoll extends Component {
 				            {question.optionTwo.text}
 			          </label>
 			        </div>
-			       <button>Vote</button>
+			       <button class="btn btn-primary">Vote</button>
 			      </form>
 		)
 	}

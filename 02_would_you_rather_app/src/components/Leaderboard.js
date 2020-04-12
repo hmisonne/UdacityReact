@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import User from './User'
 
 const Leaderboard = (props) => {
-
 		return(
 			<div>
 			<h4>Leaderboard</h4>
