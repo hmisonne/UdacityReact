@@ -28,9 +28,9 @@ const Nav = (props) => {
           </div>
         </li>
         <li>
-          <NavLink to='/login' activeClassName='active'>
+          <button onClick={props.logout}>
             Logout
-          </NavLink>
+          </button>
         </li>
       </ul>
     </nav>

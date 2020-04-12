@@ -8,19 +8,31 @@ import NewQuestions from './NewQuestions'
 import QuestionDetails from './QuestionDetails'
 import Nav from './Nav'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { setAuthedUser } from '../actions/authedUser'
 import Login from './Login'
 
 class App extends Component {
 	componentDidMount(){
 		this.props.dispatch(handleInitialData())
 	}
+	logout = () => {
+		this.props.dispatch(setAuthedUser(null))
+	}
 	render(){
+		const {authedUser, authedUserName, sortedUsers, users} =this.props
+		if (authedUser === null){
+			return(
+				<Login/>
+				)
+		}
 		return (
 			<Router>
 				<Fragment>
 					<LoadingBar />
 					    <div className="container">
-					    	<Nav authedUserName={this.props.authedUserName}/>
+					    	<Nav 
+					    		authedUserName={authedUserName}
+					    		logout={this.logout}/>
 					    	{this.props.loading === true 
 							  	? null
 							  	: 
@@ -31,8 +43,8 @@ class App extends Component {
 									<Route path='/questions/:id' component={QuestionDetails}/>
 							        <Route exact path='/leaderboard' render={() => (
 							          <Leaderboard
-							            sortedUsers={this.props.sortedUsers}
-							            users={this.props.users}
+							            sortedUsers={sortedUsers}
+							            users={users}
 							          />
 							        )} />
 							    </div>
@@ -53,6 +65,7 @@ function mapStateToProps ({ questions, authedUser, users }) {
 	return {
 		loading: authedUser === null,
 		users,
+		authedUser,
 		authedUserName,
 		questions,
 		sortedUsers
