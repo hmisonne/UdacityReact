@@ -30,6 +30,7 @@ class NewQuestion extends Component {
 	}
 
 	render(){
+		const {optionOne, optionTwo} = this.state
 		return(
 			<div className='center'>
 				<h4>Create New Question</h4>
@@ -38,7 +39,7 @@ class NewQuestion extends Component {
 				  <Form.Group>
 				  	<Form.Label>Would you rather... </Form.Label>
 				    <Form.Control 
-				    	value = {this.state.optionOne}
+				    	value = {optionOne}
 						onChange = {this.handleChange}
 				    	type="text" 
 				    	placeholder="Enter option one text here" 
@@ -48,13 +49,16 @@ class NewQuestion extends Component {
 				  <Form.Group>
 				    <Form.Label>OR</Form.Label>
 				    <Form.Control
-					    value = {this.state.optionTwo}
+					    value = {optionTwo}
 						onChange = {this.handleChange} 
 					    type="text" 
 					    placeholder="Enter option two text here" 
 					    name = 'optionTwo'/>
 				  </Form.Group>
-				  <button className="btn btn-primary" type="submit">
+				  <button 
+				  		className="btn btn-primary" 
+				  		type="submit"
+				  		disabled={optionOne==='' ||optionTwo==='' || optionOne===optionTwo}>
 				    Submit
 				  </button>
 				</Form>

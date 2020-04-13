@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import Card from 'react-bootstrap/Card';
 import PropTypes from 'prop-types'
+import {formatDate} from '../utils/helpers'
 
 class Question extends Component {
 	static propTypes = {
@@ -14,10 +15,10 @@ class Question extends Component {
 	}
 	render(){
 		const {question, author} = this.props
-
+		const formattedDate = formatDate(question.timestamp)
 		return(
 			<Card>
-			  <Card.Header>{author.name} asks:</Card.Header>
+			  <Card.Header>{formattedDate} - {author.name} asks:</Card.Header>
 			  <Card.Body>
 				  <img
 			          src={author.avatarURL}
