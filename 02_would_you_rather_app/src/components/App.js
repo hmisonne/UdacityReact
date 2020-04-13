@@ -16,10 +16,7 @@ import PropTypes from 'prop-types'
 class App extends Component {
 	static propTypes = {
 	    dispatch: PropTypes.func.isRequired,
-	    questions: PropTypes.object.isRequired,
 	    loading: PropTypes.bool.isRequired,
-		users: PropTypes.object.isRequired,
-		sortedUsers: PropTypes.array.isRequired,
 	  }
 	componentDidMount(){
 		this.props.dispatch(handleInitialData())
@@ -28,7 +25,7 @@ class App extends Component {
 		this.props.dispatch(setAuthedUser(null))
 	}
 	render(){
-		const {authedUserName, sortedUsers, users} =this.props
+		const {authedUserName, users} =this.props
 		if (authedUserName === null){
 			return(
 				<Login/>
@@ -50,12 +47,8 @@ class App extends Component {
 									<Route exact path='/login' component={Login}/>
 									<Route path='/add' component={NewQuestions}/>
 									<Route path='/questions/:id' component={QuestionDetails}/>
-							        <Route exact path='/leaderboard' render={() => (
-							          <Leaderboard
-							            sortedUsers={sortedUsers}
-							            users={users}
-							          />
-							        )} />
+							        <Route exact path='/leaderboard' component={Leaderboard}/>
+							        
 							    </div>
 						}
 				    </div>
@@ -66,20 +59,15 @@ class App extends Component {
   
 }
 
-function mapStateToProps ({ questions, authedUser, users }) {
+function mapStateToProps ({ authedUser, users }) {
 	// Retrieve authed username for NavBar
 	let authedUserName = null
 	if (users[authedUser] !== undefined) { authedUserName=users[authedUser].name }
 	
-	// Sort users for leaderboard
-	const sortedUsers = Object.keys(users)
-		.sort((a,b) => users[b].score - users[a].score)
+
 	return {
 		loading: authedUser === null,
-		users,
 		authedUserName,
-		questions,
-		sortedUsers
 	}
 }
 

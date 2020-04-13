@@ -1,16 +1,18 @@
 import React from 'react'
 import User from './User'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 const Leaderboard = (props) => {
+	const {users, sortedUsers} = props
 	return(
 		<div>
 			<h4>Leaderboard</h4>
 			<ul>
-				{props.sortedUsers.map(id => 
+				{sortedUsers.map(id => 
 					<User 
-						key={props.users[id].id}
-						user={props.users[id]}/>
+						key={users[id].id}
+						user={users[id]}/>
 					)
 					
 				}
@@ -19,11 +21,19 @@ const Leaderboard = (props) => {
 		)
 	}
 
+function mapStateToProps ({ users }) {
+	// Sort users for leaderboard
+	const sortedUsers = Object.keys(users)
+		.sort((a,b) => users[b].score - users[a].score)
+	return {
+		users,
+		sortedUsers
+	}
+}
 
-
-export default Leaderboard
+export default connect(mapStateToProps)(Leaderboard)
 
 Leaderboard.propTypes = {
-    sortedUsers: PropTypes.array.isRequired,
 	users: PropTypes.object.isRequired,
+	sortedUsers: PropTypes.array.isRequired,
 }
