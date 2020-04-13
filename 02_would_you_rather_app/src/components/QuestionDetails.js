@@ -14,6 +14,9 @@ class QuestionDetail extends Component {
 	
 	render(){
 		const {question, author, userReply} = this.props
+		if (question === undefined) {
+	      return <div>404: Invalid Question ID</div>
+	    }
 		return(
 			<div className='question'>
 			<Card>
@@ -43,11 +46,16 @@ class QuestionDetail extends Component {
 
 function mapStateToProps ({authedUser, questions, users}, props) {
   const { id } = props.match.params
-  const question = questions[id]
+  let question
+  let author
+  if (questions[id] !== undefined){
+  	question = questions[id]
+  	author = users[question.author]
+  }
+
   const userReply = users[authedUser].answers[id] 
   ? users[authedUser].answers[id]
   : null
-  const author = users[question.author]
 
   return {
     question,
