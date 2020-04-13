@@ -26,7 +26,7 @@ class QuestionDetailsPoll extends Component {
 				<form onSubmit={this.handleVote}>
 			        <div className="radio">
 			          <label>
-			            <input type="radio" 
+			            <input type="radio"
 				            value='optionOne' 
 				            checked={this.state.selectedOption === 'optionOne'} 
 				            onChange={this.handleOptionChange}/>

@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Question component renders correctly 1`] = `
+<div
+  className="card"
+>
+  <div
+    className="card-header"
+  >
+    7:21:PM | 6/28/2016
+     - 
+    Sarah Edo
+     asks:
+  </div>
+  <div
+    className="card-body"
+  >
+    <img
+      alt="Avatar of Sarah Edo"
+      className="avatar"
+      src="https://tylermcginnis.com/would-you-rather/sarah.jpg"
+    />
+    <div
+      className="card-title h5"
+    >
+      Would you rather?
+    </div>
+    <p
+      className="card-text"
+    >
+      have horrible short term memory
+       Or 
+      have horrible long term memory
+    </p>
+    <button
+      className="btn btn-primary"
+      onClick={[Function]}
+    >
+      View Poll
+    </button>
+  </div>
+</div>
+`;
