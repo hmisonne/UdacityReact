@@ -2,7 +2,30 @@
 
 This project is part of the Udacity React NanoDegree Program. The goal of this project is to build a React/Redux front-end app from scratch to play a Would You Rather game.
 
-This project has been bootstraped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstraped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Functionalities
+
+Before being able to use this application, users are prompted to log in. They can do so by selecting a user from a dropdown menu.
+Once logged in, users can:
+
+- View the Dashboard
+- Vote
+- Submit new polling question
+- Log out
+
+### View the Dashboard
+
+On the home page, the user can toggle a button to see either the polls that has been answered or unanswered by himself.
+
+### Vote
+
+The user is able to vote for a poll provided that he has not done so before, by clicking on vote from the home page. There is 2 options for each poll.
+Upon voting in a poll, information about how many people voted for one particular option is displayed along with the user's response.
+
+### Submit new polling question
+
+The user can submit a new question by entering 2 options. Once created, the new question will be automatically added on top of the unanswered questions of the dashboard.
 
 ## Getting started
 
