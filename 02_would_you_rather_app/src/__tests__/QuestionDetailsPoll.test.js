@@ -1,15 +1,12 @@
 import React from 'react';
-// import {cleanup, fireEvent, render} from '@testing-library/react';
 import QuestionDetailsPoll from '../components/QuestionDetailsPoll';
 import {shallow, mount, render } from 'enzyme';
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 
-
 configure({ adapter: new Adapter() });
 
-// afterEach(cleanup);
 
 function submitAnswerSample() {
 	return true
@@ -30,8 +27,8 @@ const questionSample = {
  }
 
 
-test('RadioInput changes the state after click', () => {
-  // Render a checkbox with label in the document
+test('Options displayed correctly', () => {
+  // Render a text correctly
   const radioInput = 
   		shallow(<QuestionDetailsPoll 
   			question={questionSample} 
@@ -39,17 +36,3 @@ test('RadioInput changes the state after click', () => {
 
   expect(radioInput.text()).toEqual('have horrible short term memoryhave horrible long term memoryVote');
 });
-
-
-
-// it('CheckboxWithLabel changes the text after click', () => {
-//   const {queryByLabelText, getByLabelText} = render(
-//     <QuestionDetailsPoll 
-// 		question={questionSample} 
-//   		submitAnswer={submitAnswerSample}/>,
-//   );
-
-//   expect(queryByLabelText(/have horrible short term memory/i)).toBeTruthy();
-
-
-// });
