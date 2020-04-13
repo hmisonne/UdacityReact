@@ -1,6 +1,7 @@
 import React from 'react'
 import { formatUser} from '../utils/helpers'
 import Card from 'react-bootstrap/Card';
+import PropTypes from 'prop-types'
 
 const User = (props) => {
 	const formatedUser = formatUser(props.user)
@@ -37,3 +38,7 @@ const User = (props) => {
 
 
 export default User
+
+User.propTypes = {
+	user: PropTypes.object.isRequired,
+}	 

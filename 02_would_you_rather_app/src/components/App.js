@@ -10,10 +10,17 @@ import QuestionDetails from './QuestionDetails'
 import Nav from './Nav'
 import Login from './Login'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-
+import PropTypes from 'prop-types'
 
 
 class App extends Component {
+	static propTypes = {
+	    dispatch: PropTypes.func.isRequired,
+	    questions: PropTypes.object.isRequired,
+	    loading: PropTypes.bool.isRequired,
+		users: PropTypes.object.isRequired,
+		sortedUsers: PropTypes.array.isRequired,
+	  }
 	componentDidMount(){
 		this.props.dispatch(handleInitialData())
 	}
@@ -21,8 +28,8 @@ class App extends Component {
 		this.props.dispatch(setAuthedUser(null))
 	}
 	render(){
-		const {authedUser, authedUserName, sortedUsers, users} =this.props
-		if (authedUser === null){
+		const {authedUserName, sortedUsers, users} =this.props
+		if (authedUserName === null){
 			return(
 				<Login/>
 				)
@@ -70,7 +77,6 @@ function mapStateToProps ({ questions, authedUser, users }) {
 	return {
 		loading: authedUser === null,
 		users,
-		authedUser,
 		authedUserName,
 		questions,
 		sortedUsers

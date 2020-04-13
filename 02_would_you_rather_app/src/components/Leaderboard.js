@@ -1,9 +1,10 @@
 import React from 'react'
 import User from './User'
+import PropTypes from 'prop-types'
 
 const Leaderboard = (props) => {
-		return(
-			<div>
+	return(
+		<div>
 			<h4>Leaderboard</h4>
 			<ul>
 				{props.sortedUsers.map(id => 
@@ -14,10 +15,15 @@ const Leaderboard = (props) => {
 					
 				}
 			</ul>
-			</div>
+		</div>
 		)
 	}
 
 
 
 export default Leaderboard
+
+Leaderboard.propTypes = {
+    sortedUsers: PropTypes.array.isRequired,
+	users: PropTypes.object.isRequired,
+}

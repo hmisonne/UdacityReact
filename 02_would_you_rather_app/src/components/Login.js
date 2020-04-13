@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
+import PropTypes from 'prop-types'
 
 class Login extends Component{
+	static propTypes = {
+	    dispatch: PropTypes.func.isRequired,
+		users: PropTypes.array.isRequired,
+	}
 	state = {
 		value: ''
 	}
@@ -27,21 +32,23 @@ class Login extends Component{
 				<div>Please sign in to continue</div>
 				<h2>Sign In</h2>
 				 <form onSubmit={this.handleLogin}>
-				  	<div class="form-group">
+				  	<div className="form-group">
 				    <select 
-				    	class="form-control" 
+				    	className="form-control" 
 				    	value={value} 
 				    	onChange={this.handleChange}
 				    	>
 				      <option value="">Select User</option>
 						{users.map(user => 
-							<option value={user}>{user}</option>
+							<option 
+								key= {user}
+								value={user}>{user}</option>
 							)
 							
 						}
 				    </select>
 				  </div>
-				  <button type="submit" disabled = {value ===''} class="btn btn-primary">Submit</button>
+				  <button type="submit" disabled = {value ===''} className="btn btn-primary">Submit</button>
 				</form>
 				</div>
 			</div>

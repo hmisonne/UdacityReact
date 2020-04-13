@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 class QuestionDetailsPoll extends Component {
+	static propTypes = {
+		question: PropTypes.object.isRequired,
+		submitAnswer: PropTypes.func.isRequired,
+	}
 	state = {
 		selectedOption: 'optionOne'
 	}
@@ -39,7 +43,7 @@ class QuestionDetailsPoll extends Component {
 				            {question.optionTwo.text}
 			          </label>
 			        </div>
-			       <button class="btn btn-primary">Vote</button>
+			       <button className="btn btn-primary">Vote</button>
 			      </form>
 		)
 	}
@@ -47,4 +51,4 @@ class QuestionDetailsPoll extends Component {
 
 
 
-export default connect()(QuestionDetailsPoll)
+export default QuestionDetailsPoll

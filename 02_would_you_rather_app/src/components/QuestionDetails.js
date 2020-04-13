@@ -4,8 +4,15 @@ import QuestionDetailsPoll from './QuestionDetailsPoll'
 import QuestionDetailsResult from './QuestionDetailsResult'
 import { handleAnswerQuestion } from '../actions/questions'
 import Card from 'react-bootstrap/Card';
+import PropTypes from 'prop-types'
 
 class QuestionDetail extends Component {
+	static propTypes = {
+		userReply: PropTypes.string,
+		question: PropTypes.object.isRequired,
+		author: PropTypes.object.isRequired,
+	}
+
 	submitAnswer = (answer) => {
 		const { dispatch, question } = this.props
 		const qid = question.id

@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import Card from 'react-bootstrap/Card';
+import PropTypes from 'prop-types'
 
 class Question extends Component {
-	
+	static propTypes = {
+		question: PropTypes.object.isRequired,
+		author: PropTypes.object.isRequired,
+	}
 	toPoll = (e, id) => {
 		e.preventDefault()
 		this.props.history.push(`/questions/${id}`)
@@ -25,7 +29,7 @@ class Question extends Component {
 			    <Card.Text>
 			       {question.optionOne.text} Or {question.optionTwo.text}
 			    </Card.Text>
-			    <button class="btn btn-primary" onClick={(e) => this.toPoll(e, question.id)}>View Poll</button>
+			    <button className="btn btn-primary" onClick={(e) => this.toPoll(e, question.id)}>View Poll</button>
 			  </Card.Body>
 			</Card>
 		)

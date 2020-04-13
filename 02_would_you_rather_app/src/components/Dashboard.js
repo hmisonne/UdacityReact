@@ -1,8 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Question from './Question'
+import PropTypes from 'prop-types'
 
 class Dashboard extends Component {
+	static propTypes = {
+	    unansweredQuestions: PropTypes.array.isRequired,
+	    answeredQuestions: PropTypes.array.isRequired,
+		users: PropTypes.object.isRequired,
+	}
+
 	state = {
 		showUnanswered: true,
 	}
@@ -25,11 +32,11 @@ class Dashboard extends Component {
 				<div className='center'>
 					<h4>Dashboard</h4>
 					<button 
-						class="btn btn-primary"
+						className="btn btn-primary"
 						onClick = {this.onToggle}
 						disabled={showUnanswered}>Unanswered</button>
 					<button 
-						class="btn btn-primary"
+						className="btn btn-primary"
 						onClick = {this.onToggle}
 						disabled={!showUnanswered}>Answered</button>
 				</div>

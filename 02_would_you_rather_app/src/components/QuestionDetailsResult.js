@@ -1,8 +1,8 @@
 import React from 'react'
 import QuestionDetailsResultCard from './QuestionDetailsResultCard'
+import PropTypes from 'prop-types'
 
 const QuestionDetailsResult = props => {
-
 	const {question, userReply} = props
 	let styleCard
 	if (userReply === 'optionOne'){
@@ -38,6 +38,7 @@ const QuestionDetailsResult = props => {
 				questionText={question.optionTwo.text}
 				styleCard={styleCard.optionTwo}/>
 		</div>
+
 	)
 
 }
@@ -45,3 +46,8 @@ const QuestionDetailsResult = props => {
 
 
 export default QuestionDetailsResult
+
+QuestionDetailsResult.propTypes = {
+	question: PropTypes.object.isRequired,
+	userReply: PropTypes.string.isRequired,
+}

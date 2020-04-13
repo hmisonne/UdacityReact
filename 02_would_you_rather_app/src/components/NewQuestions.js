@@ -3,8 +3,12 @@ import { connect } from 'react-redux'
 import { handleAddQuestion } from '../actions/questions'
 import { withRouter } from 'react-router-dom'
 import Form from 'react-bootstrap/Form';
+import PropTypes from 'prop-types'
 
 class NewQuestion extends Component {
+	static propTypes = {
+		dispatch: PropTypes.func.isRequired,
+	}
 	state = {
 		optionOne: '',
 		optionTwo: '',
@@ -50,7 +54,7 @@ class NewQuestion extends Component {
 					    placeholder="Enter option two text here" 
 					    name = 'optionTwo'/>
 				  </Form.Group>
-				  <button class="btn btn-primary" type="submit">
+				  <button className="btn btn-primary" type="submit">
 				    Submit
 				  </button>
 				</Form>
