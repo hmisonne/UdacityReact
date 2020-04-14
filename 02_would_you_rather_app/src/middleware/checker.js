@@ -1,4 +1,4 @@
-import { ANSWER_QUESTION } from '../actions/questions'
+import { ANSWER_QUESTION } from '../constants/ActionTypes'
 
 
 

@@ -1,4 +1,4 @@
-export const RECEIVE_USERS = 'RECEIVE_USERS'
+import { RECEIVE_USERS} from '../constants/ActionTypes'
 
 export function receiveUsers(users) {
 	return {

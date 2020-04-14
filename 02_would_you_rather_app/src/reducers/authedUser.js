@@ -1,4 +1,4 @@
-import { SET_AUTHED_USER } from '../actions/authedUser'
+import { SET_AUTHED_USER } from '../constants/ActionTypes'
 
 export default function authedUser (state=null, action) {
 	switch (action.type) {
