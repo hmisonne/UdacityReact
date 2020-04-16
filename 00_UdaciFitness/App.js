@@ -8,7 +8,9 @@ import reducer from './reducers'
 import History from './components/History'
 import { NavigationContainer } from '@react-navigation/native';
 // import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+// import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
+
 
 import { purple, white } from './utils/colors'
 import {
@@ -17,44 +19,28 @@ import {
 } from "@expo/vector-icons";
 import Constants from 'expo-constants';
 
-function HomeScreen() {
+
+const Stack = createStackNavigator();
+
+function MyStack() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home!</Text>
-    </View>
+    <Stack.Navigator>
+    
+      <Stack.Screen name="History" component={History} />
+      <Stack.Screen name="AddEntry" component={AddEntry} />
+    </Stack.Navigator>
   );
 }
-
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
-
-
-function UdaciStatusBar ({backgroundColor, ...props}) {
-  return (
-    <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
-      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
-    </View>
-  )
-}
-const Tab = createMaterialTopTabNavigator();
 
 export default class App extends React.Component {
   
+
   render(){
      return (
       <Provider store={createStore(reducer)}>
         <View style={{flex: 1}}>
-          <UdaciStatusBar backgroundColor={purple} barStyle="light-content" />
-                     <NavigationContainer>
-            <Tab.Navigator>
-               <Tab.Screen name="Home" component={HomeScreen} />
-                <Tab.Screen name="Settings" component={SettingsScreen} />
-            </Tab.Navigator>
+          <NavigationContainer>
+            <MyStack />
           </NavigationContainer>
         </View>
       </Provider>
@@ -63,7 +49,7 @@ export default class App extends React.Component {
  
 }
 
-
+// const Tab = createMaterialTopTabNavigator();
           //  <NavigationContainer>
           //   <Tab.Navigator>
           //      <Tab.Screen name="Home" component={HomeScreen} />
@@ -112,3 +98,12 @@ export default class App extends React.Component {
 //             <Tabs.Screen name="History" component={History} />
 //           </Tabs.Navigator>
 //         </NavigationContainer>
+
+
+// var sharedBlacklist = [
+//   /node_modules[\/\\]react[\/\\]dist[\/\\].*/,
+//   /website\/node_modules\/.*/,
+//   /heapCapture\/bundle\.js/,
+//   /.*\/__tests__\/.*/
+// ];
+// node_modules\metro-config\src\defaults
