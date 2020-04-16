@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 import reducer from './reducers'
 import History from './components/History'
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 import { purple, white } from './utils/colors'
@@ -16,6 +16,23 @@ import {
   Ionicons,
 } from "@expo/vector-icons";
 import Constants from 'expo-constants';
+
+function HomeScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Home!</Text>
+    </View>
+  );
+}
+
+function SettingsScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Settings!</Text>
+    </View>
+  );
+}
+
 
 function UdaciStatusBar ({backgroundColor, ...props}) {
   return (
@@ -33,10 +50,10 @@ export default class App extends React.Component {
       <Provider store={createStore(reducer)}>
         <View style={{flex: 1}}>
           <UdaciStatusBar backgroundColor={purple} barStyle="light-content" />
-           <NavigationContainer>
+                     <NavigationContainer>
             <Tab.Navigator>
-              <Tab.Screen name="History" component={History} />
-              <Tab.Screen name="Add Entry" component={AddEntry} />
+               <Tab.Screen name="Home" component={HomeScreen} />
+                <Tab.Screen name="Settings" component={SettingsScreen} />
             </Tab.Navigator>
           </NavigationContainer>
         </View>
@@ -47,7 +64,12 @@ export default class App extends React.Component {
 }
 
 
-
+          //  <NavigationContainer>
+          //   <Tab.Navigator>
+          //      <Tab.Screen name="Home" component={HomeScreen} />
+          //       <Tab.Screen name="Settings" component={SettingsScreen} />
+          //   </Tab.Navigator>
+          // </NavigationContainer>
 
 // const Tabs =
 //   Platform.OS === "ios"
