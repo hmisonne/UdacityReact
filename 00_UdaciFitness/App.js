@@ -10,7 +10,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-
+import EntryDetail from './components/EntryDetail'
 import { purple, white } from './utils/colors'
 import {
   FontAwesome,
@@ -18,8 +18,14 @@ import {
 } from "@expo/vector-icons";
 import Constants from 'expo-constants';
 
+function UdaciStatusBar ({backgroundColor, ...props}) {
+  return (
+    <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
+      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+    </View>
+  )
+}
 
-const Tab = createBottomTabNavigator();
 const RouteConfigs = {
   History:{
     name: "History",
@@ -32,15 +38,16 @@ const RouteConfigs = {
     options: {tabBarIcon: ({tintColor}) => <FontAwesome name='plus-square' size={30} color={tintColor} />, title: 'Add Entry'}
   }
 }
+
 const TabNavigatorConfig = {
   navigationOptions: {
     header: null
   },
   tabBarOptions: {
-    activeTintColor: Platform.OS === "ios" ? purple : white,
+    activeTintColor: Platform.OS === "ios" ? purple : purple,
     style: {
       height: 56,
-      backgroundColor: Platform.OS === "ios" ? white : purple,
+      backgroundColor: Platform.OS === "ios" ? white : white,
       shadowColor: "rgba(0, 0, 0, 0.24)",
       shadowOffset: {
         width: 0,
@@ -51,26 +58,45 @@ const TabNavigatorConfig = {
     }
   }
   };
+const Tab = createBottomTabNavigator();
 
-function MyTabs() {
-  return (
+const TabNav = () =>(
   <Tab.Navigator {...TabNavigatorConfig}>
-    <Tab.Screen {...RouteConfigs['History']} />
-    <Tab.Screen {...RouteConfigs['AddEntry']} />
+      <Tab.Screen {...RouteConfigs['History']} />
+      <Tab.Screen {...RouteConfigs['AddEntry']} />
   </Tab.Navigator>
-)}
+)
 
+// Config for StackNav
+const StackNavigatorConfig = {
+  headerMode: "screen"
+}
+const StackConfig = {
+  TabNav:{
+    name: "Home",
+    component: TabNav,
+    options: {headerShown: false}
+  }, 
+  EntryDetail:{
+    name: "EntryDetail",
+    component: EntryDetail,
+    options: {
+      headerTintColor: white,
+      headerStyle:{
+        backgroundColor: purple
+      },
+      title: "Entry Detail"
+    }
+  }
+}
 const Stack = createStackNavigator();
 
-function MyStack() {
-  return (
-    <Stack.Navigator>
-
-      <Stack.Screen name="History" component={History} />
-      <Stack.Screen name="AddEntry" component={AddEntry} />
-    </Stack.Navigator>
-  );
-}
+const MainNav = () =>(
+  <Stack.Navigator {...StackNavigatorConfig}>
+    <Stack.Screen {...StackConfig['TabNav']} />
+    <Stack.Screen {...StackConfig['EntryDetail']} />
+  </Stack.Navigator>
+)
 
 export default class App extends React.Component {
   
@@ -79,8 +105,9 @@ export default class App extends React.Component {
      return (
       <Provider store={createStore(reducer)}>
         <View style={{flex: 1}}>
+        <UdaciStatusBar backgroundColor={purple} barStyle="light-content" />
           <NavigationContainer>
-            <MyTabs />
+             <MainNav />
           </NavigationContainer>
         </View>
       </Provider>
@@ -88,62 +115,3 @@ export default class App extends React.Component {
   }
  
 }
-
-// const Tab = createMaterialTopTabNavigator();
-          //  <NavigationContainer>
-          //   <Tab.Navigator>
-          //      <Tab.Screen name="Home" component={HomeScreen} />
-          //       <Tab.Screen name="Settings" component={SettingsScreen} />
-          //   </Tab.Navigator>
-          // </NavigationContainer>
-
-// const Tabs =
-//   Platform.OS === "ios"
-//     ? createBottomTabNavigator()
-//     : createMaterialTopTabNavigator();
-//           <NavigationContainer>
-//           <Tabs.Navigator
-//             initialRouteName="AddEntry"
-//             screenOptions={({ route }) => ({
-//               tabBarIcon: ({ color, size }) => {
-//                 let icon;
-//                 if (route.name === "Add Entry") {
-//                   icon = (
-//                     <FontAwesome name="plus-square" size={size} color={color} />
-//                   );
-//                 } else if (route.name === "History") {
-//                   icon = (
-//                     <Ionicons name="ios-bookmarks" size={size} color={color} />
-//                   );
-//                 }
-//                 return icon;
-//               }
-//             })}
-//             tabBarOptions={{
-//               activeTintColor: Platform.OS === "ios" ? purple : white,
-//               style: {
-//                 height: 80,
-//                 backgroundColor: Platform.OS === "ios" ? white : purple,
-//                 shadowColor: "rgba(0, 0, 0, 0.24)",
-//                 shadowOffset: {
-//                   width: 0,
-//                   height: 3
-//                 },
-//                 shadowRadius: 6,
-//                 shadowOpacity: 1
-//               }
-//             }}
-//           >
-//             <Tabs.Screen name="Add Entry" component={AddEntry} />
-//             <Tabs.Screen name="History" component={History} />
-//           </Tabs.Navigator>
-//         </NavigationContainer>
-
-
-// var sharedBlacklist = [
-//   /node_modules[\/\\]react[\/\\]dist[\/\\].*/,
-//   /website\/node_modules\/.*/,
-//   /heapCapture\/bundle\.js/,
-//   /.*\/__tests__\/.*/
-// ];
-// node_modules\metro-config\src\defaults
