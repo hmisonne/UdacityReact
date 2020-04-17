@@ -47,8 +47,10 @@ const Tab = createBottomTabNavigator();
 const TabNav = () =>(
   <Tab.Navigator {...TabNavigatorConfig}>
       <Tab.Screen {...RouteConfigs['History']} />
-      <Tab.Screen {...RouteConfigs['AddEntry']} />
+
   </Tab.Navigator>
 )
 
 export default TabNav
+
+      // <Tab.Screen {...RouteConfigs['AddEntry']} />

@@ -7,6 +7,7 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
 
+import AddEntry from './components/AddEntry'
 import EntryDetail from './components/EntryDetail'
 import TabNav from './components/TabNav'
 import { purple, white } from './utils/colors'
@@ -33,6 +34,17 @@ const StackConfig = {
     component: TabNav,
     options: {headerShown: false}
   }, 
+  AddEntry:{
+    name:"AddEntry",
+    component: AddEntry,
+    options: {
+      headerTintColor: white,
+      headerStyle:{
+        backgroundColor: purple
+      },
+      title: "AddEntry"
+    }
+  },
   EntryDetail:{
     name: "EntryDetail",
     component: EntryDetail,
@@ -51,6 +63,7 @@ const MainNav = () =>(
   <Stack.Navigator {...StackNavigatorConfig}>
     <Stack.Screen {...StackConfig['TabNav']} />
     <Stack.Screen {...StackConfig['EntryDetail']} />
+    <Stack.Screen {...StackConfig['AddEntry']} />
   </Stack.Navigator>
 )
 

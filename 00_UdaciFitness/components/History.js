@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { View, Text, StyleSheet, Platform, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, Platform, TouchableOpacity, Button } from 'react-native'
 import { connect } from 'react-redux'
 import { timeToString, getDailyReminderValue } from '../utils/helpers'
 import { fetchCalendarResults } from '../utils/api'
@@ -33,12 +33,21 @@ class History extends Component {
     renderItem = ({today, ...metrics}, formattedDate, key) =>(
       <View style={styles.item}>
       {today
-          ? <View>
-            <DateHeader date={formattedDate}/>
-            <Text style={styles.noDataText}>
-              {today}
-            </Text>
-          </View>
+          ? 
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate('AddEntry',
+              { entryId: key }
+              )}
+          >
+            <View>
+              <DateHeader date={formattedDate}/>
+              <Text style={styles.noDataText}>
+                {today}
+              </Text>
+            </View>
+          </TouchableOpacity>
+
+          
         : <TouchableOpacity
             onPress={() => this.props.navigation.navigate(
               'EntryDetail',
@@ -46,17 +55,27 @@ class History extends Component {
             )}
           >
                <MetricCard date={formattedDate} metrics={metrics} />
+
           </TouchableOpacity>}
         </View>
       )
-    renderEmptyDate(formattedDate) {
+    renderEmptyDate(formattedDate, key) {
       return (
-      <View style={styles.item}>
-        <DateHeader date={formattedDate}/>
-        <Text style={styles.noDataText}>
-          You didn't log any data on this day.
-        </Text>
-      </View>
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate('AddEntry',
+            { entryId: key }
+            )}
+        >
+          <View style={styles.item}>
+            <DateHeader date={formattedDate}/>
+            <Text style={styles.noDataText}>
+              You didn't log any data on this day.
+            </Text>
+          </View>
+        </TouchableOpacity>
+
+
+      
       )
       
     }

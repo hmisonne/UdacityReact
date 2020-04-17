@@ -37,7 +37,7 @@ class AddEntry extends Component {
 	}
 
 	reset = () => {
-		const key = timeToString()
+		const key = this.props.entryId
 		 this.props.dispatch(addEntry({
 		 	[key]: getDailyReminderValue()
 		 }))
@@ -77,7 +77,7 @@ class AddEntry extends Component {
 	}
 
 	submit = () => {
-		const key = timeToString()
+		const key = this.props.entryId
 		const entry = this.state
 
 		this.props.dispatch(addEntry({
@@ -103,17 +103,7 @@ class AddEntry extends Component {
     }
   render() {
     const metaInfo = getMetricMetaInfo()
-    if (this.props.alreadyLogged) {
-    	return(
-    		<View style={styles.center}>
-    			<Ionicons name={"ios-happy"} size={100} />
-    			<Text>You already logged your information for today.</Text>
-    			<TextButton 
-    				style={{padding: 10}}
-    				onPress={this.reset}>Reset</TextButton>
-    		</View>
-    		)
-    }
+    
     return (
       <View style={styles.container}>
       	<DateHeader date={(new Date()).toLocaleDateString()}/>
@@ -147,10 +137,12 @@ class AddEntry extends Component {
   }
 }
 
-function mapStatetoProps(state) {
-	const key = timeToString()
+
+function mapStatetoProps(dispatch, {route, navigation}) {
+	const {entryId} = route.params
+
 	return {
-		alreadyLogged: state[key] && typeof state[key].today === 'undefined'
+		entryId,
 	}
 
 }
@@ -198,3 +190,19 @@ const styles = StyleSheet.create({
 		marginLeft: 30
 	}
 })
+
+
+// if (this.props.alreadyLogged) {
+//     	return(
+//     		<View style={styles.center}>
+//     			<Ionicons name={"ios-happy"} size={100} />
+//     			<Text>You already logged your information for today.</Text>
+//     			<TextButton 
+//     				style={{padding: 10}}
+//     				onPress={this.reset}>Reset</TextButton>
+//     		</View>
+//     		)
+//     }
+
+// mapStatetoProps
+// 		alreadyLogged: state[entryId] && typeof state[entryId].today === 'undefined'
