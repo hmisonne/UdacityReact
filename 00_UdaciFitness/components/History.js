@@ -34,18 +34,12 @@ class History extends Component {
       <View style={styles.item}>
       {today
           ? 
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('AddEntry',
-              { entryId: key }
-              )}
-          >
             <View>
               <DateHeader date={formattedDate}/>
               <Text style={styles.noDataText}>
                 {today}
               </Text>
             </View>
-          </TouchableOpacity>
 
           
         : <TouchableOpacity
@@ -59,23 +53,15 @@ class History extends Component {
           </TouchableOpacity>}
         </View>
       )
-    renderEmptyDate(formattedDate, key) {
+    renderEmptyDate(formattedDate) {
       return (
-        <TouchableOpacity
-          onPress={() => this.props.navigation.navigate('AddEntry',
-            { entryId: key }
-            )}
-        >
+
           <View style={styles.item}>
             <DateHeader date={formattedDate}/>
             <Text style={styles.noDataText}>
               You didn't log any data on this day.
             </Text>
-          </View>
-        </TouchableOpacity>
-
-
-      
+          </View>   
       )
       
     }

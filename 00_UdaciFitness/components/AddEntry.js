@@ -37,7 +37,7 @@ class AddEntry extends Component {
 	}
 
 	reset = () => {
-		const key = this.props.entryId
+		const key = timeToString()
 		 this.props.dispatch(addEntry({
 		 	[key]: getDailyReminderValue()
 		 }))
@@ -77,12 +77,10 @@ class AddEntry extends Component {
 	}
 
 	submit = () => {
-		const key = this.props.entryId
+		const key = timeToString()
 		const entry = this.state
 
-		this.props.dispatch(addEntry({
-			[key]: entry
-		}))
+		this.props.saveEntry(entry)
 			
 		this.setState(() => ({
 			run: 0,
@@ -96,14 +94,22 @@ class AddEntry extends Component {
 		submitEntry({key, entry})
 	}
 	toHome = () => {
-        this.props.navigation.dispatch(
-            CommonActions.goBack({
-                key: 'AddEntry',
-            }))
+        this.props.toHome()
     }
   render() {
     const metaInfo = getMetricMetaInfo()
-    
+    if (this.props.alreadyLogged) {
+    	return(
+    		<View style={styles.center}>
+    			<Ionicons name={"ios-happy"} size={100} />
+    			<Text>You already logged your information for today.</Text>
+    			<TextButton 
+    				style={{padding: 10}}
+    				onPress={this.reset}>Reset</TextButton>
+    		</View>
+    		)
+    }
+
     return (
       <View style={styles.container}>
       	<DateHeader date={(new Date()).toLocaleDateString()}/>
@@ -137,17 +143,30 @@ class AddEntry extends Component {
   }
 }
 
-
-function mapStatetoProps(dispatch, {route, navigation}) {
-	const {entryId} = route.params
-
+function mapStatetoProps(state){
+	const key = timeToString()
 	return {
-		entryId,
+		alreadyLogged: state[key] && typeof state[key].today === 'undefined'
 	}
-
+	
 }
 
-export default connect(mapStatetoProps)(AddEntry)
+
+function mapDispatchToProps(dispatch, {route, navigation}) {
+
+	return {
+		saveEntry: (entry) => dispatch(addEntry({
+			[timeToString()]: entry
+		})),
+		toHome: () => navigation.dispatch(
+            CommonActions.goBack({
+                key: 'AddEntry',
+       	}))
+	}
+}
+
+export default connect(mapStatetoProps, mapDispatchToProps)(AddEntry)
+
 
 const styles = StyleSheet.create({
 	container: {
@@ -192,17 +211,4 @@ const styles = StyleSheet.create({
 })
 
 
-// if (this.props.alreadyLogged) {
-//     	return(
-//     		<View style={styles.center}>
-//     			<Ionicons name={"ios-happy"} size={100} />
-//     			<Text>You already logged your information for today.</Text>
-//     			<TextButton 
-//     				style={{padding: 10}}
-//     				onPress={this.reset}>Reset</TextButton>
-//     		</View>
-//     		)
-//     }
 
-// mapStatetoProps
-// 		alreadyLogged: state[entryId] && typeof state[entryId].today === 'undefined'
