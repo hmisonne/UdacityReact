@@ -30,7 +30,11 @@ class History extends Component {
         ready: true,
       })))
     }
-    renderItem = ({today, ...metrics}, formattedDate, key) =>(
+    renderItem = ({today, ...metrics}, formattedDate, key) =>{
+      const _this = this;
+      console.log('renderItem',_this)
+      
+      return(
       <View style={styles.item}>
       {today
           ? 
@@ -52,16 +56,22 @@ class History extends Component {
 
           </TouchableOpacity>}
         </View>
-      )
+      )}
     renderEmptyDate(formattedDate) {
+      //Creating a copy/reference of this
+      const _this = this;
+      console.log('renderEmptyDate',_this)
       return (
-
+        <TouchableOpacity
+          onPress={() => _this.props.navigation.navigate('History')}
+        >
           <View style={styles.item}>
             <DateHeader date={formattedDate}/>
             <Text style={styles.noDataText}>
               You didn't log any data on this day.
             </Text>
-          </View>   
+          </View> 
+          </TouchableOpacity>  
       )
       
     }
