@@ -56,6 +56,28 @@ export function calculateDirection(heading) {
   return direction;
 }
 
+function getMonthFromString(mon){
+
+   var d = Date.parse(mon + "1, 2012");
+   if(!isNaN(d)){
+      return new Date(d).getMonth() + 1;
+   }
+   return -1;
+ }
+
+
+export function formattedDateToKey(formattedDate) {
+  const splitDate = formattedDate.split(" ")
+  let year = splitDate[2]
+  let day = splitDate[1].slice(0, -1)
+  let month = getMonthFromString(splitDate[0])
+  console.log('m',typeof month)
+  if (month < 10) {month = '0' + month}
+  if (day.length == 1) {day = '0' + day}
+
+  return `${year}-${month}-${day}`
+}
+
 export function timeToString(time = Date.now()) {
   const date = new Date(time);
   const todayUTC = new Date(

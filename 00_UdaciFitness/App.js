@@ -8,6 +8,7 @@ import { Provider } from 'react-redux'
 import reducer from './reducers'
 
 import EntryDetail from './components/EntryDetail'
+import AddEntry from './components/AddEntry'
 import TabNav from './components/TabNav'
 import { purple, white } from './utils/colors'
 
@@ -43,6 +44,17 @@ const StackConfig = {
       },
       title: "Entry Detail"
     }
+  },
+  AddEntry:{
+    name: "AddEntry",
+    component: AddEntry,
+    options: {
+      headerTintColor: white,
+      headerStyle:{
+        backgroundColor: purple
+      },
+      title: "Add Entry"
+    }
   }
 }
 const Stack = createStackNavigator();
@@ -51,6 +63,7 @@ const MainNav = () =>(
   <Stack.Navigator {...StackNavigatorConfig}>
     <Stack.Screen {...StackConfig['TabNav']} />
     <Stack.Screen {...StackConfig['EntryDetail']} />
+    <Stack.Screen {...StackConfig['AddEntry']} />
   </Stack.Navigator>
 )
 

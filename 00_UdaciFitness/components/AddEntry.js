@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, TouchableOpacity, Text, StyleSheet, Platform } from 'react-native'
+import { View, TouchableOpacity, Text, StyleSheet, Platform, Picker } from 'react-native'
 import {
   getMetricMetaInfo,
   timeToString,
@@ -97,7 +97,11 @@ class AddEntry extends Component {
         this.props.toHome()
     }
   render() {
+  	const { entryId } = this.props
+  	const date = entryId.split('-')
+  	console.log(date)
     const metaInfo = getMetricMetaInfo()
+    const selectedValue = (new Date(date[0],date[1]-1,date[2])).toLocaleDateString()
     if (this.props.alreadyLogged) {
     	return(
     		<View style={styles.center}>
@@ -112,7 +116,16 @@ class AddEntry extends Component {
 
     return (
       <View style={styles.container}>
-      	<DateHeader date={(new Date()).toLocaleDateString()}/>
+      <Picker
+        selectedValue={selectedValue}
+        style={{ height: 50, width: 150 }}
+        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+      >
+      	<Picker.Item label={selectedValue} value={selectedValue} />
+        <Picker.Item label="04/17/20" value="04/17/20" />
+        <Picker.Item label="04/16/20" value="04/16/20" />
+      </Picker>
+      	
       	{Object.keys(metaInfo).map((key) => {
           const { getIcon, type, ...rest } = metaInfo[key]
           const value = this.state[key]
@@ -143,20 +156,27 @@ class AddEntry extends Component {
   }
 }
 
-function mapStatetoProps(state){
-	const key = timeToString()
+function mapStatetoProps(state, {route}){
+	let entryId
+	route.params === undefined 
+	? entryId = timeToString()
+	: entryId = route.params.entryId
 	return {
-		alreadyLogged: state[key] && typeof state[key].today === 'undefined'
+		entryId,
+		alreadyLogged: state[entryId] && typeof state[entryId].today === 'undefined'
 	}
 	
 }
 
 
 function mapDispatchToProps(dispatch, {route, navigation}) {
-
+	let entryId
+	route.params === undefined 
+	? entryId = timeToString()
+	: entryId = route.params.entryId
 	return {
 		saveEntry: (entry) => dispatch(addEntry({
-			[timeToString()]: entry
+			[entryId]: entry
 		})),
 		toHome: () => navigation.dispatch(
             CommonActions.goBack({

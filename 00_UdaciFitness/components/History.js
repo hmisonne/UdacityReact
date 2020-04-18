@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { View, Text, StyleSheet, Platform, TouchableOpacity, Button } from 'react-native'
 import { connect } from 'react-redux'
-import { timeToString, getDailyReminderValue } from '../utils/helpers'
+import { timeToString, getDailyReminderValue, formattedDateToKey } from '../utils/helpers'
 import { fetchCalendarResults } from '../utils/api'
 import { receiveEntries, addEntry } from '../actions'
 import UdaciFitnessCalendar from 'udacifitness-calendar'
@@ -30,11 +30,7 @@ class History extends Component {
         ready: true,
       })))
     }
-    renderItem = ({today, ...metrics}, formattedDate, key) =>{
-      const _this = this;
-      console.log('renderItem',_this)
-      
-      return(
+    renderItem = ({today, ...metrics}, formattedDate, key) =>(
       <View style={styles.item}>
       {today
           ? 
@@ -56,25 +52,23 @@ class History extends Component {
 
           </TouchableOpacity>}
         </View>
-      )}
-    renderEmptyDate(formattedDate) {
-      //Creating a copy/reference of this
-      const _this = this;
-      console.log('renderEmptyDate',_this)
-      return (
+      )
+
+    renderEmptyDate = (formattedDate, key) => 
+    (
         <TouchableOpacity
-          onPress={() => _this.props.navigation.navigate('History')}
-        >
+            onPress={() => this.props.navigation.navigate(
+              'AddEntry', {entryId: formattedDateToKey(formattedDate)}
+            )} >
           <View style={styles.item}>
             <DateHeader date={formattedDate}/>
             <Text style={styles.noDataText}>
               You didn't log any data on this day.
             </Text>
           </View> 
-          </TouchableOpacity>  
-      )
+          </TouchableOpacity>
+  )
       
-    }
   render() {
     const { ready } = this.state
     const {entries} = this.props
