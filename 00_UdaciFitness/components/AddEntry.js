@@ -37,14 +37,12 @@ class AddEntry extends Component {
 	}
 
 	reset = () => {
-		const key = timeToString()
-		 this.props.dispatch(addEntry({
-		 	[key]: getDailyReminderValue()
-		 }))
+		const {clearEntry, entryId} = this.props
+		clearEntry()
 	    // Route to Home
 	    this.toHome()
 	    // Update "DB"
-	    removeEntry(key)
+	    removeEntry(entryId)
 	}
 
 	increment = (metric) => {
@@ -77,7 +75,7 @@ class AddEntry extends Component {
 	}
 
 	submit = () => {
-		const key = timeToString()
+		const { entryId} = this.props
 		const entry = this.state
 
 		this.props.saveEntry(entry)
@@ -91,7 +89,7 @@ class AddEntry extends Component {
 		}))
 		
 		this.toHome()
-		submitEntry({key, entry})
+		submitEntry({entryId, entry})
 	}
 	toHome = () => {
         this.props.toHome()
@@ -101,7 +99,7 @@ class AddEntry extends Component {
   	const date = entryId.split('-')
   	console.log(date)
     const metaInfo = getMetricMetaInfo()
-    const selectedValue = (new Date(date[0],date[1]-1,date[2])).toLocaleDateString()
+    const selectedDate= (new Date(date[0],date[1]-1,date[2])).toLocaleDateString()
     if (this.props.alreadyLogged) {
     	return(
     		<View style={styles.center}>
@@ -116,15 +114,7 @@ class AddEntry extends Component {
 
     return (
       <View style={styles.container}>
-      <Picker
-        selectedValue={selectedValue}
-        style={{ height: 50, width: 150 }}
-        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
-      >
-      	<Picker.Item label={selectedValue} value={selectedValue} />
-        <Picker.Item label="04/17/20" value="04/17/20" />
-        <Picker.Item label="04/16/20" value="04/16/20" />
-      </Picker>
+      <DateHeader date={selectedDate}/>
       	
       	{Object.keys(metaInfo).map((key) => {
           const { getIcon, type, ...rest } = metaInfo[key]
@@ -181,7 +171,11 @@ function mapDispatchToProps(dispatch, {route, navigation}) {
 		toHome: () => navigation.dispatch(
             CommonActions.goBack({
                 key: 'AddEntry',
-       	}))
+       	})),
+       	clearEntry: () => dispatch(addEntry({
+		 	[entryId]: null
+		 })),
+
 	}
 }
 
