@@ -97,7 +97,6 @@ class AddEntry extends Component {
   render() {
   	const { entryId } = this.props
   	const date = entryId.split('-')
-  	console.log(date)
     const metaInfo = getMetricMetaInfo()
     const selectedDate= (new Date(date[0],date[1]-1,date[2])).toLocaleDateString()
     if (this.props.alreadyLogged) {
