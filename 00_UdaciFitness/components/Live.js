@@ -2,12 +2,46 @@ import React, { Component } from 'react'
 import { View, Text, ActivityIndicator, TouchableOpacity, StyleSheet } from 'react-native'
 import { Foundation } from '@expo/vector-icons'
 import { purple, white } from '../utils/colors'
+import { calculateDirection } from '../utils/helpers';
+import * as Permissions from 'expo-permissions'
+import * as Location from 'expo-location'
 
 export default class Live extends Component {
   state = {
     coords: null,
-    status: 'granted',
+    status: null,
     direction: ''
+  }
+  componentDidMount () {
+    Permissions.getAsync(Permissions.LOCATION)
+      .then(({ status })=>{
+        if (status === 'granted'){
+          return this.setLocation()
+        }
+        else {
+          this.setState(() => ({status}))
+        }
+      })
+      .catch((error)=>{
+        console.warn('Error getting Location permission: ', error)
+        this.setState(() => ({ status: 'undetermined' }))
+      })
+  }
+
+  setLocation = () => {
+    Location.watchPositionAsync({
+      enableHighAccuracy: true,
+      timeInterval: 1,
+      distanceInterval: 1,
+    }, ({ coords }) => {
+      const newDirection = calculateDirection(coords.heading)
+      const { direction } = this.state
+      this.setState(() => ({
+        coords,
+        status: 'granted',
+        direction: newDirection,
+      }))
+    })
   }
   askPermission = () => {
 
@@ -134,17 +168,3 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
 })
-//   row: {
-//     backgroundColor: purple,
-//     padding: 20,
-//     color: white,
-//     flexDirection: 'row',
-//     justifyContent: 'space-around'
-//   },
-//   text :{
-//     backgroundColor: 'blue',
-    
-//     color: white,
-//     fontSize: 30
-//   }
-// })
