@@ -2,6 +2,7 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import History from './History'
 import AddEntry from './AddEntry'
+import Live from './Live'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StyleSheet, Text, View, Platform, StatusBar } from 'react-native';
 import { purple, white } from '../utils/colors'
@@ -16,10 +17,10 @@ const RouteConfigs = {
     component: History,
     options: {tabBarIcon: ({tintColor}) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />, title: 'History'}
   }, 
-  AddEntry:{
-    component: AddEntry,
-    name: "Add Entry",
-    options: {tabBarIcon: ({tintColor}) => <FontAwesome name='plus-square' size={30} color={tintColor} />, title: 'Add Entry'}
+  Live: {
+    name: "Live",
+    component: Live,
+    options: {tabBarIcon: ({ tintColor }) => <Ionicons name='ios-speedometer' size={30} color={tintColor}/>, title: 'Live'} 
   }
 }
 
@@ -47,7 +48,7 @@ const Tab = createBottomTabNavigator();
 const TabNav = () =>(
   <Tab.Navigator {...TabNavigatorConfig}>
 	<Tab.Screen {...RouteConfigs['History']} />
-	<Tab.Screen {...RouteConfigs['AddEntry']} />
+	<Tab.Screen {...RouteConfigs['Live']} />
   </Tab.Navigator>
 )
 

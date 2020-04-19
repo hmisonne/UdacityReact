@@ -71,7 +71,6 @@ export function formattedDateToKey(formattedDate) {
   let year = splitDate[2]
   let day = splitDate[1].slice(0, -1)
   let month = getMonthFromString(splitDate[0])
-  console.log('m',typeof month)
   if (month < 10) {month = '0' + month}
   if (day.length == 1) {day = '0' + day}
 
