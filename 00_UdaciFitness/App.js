@@ -11,7 +11,7 @@ import EntryDetail from './components/EntryDetail'
 import AddEntry from './components/AddEntry'
 import TabNav from './components/TabNav'
 import { purple, white } from './utils/colors'
-
+import { setLocalNotification } from './utils/helpers'
 import Constants from 'expo-constants';
 
 function UdaciStatusBar ({backgroundColor, ...props}) {
@@ -68,7 +68,9 @@ const MainNav = () =>(
 )
 
 export default class App extends React.Component {
-  
+  componentDidMount(){
+    setLocalNotification()
+  }
 
   render(){
      return (
