@@ -20,9 +20,6 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
     "ios": {
       "bundleIdentifier": "org.udacifitness.exp",
       "supportsTablet": true
