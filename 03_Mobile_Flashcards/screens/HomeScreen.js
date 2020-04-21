@@ -3,10 +3,10 @@ import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import DeckCard from './DeckCard'
 
 
-export default function HomeScreen() {
+export default function HomeScreen({navigation}) {
   return (
     <ScrollView style={styles.container}>
-      <DeckCard/>
+      <DeckCard navigation={navigation}/>
     </ScrollView>
   );
 }

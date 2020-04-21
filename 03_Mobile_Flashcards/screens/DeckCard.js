@@ -1,12 +1,16 @@
 import React from 'react'
-import { View, StyleSheet, Text } from 'react-native'
 
-export default function DeckCard() {
-		return(
-			<View>
-				<Text>Deck title</Text>
-				<Text># cards</Text>
-			</View>
-			)
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
+
+function DeckCard({ navigation }) {
+	return(
+		<TouchableOpacity 
+			onPress={() => navigation.navigate('DeckView')}>
+			<Text>Deck title</Text>
+			<Text># cards</Text>
+		</TouchableOpacity>
+		)
 
 }
+
+export default DeckCard
