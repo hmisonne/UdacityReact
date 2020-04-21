@@ -10,6 +10,7 @@ export default class NewQuestion extends Component{
 			value
 		}))
 	}
+
 	render(){
 		const { value } = this.state
 		return(
@@ -17,7 +18,7 @@ export default class NewQuestion extends Component{
 				<Text>Question</Text>
 				<TextInput
 			      style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-			      onChangeText={text => onChangeText(text)}
+			      onChangeText={text => this.onChangeText(text)}
 			      value={value}
 			    />
 			    <Button title= 'Submit'/>

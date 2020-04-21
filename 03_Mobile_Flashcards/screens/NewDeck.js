@@ -1,15 +1,39 @@
 import React, {Component} from 'react'
-import { View, StyleSheet, Text, TextInput, Button } from 'react-native'
+import { View, StyleSheet, Text, TextInput, Button, AsyncStorage } from 'react-native'
+// import { saveDeckTitle, getDeck } from '../utils/helpers'
 
 export default class NewDeck extends Component{
   state = {
-    value: ''
+    value: '',
   }
   onChangeText = (value) => {
     this.setState(()=> ({
       value
     }))
   }
+
+  saveData = () => {
+    let deckName = this.state.value;
+    let deckData = {
+        title: deckName,
+        questions: []
+    }
+    AsyncStorage.setItem(deckName, 
+    JSON.stringify(deckData));
+    alert('Saved')
+  }
+  displayData = async () => {
+    let user = ''
+    try {
+        user = await AsyncStorage.getItem('T')
+    }
+    catch(e) {
+      alert('error',e)
+    }
+    alert(user)
+  }
+    
+  
   render(){
     const { value } = this.state
     return(
@@ -17,10 +41,14 @@ export default class NewDeck extends Component{
         <Text>Deck title</Text>
         <TextInput
             style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-            onChangeText={text => onChangeText(text)}
+            onChangeText={text => this.onChangeText(text)}
             value={value}
           />
-          <Button title= 'Submit'/>
+          <Button title= 'saveData'
+            onPress = {this.saveData}/>
+            <Text>b</Text>
+           <Button title= 'displayData'
+            onPress = {this.displayData}/>
       </View>
     )
   }
