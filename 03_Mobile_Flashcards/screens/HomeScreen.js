@@ -1,14 +1,46 @@
-import * as React from 'react';
+import React, {Component} from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import DeckCard from './DeckCard'
+import decks from '../utils/_DATA'
+
+export default class HomeScreen extends Component {
+
+  // componentDidMount() {
+  //   this.displayData().then((deckList)=>{
+  //     console.log('dk',deckList)
+  //   })
+  // }
+
+  // displayData = async () => {
+  //   let deckList = []
+  //   try {
+  //       deckList = await AsyncStorage.getAllKeys()
+  //   }
+  //   catch(e) {
+  //     alert('error',e)
+  //   }
+  //   return(deckList)
+  //   }
 
 
-export default function HomeScreen({navigation}) {
-  return (
-    <ScrollView style={styles.container}>
-      <DeckCard navigation={navigation}/>
-    </ScrollView>
-  );
+  render() {
+    const {navigation } = this.props
+      console.log(decks)
+    return (
+      <ScrollView style={styles.container}>
+      {Object.keys(decks).map(id => 
+        <DeckCard 
+            key={id} 
+            deck={decks[id]}
+            navigation={navigation}/>
+      )
+       
+      }
+
+      </ScrollView>
+    );
+  }
+ 
 }
 
 HomeScreen.navigationOptions = {
@@ -23,3 +55,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 });
+
+

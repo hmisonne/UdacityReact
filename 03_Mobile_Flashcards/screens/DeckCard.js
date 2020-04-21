@@ -2,13 +2,15 @@ import React from 'react'
 
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 
-function DeckCard({ navigation }) {
+function DeckCard({ navigation, deck }) {
+	console.log('dddd',deck)
 	return(
 		<TouchableOpacity 
 			onPress={() => navigation.navigate('DeckView')}>
-			<Text>Deck title</Text>
-			<Text># cards</Text>
+			<Text>{deck.title}</Text>
+			<Text>{deck.questions.length} cards</Text>
 		</TouchableOpacity>
+		
 		)
 
 }

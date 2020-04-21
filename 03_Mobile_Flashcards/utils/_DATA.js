@@ -1,4 +1,4 @@
-export default let decks = {
+let decks = {
   React: {
     title: 'React',
     questions: [
@@ -22,3 +22,5 @@ export default let decks = {
     ]
   }
 }
+
+export default decks

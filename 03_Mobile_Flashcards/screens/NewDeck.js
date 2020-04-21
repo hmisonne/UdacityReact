@@ -19,18 +19,19 @@ export default class NewDeck extends Component{
         questions: []
     }
     AsyncStorage.setItem(deckName, 
-    JSON.stringify(deckData));
+      JSON.stringify(deckData));
     alert('Saved')
   }
+
   displayData = async () => {
-    let user = ''
+    let decks = []
     try {
-        user = await AsyncStorage.getItem('T')
+        decks = await AsyncStorage.getAllKeys()
     }
     catch(e) {
       alert('error',e)
     }
-    alert(user)
+    alert(decks)
   }
     
   
