@@ -38,13 +38,15 @@ export async function getDeck (id) {
 export const addDeckContainer = async(title) => {
 // Add title to the decks.	
 	try {
-		return await AsyncStorage.mergeItem(DATA_STORAGE_KEY,
-			JSON.stringify({
+		const newDeck = JSON.stringify({
 				[title]: {
 					title,
 					questions: [],
 				}
-			}))
+			})
+		await AsyncStorage.mergeItem(DATA_STORAGE_KEY, newDeck)
+
+		return JSON.parse(newDeck)
 	} catch (e) {
 		console.warn(e.message)
 	}
