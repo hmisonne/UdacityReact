@@ -3,10 +3,13 @@ import { View, StyleSheet, Text, Button } from 'react-native'
 
 export default function DeckView({ route, navigation }) {
 	const { deck } = route.params
+	const numQuestions = deck.questions
+	? deck.questions.length
+	: 0
 	return(
 		<View>
 			<Text>{deck.title}</Text>
-			<Text>{deck.questions.length} cards</Text>
+			<Text>{numQuestions} cards</Text>
 			<Button title='Add Card'
 				onPress={()=> navigation.navigate('NewQuestion', {deck})}/>
 			<Button title='Start Quizz' 

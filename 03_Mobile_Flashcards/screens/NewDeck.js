@@ -3,7 +3,6 @@ import { View, StyleSheet, Text, TextInput, Button, AsyncStorage } from 'react-n
 import { addDeckContainer } from '../utils/helpers'
 import { connect } from 'react-redux'
 import { addDeck } from '../actions'
-import { CommonActions } from '@react-navigation/native';
 
 class NewDeck extends Component{
   state = {
@@ -22,14 +21,12 @@ class NewDeck extends Component{
       .then((newDeck)=> {
         dispatch(addDeck(newDeck))
       })
-    this.toHome()
+    this.toIndividualDeck(title)
   }
 
-  toHome = () => {
-    const {navigation, dispatch} = this.props
-    navigation.dispatch(CommonActions.goBack({
-      key: 'NewDeck'
-    }))
+  toIndividualDeck = (title) => {
+    const {navigation} = this.props
+    navigation.navigate('DeckView',{deck: title})
   }
 
   render(){
