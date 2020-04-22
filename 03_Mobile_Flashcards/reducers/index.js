@@ -14,10 +14,7 @@ function decks(state={}, action) {
 		case ADD_DECK:
 			return {
 				...state,
-				[action.title]: {
-					title: action.title,
-					questions: []
-				}
+				...action.newDeck,
 			}
 		case ADD_QUESTION:
 			return {
@@ -33,3 +30,12 @@ function decks(state={}, action) {
 } 
 
 export default decks
+
+		// case ADD_DECK:
+		// 	return {
+		// 		...state,
+		// 		[action.title]: {
+		// 			title: action.title,
+		// 			questions: []
+		// 		}
+		// 	}

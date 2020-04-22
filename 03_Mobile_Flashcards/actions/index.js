@@ -2,10 +2,10 @@ export const ADD_DECK = 'ADD_DECK'
 export const ADD_QUESTION = 'ADD_QUESTION'
 export const RECEIVE_DATA = 'RECEIVE_DATA'
 
-export function addDeck(title) {
+export function addDeck(newDeck) {
 	return {
 		type: ADD_DECK,
-		title
+		newDeck
 	}
 }
 
