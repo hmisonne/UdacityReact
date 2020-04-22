@@ -62,20 +62,3 @@ export const addCardToDeck = async(title, card) => {
 	}
 } 
 
-
-// export const addCardToDeck = async(title, card) => {
-// //  Add the card to the list of questions for the deck with the associated title.
-// 	try {
-		
-// 		getDeck(title)
-// 			.then(currDeck => {
-// 				console.log('CURR',currDeck)
-// 				currDeck.questions.concat(card)
-// 				const newCard = JSON.stringify(currDeck)
-// 			})
-// 			.then(()=> AsyncStorage.mergeItem(DATA_STORAGE_KEY, currDeck))
-		
-// 	} catch (e) {
-// 		console.warn(e.message)
-// 	}
-// } 

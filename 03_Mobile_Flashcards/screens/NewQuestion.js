@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, TextInput, Button } from 'react-native'
 import { connect } from 'react-redux'
 import { addCardToDeck } from '../utils/helpers'
 import { addQuestion } from '../actions'
+import { CommonActions } from '@react-navigation/native';
 
 class NewQuestion extends Component{
 	state = {
@@ -27,8 +28,14 @@ class NewQuestion extends Component{
 			.then(()=> {
 				dispatch(addQuestion(deck.title, card))
 			})
+		this.toHome()
 	}
-
+	toHome = () => {
+		const {navigation, dispatch} = this.props
+		navigation.dispatch(CommonActions.goBack({
+			key: 'NewQuestion'
+		}))
+	}
 
 	render(){
 		const { question, answer } = this.state
