@@ -8,12 +8,12 @@ import MainNav from './navigation/MainNav'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
-
+import middleware from './middleware'
 
 
 export default function App(props) {
     return (
-    <Provider store={createStore(reducer)}>
+    <Provider store={createStore(reducer, middleware)}>
       <View style={styles.container} >
         {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
         <NavigationContainer >
