@@ -5,27 +5,26 @@ import decks from '../utils/_DATA'
 
 export default class HomeScreen extends Component {
 
-  // componentDidMount() {
-  //   this.displayData().then((deckList)=>{
-  //     console.log('dk',deckList)
-  //   })
-  // }
+  componentDidMount() {
+    this.displayData().then((deckList)=>{
+      console.log('dk',deckList)
+    })
+  }
 
-  // displayData = async () => {
-  //   let deckList = []
-  //   try {
-  //       deckList = await AsyncStorage.getAllKeys()
-  //   }
-  //   catch(e) {
-  //     alert('error',e)
-  //   }
-  //   return(deckList)
-  //   }
+  displayData = async () => {
+    let deckList = []
+    try {
+        deckList = await AsyncStorage.getAllKeys()
+    }
+    catch(e) {
+      alert('error',e)
+    }
+    return(deckList)
+    }
 
 
   render() {
-    const {navigation } = this.props
-      console.log(decks)
+    const {navigation} = this.props
     return (
       <ScrollView style={styles.container}>
       {Object.keys(decks).map(id => 
@@ -57,3 +56,4 @@ const styles = StyleSheet.create({
 });
 
 
+// deckList = await AsyncStorage.getAllKeys()
