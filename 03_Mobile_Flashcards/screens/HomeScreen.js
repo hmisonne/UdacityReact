@@ -1,23 +1,26 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import DeckCard from './DeckCard'
-import decks from '../utils/_DATA'
 import { saveDeckTitle, getDecks, getDeck } from '../utils/helpers'
+import { connect } from 'react-redux'
+import { receiveData } from '../actions'
 
-export default class HomeScreen extends Component {
+class HomeScreen extends Component {
 
   componentDidMount() {
+    const { dispatch } = this.props
     getDecks()
-      .then((deckList)=>{
-      console.log('dk',deckList)
-    })
+      .then((decks)=>{
+        dispatch(receiveData(decks))
+      })
+    
   }
 
 
 
   render() {
     
-    const {navigation} = this.props
+    const {navigation, decks } = this.props
     return (
       <ScrollView style={styles.container}>
       {Object.keys(decks).map(id => 
@@ -47,3 +50,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 });
+
+function mapStateToProps (decks) {
+  return {
+    decks
+  }
+}
+
+export default connect(mapStateToProps)(HomeScreen)
+
+
+// import decks from '../utils/_DATA'

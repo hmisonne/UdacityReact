@@ -1,10 +1,16 @@
 import {
 	ADD_DECK,
 	ADD_QUESTION,
+	RECEIVE_DATA,
 } from '../actions'
 
-function flashcards(state={}, action) {
+function decks(state={}, action) {
 	switch (action.type){
+		case RECEIVE_DATA:
+			return {
+				...state,
+				...action.decks
+			}
 		case ADD_DECK:
 			return {
 				...state,
@@ -26,4 +32,4 @@ function flashcards(state={}, action) {
 	}
 } 
 
-export default flashcards
+export default decks
