@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { View, StyleSheet, Text, TextInput, Button, AsyncStorage } from 'react-native'
-// import { saveDeckTitle, getDeck } from '../utils/helpers'
+import { addDeckContainer, getDecks, getDeck } from '../utils/helpers'
 
 export default class NewDeck extends Component{
   state = {
@@ -13,27 +13,24 @@ export default class NewDeck extends Component{
   }
 
   saveData = () => {
-    let deckName = this.state.value;
-    let deckData = {
-        title: deckName,
-        questions: []
-    }
-    AsyncStorage.setItem(deckName, 
-      JSON.stringify(deckData));
+    let title = this.state.value;
+    addDeckContainer(title)
     alert('Saved')
   }
 
-  displayData = async () => {
-    let decks = []
-    try {
-        decks = await AsyncStorage.getAllKeys()
-    }
-    catch(e) {
-      alert('error',e)
-    }
-    alert(decks)
+  displayData = () => {
+    getDecks()
+      .then((result) => {
+        alert(result)
+    })
   }
-    
+  displayKey = () => {
+    getDeck('T')
+      .then((result) => {
+        alert(result)
+    })
+  }
+
   
   render(){
     const { value } = this.state
@@ -50,6 +47,9 @@ export default class NewDeck extends Component{
             <Text>b</Text>
            <Button title= 'displayData'
             onPress = {this.displayData}/>
+            <Text>b</Text>
+           <Button title= 'displayKey'
+            onPress = {this.displayKey}/>
       </View>
     )
   }

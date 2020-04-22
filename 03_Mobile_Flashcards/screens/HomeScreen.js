@@ -2,28 +2,21 @@ import React, {Component} from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import DeckCard from './DeckCard'
 import decks from '../utils/_DATA'
+import { saveDeckTitle, getDecks, getDeck } from '../utils/helpers'
 
 export default class HomeScreen extends Component {
 
   componentDidMount() {
-    this.displayData().then((deckList)=>{
+    getDecks()
+      .then((deckList)=>{
       console.log('dk',deckList)
     })
   }
 
-  displayData = async () => {
-    let deckList = []
-    try {
-        deckList = await AsyncStorage.getAllKeys()
-    }
-    catch(e) {
-      alert('error',e)
-    }
-    return(deckList)
-    }
 
 
   render() {
+    
     const {navigation} = this.props
     return (
       <ScrollView style={styles.container}>
@@ -54,6 +47,3 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 });
-
-
-// deckList = await AsyncStorage.getAllKeys()

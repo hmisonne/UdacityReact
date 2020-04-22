@@ -1,36 +1,80 @@
 import React from "react";
 import { AsyncStorage } from "react-native";
+import { DATA_STORAGE_KEY } from './keys'
 // import decks from './helpers'
 
 // const DECK_KEY = 'MobileFlashcards:decks'
 
 export async function getDecks () {
 // return all of the decks along with their titles, questions, and answers.
-	let keys = []
 	try {
-		keys = await AsyncStorage.getAllKeys()
+		const results = JSON.parse(await AsyncStorage.getItem(DATA_STORAGE_KEY))
+		return results
 	} 
 	catch(error){
 		console.log('error', error)
 	}
-	console.log(keys)
+	
 }
 
 export async function getDeck (id) {
 // Return the deck associated with that id
-	AsyncStorage.getItem(id)
-		.then(result => {
-			result = JSON.parse(result);
-			})
+
+	let deck = ''
+	try {
+		deck = await AsyncStorage.getItem(id)
+		if (deck !== null) {
+			return deck
+		} else {
+			console.log('read data error')
+		}
+	} 
+	catch(error){
+		console.log('error', error)
+	}
 	
 }
 
-export function saveDeckTitle (title) {
+export const addDeckContainer = async(title) => {
 // Add title to the decks.	
-	AsyncStorage.setItem(title,JSON.stringify(title))
+	try {
+		return await AsyncStorage.mergeItem(DATA_STORAGE_KEY,
+			JSON.stringify({
+				[title]: {
+					title,
+					questions: [],
+				}
+			}))
+	} catch (e) {
+		console.warn(e.message)
+	}
 }
 
 function addCardToDeck (title, card){
 //  Add the card to the list of questions for the deck with the associated title.
 	return true
 } 
+
+
+// export async function getDecks () {
+// // return all of the decks along with their titles, questions, and answers.
+// 	try {
+// 		const keys = await AsyncStorage.getAllKeys()
+// 		const results = await AsyncStorage.multiGet(keys)
+// 		return results
+// 	} 
+// 	catch(error){
+// 		console.log('error', error)
+// 	}
+	
+// }
+
+// export function saveDeckTitle (title) {
+// // Add title to the decks.	
+// 	let deckData = {
+//         title,
+//         questions: []
+//     }
+// 	AsyncStorage.setItem(title, 
+//       JSON.stringify(deckData))
+// }
