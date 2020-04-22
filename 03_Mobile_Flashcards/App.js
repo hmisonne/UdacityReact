@@ -4,37 +4,23 @@ import { Platform, StatusBar, StyleSheet, View, Text, TouchableOpacity } from 'r
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-
-import DeckView from './screens/DeckView'
-import Quizz from './screens/Quizz'
-import NewQuestion from './screens/NewQuestion'
-
-import BottomTabNavigator from './navigation/BottomTabNavigator';
-
+import MainNav from './navigation/MainNav'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
 
-const Stack = createStackNavigator();
 
-const MainNav = () => (
-<Stack.Navigator initialRouteName="Root">
-    <Stack.Screen name="Root" component={BottomTabNavigator} />
-    <Stack.Screen name="DeckView" component={DeckView} />
-    <Stack.Screen name="Quizz" component={Quizz} />
-    <Stack.Screen name="NewQuestion" component={NewQuestion} />
-  </Stack.Navigator>
-  )
 
 export default function App(props) {
     return (
-      <View style={styles.container}>
+    <Provider store={createStore(reducer)}>
+      <View style={styles.container} >
         {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
         <NavigationContainer >
             <MainNav/>
         </NavigationContainer>
       </View>
+    </Provider>
     );
 }
 
