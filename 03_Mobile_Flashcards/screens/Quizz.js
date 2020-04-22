@@ -10,11 +10,19 @@ export default class Quizz extends Component{
 		numCorrect: 0
 	}
 	componentDidMount() {
+		this.startQuizz()
+	}
+
+	startQuizz = () => {
 		const { deck } = this.props.route.params
 		if (deck.questions.length >0) {
 			this.setState(()=>({
-			currQuestion:deck.questions[0],
-		}))
+				showAnswer: false,
+				quizzCompleted: false,
+				currQuestion: deck.questions[0],
+				indexQuestion: 1,
+				numCorrect: 0
+			}))
 		}
 		
 	}
@@ -56,7 +64,6 @@ export default class Quizz extends Component{
 		}))
 	}
 	render(){
-		console.log(this.state)
 		const { currQuestion, indexQuestion, numCorrect, showAnswer, quizzCompleted } = this.state
 		const { deck } = this.props.route.params
 		const totalNumQuestions = deck.questions.length
@@ -75,6 +82,9 @@ export default class Quizz extends Component{
 				<View>
 					<Text>End of Quizz</Text>
 					<Text>Correct Answer(s): {numCorrect} / {totalNumQuestions}</Text>
+					<Button 
+						title="Restart Quizz"
+						onPress={() => this.startQuizz()}/>
 				</View>
 				)
 		}
