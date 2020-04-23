@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { View, StyleSheet, Text, Button } from 'react-native'
+import { CommonActions } from '@react-navigation/native';
 
 export default class Quizz extends Component{
 	state = {
@@ -58,6 +59,13 @@ export default class Quizz extends Component{
 			indexQuestion
 		}))
 	}
+	goHome = () => {
+		const {navigation} = this.props;
+		const { deck } = this.props.route.params;
+		navigation.dispatch(CommonActions.goBack({
+			key: 'DeckView'
+		}))
+	}
 	onToggle = () =>{
 		this.setState((prevState)=>({
 			showAnswer: !prevState.showAnswer
@@ -84,7 +92,10 @@ export default class Quizz extends Component{
 					<Text>Correct Answer(s): {numCorrect} / {totalNumQuestions}</Text>
 					<Button 
 						title="Restart Quizz"
-						onPress={() => this.startQuizz()}/>
+						onPress={this.startQuizz}/>
+					<Button 
+						title="Back to Deck"
+						onPress={this.goHome}/>
 				</View>
 				)
 		}
@@ -92,7 +103,7 @@ export default class Quizz extends Component{
 			return (
 			<View>
 				
-				<Text>Quizz</Text>
+				<Text>Quizz {indexQuestion}/{totalNumQuestions}</Text>
 				<Text>{currQuestion.answer}</Text>
 				<Button 
 					title="Go Back"
@@ -102,7 +113,7 @@ export default class Quizz extends Component{
 		}
 		return(
 			<View>
-				<Text>Quizz</Text>
+				<Text>Quizz {indexQuestion}/{totalNumQuestions}</Text>
 				<Text>{currQuestion.question}</Text>
 				<Button 
 					title="Show Answer"
