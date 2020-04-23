@@ -1,7 +1,10 @@
 import React, {Component} from 'react'
 import { View, StyleSheet, Text, Button } from 'react-native'
 import { CommonActions } from '@react-navigation/native';
-
+import {  
+	clearLocalNotification,
+  	setLocalNotification
+} from '../utils/helpers'
 export default class Quizz extends Component{
 	state = {
 		showAnswer: false,
@@ -25,6 +28,9 @@ export default class Quizz extends Component{
 				numCorrect: 0
 			}))
 		}
+
+		clearLocalNotification()
+			.then(setLocalNotification)
 		
 	}
 	submitAnswer = (correctAnswer) => {
