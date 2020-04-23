@@ -2,16 +2,16 @@ import React, { Component } from 'react'
 
 import { View, StyleSheet, Text, TouchableOpacity, Animated } from 'react-native'
 
+
 class DeckCard extends Component{
 	state ={
-		fadeValue: new Animated.Value(0),
-		SlideInLeft: new Animated.Value(0)
+		scaleValue: new Animated.Value(0)
 	}
 
 	startAnimation = () => {
-		Animated.timing(this.state.SlideInLeft, {
+		Animated.timing(this.state.scaleValue, {
 			toValue: 1,
-			duration: 200
+			duration: 250
 		}).start()
 	}
 
@@ -22,8 +22,8 @@ class DeckCard extends Component{
 	}
 
 	render(){
-		const { navigation, deck } = this.props
-		let { SlideInLeft, fadeValue } = this.state;
+		const { deck } = this.props
+		let { scaleValue } = this.state;
 		return(
 			 <View style={styles.container}>
 
@@ -33,15 +33,11 @@ class DeckCard extends Component{
 						<Animated.View 
 			 style={{
             transform: [
-              {
-                translateY: SlideInLeft.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [600, 0]
-                })
-              }
+              { scale: scaleValue.interpolate({
+			      inputRange: [0, 0.5, 1],
+			      outputRange: [1, 0.5, 2]
+			    }) }
             ],
-            backgroundColor: "#347a2a",
-            justifyContent: "center"
           }}
         >
 			<Text style={styles.text}>{deck.title}</Text>
