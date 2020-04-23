@@ -18,7 +18,7 @@ class DeckCard extends Component{
 	navigateToDeckView = () => {
 		const { navigation, deck } = this.props
 		this.startAnimation()
-		navigation.navigate('DeckView', {deck})
+		navigation.navigate('DeckView', {deckId: deck.title})
 	}
 
 	render(){

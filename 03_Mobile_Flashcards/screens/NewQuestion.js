@@ -21,20 +21,19 @@ class NewQuestion extends Component{
 	}
 
 	onSubmit = () => {
-		const { deck } = this.props.route.params
+		const { deckId } = this.props.route.params
 		const { dispatch } = this.props
 		const card = this.state
-		addCardToDeck(deck.title, card)
+		addCardToDeck(deckId, card)
 			.then(()=> {
-				dispatch(addQuestion(deck.title, card))
+				dispatch(addQuestion(deckId, card))
 			})
-		this.toHome()
+		this.navigateToDeckView()
 	}
-	toHome = () => {
-		const {navigation, dispatch} = this.props
-		navigation.dispatch(CommonActions.goBack({
-			key: 'NewQuestion'
-		}))
+	navigateToDeckView = () => {
+		const { deckId } = this.props.route.params
+		const {navigation} = this.props
+		navigation.navigate('DeckView', {deckId})
 	}
 
 	render(){
@@ -63,11 +62,3 @@ class NewQuestion extends Component{
 
 
 export default connect()(NewQuestion)
-
-// function mapDispatchToProps(dispatch, {route, navigation}){
-// 	const { deck } = route.params 
-// 	return {
-// 		deck
-// 	}
-// }
-
