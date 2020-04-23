@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import { View, StyleSheet, Text, TouchableOpacity, Animated } from 'react-native'
-
+import { lightGreen, grey } from '../utils/colors'
 
 class DeckCard extends Component{
 	state ={
@@ -40,8 +40,8 @@ class DeckCard extends Component{
             ],
           }}
         >
-			<Text style={styles.text}>{deck.title}</Text>
-			<Text style={styles.text}>{deck.questions.length} cards</Text>
+			<Text style={styles.cardTitle}>{deck.title}</Text>
+			<Text style={styles.cardQuestion}>{deck.questions.length} cards</Text>
 		</Animated.View>
 				
 			</TouchableOpacity>
@@ -60,20 +60,20 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFF",
   },
   row: {
-  	borderColor: 'blue',
-    borderWidth: 3,
-    marginTop: 3,
+  	// borderColor: 'blue',
+   //  borderWidth: 3,
+   	padding: 10,
+    marginTop: 10,
+    backgroundColor: lightGreen
   },
-  text: {
+  cardTitle: {
+  	color: grey,
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center"
   },
+  cardQuestion: {
+  	fontSize: 15,
+  	textAlign: "center"
+  }
 });
-		// <Animated.View 
-		// 	style={{
-		// 		opacity: this.state.fadeValue,
-		// 		height: 25,
-
-		// 		backgroundColor: "#347a2a"
-		// 	}}>
