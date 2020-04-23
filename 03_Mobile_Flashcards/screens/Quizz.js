@@ -82,7 +82,7 @@ export default class Quizz extends Component{
 		const { deck } = this.props.route.params
 		const totalNumQuestions = deck.questions.length
 		// If Deck is empty (no question entered)
-		if (currQuestion === '') {
+		if (currQuestion.question === undefined) {
 			return (
 				<View>
 					<Text>Quizz</Text>
