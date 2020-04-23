@@ -10,6 +10,16 @@ import { Provider } from 'react-redux'
 import reducer from './reducers'
 import middleware from './middleware'
 import { setLocalNotification } from './utils/helpers'
+import Constants from 'expo-constants';
+import { lightGreen, grey } from './utils/colors'
+
+function StyledStatusBar () {
+  return (
+    <View style={{ backgroundColor: grey, height: Constants.statusBarHeight }}>
+       <StatusBar translucent backgroundColor='#ccc' barStyle="dark-content" />
+    </View>
+  )
+}
 
 export default class App extends Component {
 
@@ -18,9 +28,10 @@ export default class App extends Component {
   }
   render() {
     return (
-    <Provider store={createStore(reducer, middleware)}>
+    <Provider store={createStore(reducer, middleware)} >
       <View style={styles.container} >
-        {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+        
+        <StyledStatusBar />
         <NavigationContainer >
             <MainNav/>
         </NavigationContainer>
