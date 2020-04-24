@@ -6,6 +6,7 @@ import {
   	setLocalNotification
 } from '../utils/helpers'
 import SubmitBtn from '../components/SubmitBtn'
+import { Ionicons } from "@expo/vector-icons";
 
 export default class Quizz extends Component{
 	state = {
@@ -86,9 +87,10 @@ export default class Quizz extends Component{
 		// If Deck is empty (no question entered)
 		if (currQuestion.question === undefined) {
 			return (
-				<View>
-					<Text>Quizz</Text>
-					<Text>No Card</Text>
+				<View style={styles.center}>
+					<Text style={styles.textTitle}>This quiz is currently empty. To start playing add new cards!</Text>
+					<Ionicons name={"ios-hand"} size={100} />
+					
 				</View>
 				)
 		}
@@ -111,7 +113,6 @@ export default class Quizz extends Component{
 				</View>
 				)
 		}
-		
 		return(
 			<View style={styles.container}>
 				<Text>{indexQuestion}/{totalNumQuestions}</Text>
@@ -153,6 +154,11 @@ export default class Quizz extends Component{
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  center: {
+  	flex: 1,
+  	alignItems: "center",
+  	justifyContent: 'space-around'
   },
   centered:{
   	flex: 1,

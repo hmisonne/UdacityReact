@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 
 import { View, StyleSheet, Text, TouchableOpacity, Animated } from 'react-native'
-import { lightGreen, grey } from '../utils/colors'
+import { lightGreen, grey, blue } from '../utils/colors'
+import { Divider } from 'react-native-elements';
+
 
 class DeckCard extends Component{
 	state ={
@@ -35,7 +37,7 @@ class DeckCard extends Component{
             transform: [
               { scale: scaleValue.interpolate({
 			      inputRange: [0, 0.5, 1],
-			      outputRange: [1, 0.5, 2]
+			      outputRange: [1, 0.5, 1]
 			    }) }
             ],
           }}
@@ -43,8 +45,8 @@ class DeckCard extends Component{
 			<Text style={styles.cardTitle}>{deck.title}</Text>
 			<Text style={styles.cardQuestion}>{deck.questions.length} cards</Text>
 		</Animated.View>
-				
 			</TouchableOpacity>
+			<Divider style={{ backgroundColor: 'black', height: 2 }} />
 		</View>
 		)
 	}
@@ -57,17 +59,13 @@ export default DeckCard
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FFF",
   },
   row: {
-  	// borderColor: 'blue',
-   //  borderWidth: 3,
    	padding: 10,
     marginTop: 10,
-    backgroundColor: lightGreen
   },
   cardTitle: {
-  	color: grey,
+  	color: blue,
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center"

@@ -5,7 +5,6 @@ import { getDecks } from '../utils/helpers'
 import { connect } from 'react-redux'
 import { receiveData } from '../actions'
 
-
 class HomeScreen extends Component {
 
   componentDidMount() {
