@@ -64,7 +64,8 @@ class NewQuestion extends Component {
 			    </View>
 			    <View>
 				    <SubmitBtn 
-				    	onPress={this.onSubmit}>Submit</SubmitBtn>
+				    	onPress={this.onSubmit}
+				    	disabled={question==="" || answer===""}>Submit</SubmitBtn>
 			    </View>
 			</View>
         )

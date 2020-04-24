@@ -12,7 +12,7 @@ class DeckView extends Component {
     static propTypes = {
         dispatch: PropTypes.func.isRequired,
         navigation: PropTypes.object.isRequired,
-        deck: PropTypes.object.isRequired,
+        deck: PropTypes.object,
     }
     navigateToNewQuestion = () => {
         const { deck, navigation } = this.props
@@ -35,9 +35,9 @@ class DeckView extends Component {
         const { deck, navigation } = this.props
         let deckTitle = ''
         let numQuestions = 0
-
+        // To prevent the code from crashing when a deck is deleted
         if (deck !== undefined) {
-            const numQuestions = deck.questions.length
+            numQuestions = deck.questions.length
             deckTitle = deck.title
         }
 

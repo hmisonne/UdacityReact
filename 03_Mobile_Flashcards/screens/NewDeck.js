@@ -48,7 +48,8 @@ class NewDeck extends Component {
           onChangeText={text => this.onChangeText(text)} />
         
           <SubmitBtn
-            onPress = {this.saveData}>SUBMIT</SubmitBtn>
+            onPress = {this.saveData}
+            disabled={value===""}>SUBMIT</SubmitBtn>
       </View>
         )
     }
