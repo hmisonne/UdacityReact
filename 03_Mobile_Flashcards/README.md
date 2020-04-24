@@ -1,15 +1,12 @@
-todo:
-Animation reset
-
-
-
-Project README identifies which platform(s) have been tested.
-
 # FlashCards Project
 
 This project is part of the Udacity React NanoDegree Program. The goal of this project is to build a React/Redux front-end app from scratch to allow users to study collections of flashcards. This app also allows users to create different categories of flashcards called "decks", add flashcards to those decks, then take quizzes on those decks.
 
 This project was bootstraped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Platform
+
+Currently this app has only been tested on an Android phone using the Expo app, 
 
 ## Functionalities
 
