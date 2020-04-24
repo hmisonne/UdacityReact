@@ -6,8 +6,14 @@ import { addQuestion } from '../actions'
 import { CommonActions } from '@react-navigation/native';
 import SubmitBtn from '../components/SubmitBtn'
 import StyledTextInput from '../components/StyledTextInput'
+import PropTypes from 'prop-types'
 
+	
 class NewQuestion extends Component{
+	static propTypes = {
+		route: PropTypes.object.isRequired,
+		navigation: PropTypes.object.isRequired,
+	}
 	state = {
 		question: '',
 		answer:''

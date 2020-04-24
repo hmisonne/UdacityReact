@@ -5,8 +5,15 @@ import SubmitBtn from '../components/SubmitBtn'
 import { lightGreen, grey } from '../utils/colors'
 import { removeDeck } from '../actions'
 import { deleteDeck } from '../utils/helpers'
+import PropTypes from 'prop-types'
+
 
 class DeckView extends Component {
+	static propTypes = {
+    	dispatch: PropTypes.func.isRequired,
+	    navigation: PropTypes.object.isRequired,
+	    deck: PropTypes.object.isRequired,
+	}
 	navigateToNewQuestion = () => {
 		const { deck, navigation } = this.props
 		navigation.navigate('NewQuestion', {deckId : deck.title})

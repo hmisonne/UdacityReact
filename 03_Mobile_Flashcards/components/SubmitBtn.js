@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { lightGreen, grey } from '../utils/colors'
+import PropTypes from 'prop-types'
 
 export default function SubmitBtn ({children, onPress, style = {} }){
     return(
@@ -30,3 +31,9 @@ const styles = StyleSheet.create({
     textAlign:'center',
   }
 });
+
+SubmitBtn.propTypes = {
+  children: PropTypes.string.isRequired, 
+  onPress: PropTypes.func.isRequired, 
+  style: PropTypes.object, 
+}     

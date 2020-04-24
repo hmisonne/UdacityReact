@@ -6,8 +6,13 @@ import { addDeck } from '../actions'
 import { lightGreen, grey } from '../utils/colors'
 import SubmitBtn from '../components/SubmitBtn'
 import StyledTextInput from '../components/StyledTextInput'
+import PropTypes from 'prop-types'
 
 class NewDeck extends Component{
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    navigation: PropTypes.object.isRequired,
+  }
   state = {
     value: '',
   }

@@ -4,9 +4,14 @@ import DeckCard from './DeckCard'
 import { getDecks } from '../utils/helpers'
 import { connect } from 'react-redux'
 import { receiveData } from '../actions'
+import PropTypes from 'prop-types'
 
 class HomeScreen extends Component {
-
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    navigation: PropTypes.object.isRequired,
+    decks: PropTypes.object.isRequired,
+  }
   componentDidMount() {
     const { dispatch } = this.props
     getDecks()

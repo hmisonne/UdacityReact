@@ -7,8 +7,13 @@ import {
 } from '../utils/helpers'
 import SubmitBtn from '../components/SubmitBtn'
 import { Ionicons } from "@expo/vector-icons";
+import PropTypes from 'prop-types'
 
 export default class Quizz extends Component{
+	static propTypes = {
+		route: PropTypes.object.isRequired,
+		navigation: PropTypes.object.isRequired,
+	}
 	state = {
 		showAnswer: false,
 		quizzCompleted: false,
