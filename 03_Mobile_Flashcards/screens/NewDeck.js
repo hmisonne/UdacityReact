@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { addDeck } from '../actions'
 import { lightGreen, grey } from '../utils/colors'
 import SubmitBtn from '../components/SubmitBtn'
+import StyledTextInput from '../components/StyledTextInput'
 
 class NewDeck extends Component{
   state = {
@@ -36,12 +37,11 @@ class NewDeck extends Component{
     const { value } = this.state
     return(
       <View style={styles.container}>
-        <TextInput
-            style={styles.textInput}
-            onChangeText={text => this.onChangeText(text)}
-            value={value}
-            placeholder='Enter title'
-          />
+        <StyledTextInput 
+          value={value} 
+          placeholder='Enter title'
+          onChangeText={text => this.onChangeText(text)} />
+        
           <SubmitBtn
             onPress = {this.saveData}>SUBMIT</SubmitBtn>
       </View>
@@ -57,33 +57,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fafafa',
     justifyContent: "space-around",
   },
-  textInput :{
-    height: 40, 
-    borderColor: grey, 
-    borderWidth: 2,
-    borderRadius:10,
-    marginTop:10,
-
-    marginLeft:30,
-    marginRight:30,
-  },
-  btn : {
-    backgroundColor:lightGreen,
-    borderRadius:10,
-    marginTop:10,
-    paddingTop:15,
-    paddingBottom:15,
-    marginLeft:30,
-    marginRight:30,
-  },
-   TextStyle:{
-      paddingTop:15,
-      paddingBottom:15,
-  },
-  btnText: {
-    color:'#fff',
-    textAlign:'center',
-  }
 });
 
 export default connect()(NewDeck)

@@ -63,14 +63,3 @@ const MainNav = () => (
   )
 
 export default MainNav
-
-// <Stack.Screen 
-//     	name="NewQuestion" 
-//     	component={NewQuestion} 
-//     	options={{
-//           title: 'Add New Question',
-//           headerStyle: {
-//             backgroundColor: blue,
-//           },
-//           headerTintColor: '#fff',
-//         }}/>

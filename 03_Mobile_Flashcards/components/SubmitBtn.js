@@ -2,10 +2,10 @@ import React from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { lightGreen, grey } from '../utils/colors'
 
-export default function SubmitBtn ({children, onPress}){
+export default function SubmitBtn ({children, onPress, style = {} }){
     return(
           <TouchableOpacity
-            style={styles.btn}
+            style={[styles.btn, style]}
             onPress = {onPress}>
             <Text style={styles.btnText}> {children} </Text>
           </TouchableOpacity>
@@ -21,8 +21,8 @@ const styles = StyleSheet.create({
     marginTop:10,
     paddingTop:15,
     paddingBottom:15,
-    marginLeft:30,
-    marginRight:30,
+    marginLeft:100,
+    marginRight:100,
   },
 
   btnText: {

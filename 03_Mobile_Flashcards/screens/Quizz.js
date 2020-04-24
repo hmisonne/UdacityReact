@@ -5,6 +5,8 @@ import {
 	clearLocalNotification,
   	setLocalNotification
 } from '../utils/helpers'
+import SubmitBtn from '../components/SubmitBtn'
+
 export default class Quizz extends Component{
 	state = {
 		showAnswer: false,
@@ -93,45 +95,76 @@ export default class Quizz extends Component{
 		// If Quizz is completed
 		if (quizzCompleted) {
 			return (
-				<View>
-					<Text>End of Quizz</Text>
-					<Text>Correct Answer(s): {numCorrect} / {totalNumQuestions}</Text>
-					<Button 
-						title="Restart Quizz"
-						onPress={this.startQuizz}/>
-					<Button 
-						title="Back to Deck"
-						onPress={this.goHome}/>
+				<View style={styles.centered}>
+
+					<Text style={styles.textTitle}>Correct Answer(s): {numCorrect} / {totalNumQuestions}</Text>
+					<View>
+						<SubmitBtn
+							onPress={this.goHome}>
+							Restart Quizz
+						</SubmitBtn>
+						<SubmitBtn
+							onPress={this.startQuizz}>
+							Back to Deck
+						</SubmitBtn>
+					</View>
 				</View>
 				)
 		}
-		if (showAnswer) {
-			return (
-			<View>
-				
-				<Text>Quizz {indexQuestion}/{totalNumQuestions}</Text>
-				<Text>{currQuestion.answer}</Text>
-				<Button 
-					title="Go Back"
-					onPress={this.onToggle}/>
-			</View>
-				)
-		}
+		
 		return(
-			<View>
-				<Text>Quizz {indexQuestion}/{totalNumQuestions}</Text>
-				<Text>{currQuestion.question}</Text>
-				<Button 
-					title="Show Answer"
-					onPress={this.onToggle}/>
-				<Button 
-					title="Correct"
-					onPress={() => this.submitAnswer(true)}/>
-				<Button 
-					title="Incorrect"
-					onPress={() => this.submitAnswer(false)}/>
-
+			<View style={styles.container}>
+				<Text>{indexQuestion}/{totalNumQuestions}</Text>
+				<View style={styles.centered}>
+					<View>
+						<Text style={styles.textTitle}>
+							{showAnswer
+								? currQuestion.answer
+								: currQuestion.question
+							}</Text>
+						<SubmitBtn
+							onPress={this.onToggle}>
+							{showAnswer
+								? 'Question'
+								: 'Show Answer'
+							}
+							
+						</SubmitBtn>
+					</View>
+					<View>
+						<SubmitBtn
+							style={{backgroundColor: 'green'}}
+							onPress={() => this.submitAnswer(true)}>
+							Correct
+						</SubmitBtn>
+						<SubmitBtn
+							style={{backgroundColor: 'red'}}
+							onPress={() => this.submitAnswer(false)}>
+							Incorrect
+						</SubmitBtn>
+					</View>
+				</View>
 			</View>
 		)
 	}
 }
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  centered:{
+  	flex: 1,
+    justifyContent: 'space-around'
+  },
+  textTitle: {
+  	textAlign:'center',
+  	fontSize: 30
+  },
+  textSmall: {
+  	textAlign:'center',
+  	fontSize: 20
+  }
+  
+});
