@@ -1,14 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App renders the loading screen 1`] = `
-<AppLoading
-  onError={[Function]}
-  onFinish={[Function]}
-  startAsync={[Function]}
-/>
-`;
-
-exports[`App renders the root without loading screen 1`] = `
+exports[`App renders the main screen 1`] = `
 <View
   style={
     Object {
@@ -17,6 +9,14 @@ exports[`App renders the root without loading screen 1`] = `
     }
   }
 >
-  <AppNavigator />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#6b7d70",
+        "height": 44,
+      }
+    }
+  />
+  <MainNav />
 </View>
 `;
