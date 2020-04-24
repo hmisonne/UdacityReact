@@ -2,7 +2,9 @@ import {
 	ADD_DECK,
 	ADD_QUESTION,
 	RECEIVE_DATA,
+	REMOVE_DECK
 } from '../actions'
+import _ from 'lodash';
 
 function decks(state={}, action) {
 	switch (action.type){
@@ -24,18 +26,12 @@ function decks(state={}, action) {
 					questions: state[action.deck].questions.concat(action.question)
 				}
 			}
+		case REMOVE_DECK:
+			return _.omit(state, action.id)
+
 		default:
 			return state
 	}
 } 
 
 export default decks
-
-		// case ADD_DECK:
-		// 	return {
-		// 		...state,
-		// 		[action.title]: {
-		// 			title: action.title,
-		// 			questions: []
-		// 		}
-		// 	}

@@ -16,6 +16,17 @@ export async function getDecks () {
 	
 }
 
+export async function deleteDeck(id) {
+	try {
+		const results = JSON.parse(await AsyncStorage.getItem(DATA_STORAGE_KEY))
+		delete results[id]
+		await AsyncStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(results))
+	} 
+	catch(error){
+		console.log('error', error)
+	}
+}
+
 export async function getDeck (id) {
 // Return the deck associated with that id
 	try {
