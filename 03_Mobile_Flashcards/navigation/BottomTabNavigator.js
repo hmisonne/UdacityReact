@@ -16,23 +16,23 @@ export default function BottomTabNavigator({ navigation, route }) {
 
     return (
         <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
-      <BottomTab.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
-        }}
-      />
-      <BottomTab.Screen
-        name="NewDeck"
-        component={NewDeck}
-        options={{
-          title: 'New Deck',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
-        }}
-      />
-    </BottomTab.Navigator>
+          <BottomTab.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{
+              title: 'Home',
+              tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
+            }}
+          />
+          <BottomTab.Screen
+            name="NewDeck"
+            component={NewDeck}
+            options={{
+              title: 'New Deck',
+              tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
+            }}
+          />
+        </BottomTab.Navigator>
     );
 }
 

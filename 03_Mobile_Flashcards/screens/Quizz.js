@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, Text, Button } from 'react-native'
+import { View, StyleSheet, Text } from 'react-native'
 import { CommonActions } from '@react-navigation/native';
 import {
     clearLocalNotification,
@@ -28,18 +28,20 @@ export default class Quizz extends Component {
     startQuizz = () => {
         const { deck } = this.props.route.params
         if (deck.questions.length > 0) {
-            this.setState(() => ({
-                showAnswer: false,
-                quizzCompleted: false,
-                currQuestion: deck.questions[0],
-                indexQuestion: 1,
-                numCorrect: 0
-            }))
+            this.initializeQuizz()
         }
-
         clearLocalNotification()
             .then(setLocalNotification)
-
+    }
+    initializeQuizz = () => {
+        const { deck } = this.props.route.params;
+        this.setState(() => ({
+            showAnswer: false,
+            quizzCompleted: false,
+            currQuestion: deck.questions[0],
+            indexQuestion: 1,
+            numCorrect: 0
+        }))
     }
     submitAnswer = (correctAnswer) => {
         // Update count of Correct Answers
@@ -94,7 +96,6 @@ export default class Quizz extends Component {
                 <View style={styles.center}>
 					<Text style={styles.textTitle}>This quiz is currently empty. To start playing add new cards!</Text>
 					<Ionicons name={"ios-hand"} size={100} />
-					
 				</View>
             )
         }
@@ -102,11 +103,10 @@ export default class Quizz extends Component {
         if (quizzCompleted) {
             return (
                 <View style={styles.centered}>
-
 					<Text style={styles.textTitle}>Correct Answer(s): {numCorrect} / {totalNumQuestions}</Text>
 					<View>
 						<SubmitBtn
-							onPress={this.startQuizz}>
+							onPress={this.initializeQuizz}>
 							Restart Quizz
 						</SubmitBtn>
 						<SubmitBtn
@@ -133,7 +133,6 @@ export default class Quizz extends Component {
 								? 'Question'
 								: 'Show Answer'
 							}
-							
 						</SubmitBtn>
 					</View>
 					<View>
@@ -172,9 +171,5 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 30
     },
-    textSmall: {
-        textAlign: 'center',
-        fontSize: 20
-    }
 
 });

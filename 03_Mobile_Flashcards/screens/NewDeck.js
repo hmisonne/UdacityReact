@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, Text, TextInput, TouchableOpacity, AsyncStorage } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { addDeckContainer } from '../utils/helpers'
 import { connect } from 'react-redux'
 import { addDeck } from '../actions'
-import { lightGreen, grey } from '../utils/colors'
+
 import SubmitBtn from '../components/SubmitBtn'
 import StyledTextInput from '../components/StyledTextInput'
 import PropTypes from 'prop-types'
@@ -42,15 +42,15 @@ class NewDeck extends Component {
         const { value } = this.state
         return (
             <View style={styles.container}>
-        <StyledTextInput 
-          value={value} 
-          placeholder='Enter title'
-          onChangeText={text => this.onChangeText(text)} />
-        
-          <SubmitBtn
-            onPress = {this.saveData}
-            disabled={value===""}>SUBMIT</SubmitBtn>
-      </View>
+                <StyledTextInput 
+                  value={value} 
+                  placeholder='Enter title'
+                  onChangeText={text => this.onChangeText(text)} />
+                
+                  <SubmitBtn
+                    onPress = {this.saveData}
+                    disabled={value===""}>SUBMIT</SubmitBtn>
+            </View>
         )
     }
 }

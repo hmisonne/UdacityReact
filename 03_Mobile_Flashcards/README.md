@@ -27,9 +27,19 @@ This app has currently 5 views:
 - New Deck
 - New Question
 
+## Animation
+
+Currently when a user click on a deck from the homescreen, the font size will increase and then return back to normal
+
+## Test
+
+The actions and reducers file are tested with Jest
+To run test, `yarn jest`
+
 ## Data
 
-As there is currently no back end implemented, AsyncStorage is used to store decks and flashcards
+As there is currently no back end implemented, AsyncStorage is used to store decks and flashcards. 
+Here is the format of the data
 
 ```
 {

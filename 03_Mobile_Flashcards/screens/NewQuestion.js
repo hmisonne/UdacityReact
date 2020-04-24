@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, Text, TextInput, Button } from 'react-native'
+import { View, StyleSheet, Text } from 'react-native'
 import { connect } from 'react-redux'
 import { addCardToDeck } from '../utils/helpers'
 import { addQuestion } from '../actions'
-import { CommonActions } from '@react-navigation/native';
+
 import SubmitBtn from '../components/SubmitBtn'
 import StyledTextInput from '../components/StyledTextInput'
 import PropTypes from 'prop-types'

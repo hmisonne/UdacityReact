@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, Text, Button } from 'react-native'
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import SubmitBtn from '../components/SubmitBtn'
-import { lightGreen, grey } from '../utils/colors'
+
 import { removeDeck } from '../actions'
 import { deleteDeck } from '../utils/helpers'
 import PropTypes from 'prop-types'
@@ -56,12 +56,15 @@ class DeckView extends Component {
 						onPress={this.navigateToQuizz}>
 						Start Quiz
 					</SubmitBtn>
-					<SubmitBtn
-						onPress={this.onDelete}
-						style={{backgroundColor: 'red'}}>
-						Delete
-					</SubmitBtn>
-				</View>
+                </View>
+                <View>
+			        <TouchableOpacity
+                        onPress = {this.onDelete}
+                        >
+                        <Text style={styles.textDelete}>Delete</Text>
+                    </TouchableOpacity>
+                </View>
+				
 			</View>
         )
     }
@@ -87,6 +90,12 @@ const styles = StyleSheet.create({
     },
     textSmall: {
         textAlign: 'center',
+        fontSize: 20
+    },
+    textDelete: {
+        textAlign: 'center',
+        color: 'red',
+        fontWeight: 'bold',
         fontSize: 20
     }
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import { View, StyleSheet, Text, TouchableOpacity, Animated } from 'react-native'
-import { lightGreen, grey, blue } from '../utils/colors'
+import { blue } from '../utils/colors'
 import { Divider } from 'react-native-elements';
 import PropTypes from 'prop-types'
 

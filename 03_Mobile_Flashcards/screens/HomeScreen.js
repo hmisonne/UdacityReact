@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 import DeckCard from './DeckCard'
 import { getDecks } from '../utils/helpers'
 import { connect } from 'react-redux'
@@ -18,26 +18,20 @@ class HomeScreen extends Component {
             .then((decks) => {
                 dispatch(receiveData(decks))
             })
-
     }
-
-
 
     render() {
 
         const { navigation, decks } = this.props
         return (
             <ScrollView style={styles.container}>
-      {Object.keys(decks).map(id => 
-        <DeckCard 
-            key={id} 
-            deck={decks[id]}
-            navigation={navigation}/>
-      )
-       
-      }
-
-      </ScrollView>
+                {Object.keys(decks).map(id => 
+                <DeckCard 
+                    key={id} 
+                    deck={decks[id]}
+                    navigation={navigation}/>
+                )}
+            </ScrollView>
         );
     }
 

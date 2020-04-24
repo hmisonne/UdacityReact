@@ -16,7 +16,7 @@ export async function getDecks () {
 	
 }
 
-export async function popDeck(id) {
+export async function deleteDeck(id) {
 	try {
 		const results = JSON.parse(await AsyncStorage.getItem(DATA_STORAGE_KEY))
 		delete results[id]
