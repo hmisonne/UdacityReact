@@ -1,4 +1,5 @@
 import {RECEIVE_ENTRIES, ADD_ENTRY} from '../actions/index'
+import _ from 'lodash';
 
 function entries(state={}, action){
 	switch (action.type) {

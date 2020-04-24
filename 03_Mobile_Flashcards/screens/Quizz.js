@@ -102,11 +102,11 @@ export default class Quizz extends Component{
 					<Text style={styles.textTitle}>Correct Answer(s): {numCorrect} / {totalNumQuestions}</Text>
 					<View>
 						<SubmitBtn
-							onPress={this.goHome}>
+							onPress={this.startQuizz}>
 							Restart Quizz
 						</SubmitBtn>
 						<SubmitBtn
-							onPress={this.startQuizz}>
+							onPress={this.goHome}>
 							Back to Deck
 						</SubmitBtn>
 					</View>

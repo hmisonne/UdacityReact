@@ -3,6 +3,8 @@ import { View, StyleSheet, Text, Button } from 'react-native'
 import { connect } from 'react-redux'
 import SubmitBtn from '../components/SubmitBtn'
 import { lightGreen, grey } from '../utils/colors'
+import { removeDeck } from '../actions'
+import { deleteDeck } from '../utils/helpers'
 
 class DeckView extends Component {
 	navigateToNewQuestion = () => {
@@ -13,14 +15,29 @@ class DeckView extends Component {
 		const { deck, navigation } = this.props
 		navigation.navigate('Quizz', {deck})
 	}
+	onDelete = () => {
+		const { deck, dispatch,navigation } = this.props
+		deleteDeck(deck.title)
+			.then(()=> {
+				dispatch(removeDeck(deck.title))
+				navigation.navigate('Root')
+			})
+	}
+
 	render() {
 		const { deck, navigation } = this.props
-		const numQuestions = deck.questions.length
+		let deckTitle = ''
+		let numQuestions = 0
+
+		if (deck !== undefined){
+			const numQuestions = deck.questions.length
+			deckTitle = deck.title
+		}
 
 		return(
 			<View style={styles.container}>
 				<View>
-					<Text style={styles.textTitle}>{deck.title}</Text>
+					<Text style={styles.textTitle}>{deckTitle}</Text>
 					<Text style={styles.textSmall}>{numQuestions} cards</Text>
 				</View>
 				<View>
@@ -33,6 +50,7 @@ class DeckView extends Component {
 						Start Quiz
 					</SubmitBtn>
 					<SubmitBtn
+						onPress={this.onDelete}
 						style={{backgroundColor: 'red'}}>
 						Delete
 					</SubmitBtn>
