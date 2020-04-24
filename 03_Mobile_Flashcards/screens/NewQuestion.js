@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { View, StyleSheet, Text, TextInput, Button } from 'react-native'
 import { connect } from 'react-redux'
 import { addCardToDeck } from '../utils/helpers'
@@ -8,46 +8,46 @@ import SubmitBtn from '../components/SubmitBtn'
 import StyledTextInput from '../components/StyledTextInput'
 import PropTypes from 'prop-types'
 
-	
-class NewQuestion extends Component{
-	static propTypes = {
-		route: PropTypes.object.isRequired,
-		navigation: PropTypes.object.isRequired,
-	}
-	state = {
-		question: '',
-		answer:''
-	}
 
-	onChangeText(name) {
-		return (text) =>{
-			this.setState(()=> ({
-				[name]:text
-		}))
-		}
-		
-	}
+class NewQuestion extends Component {
+    static propTypes = {
+        route: PropTypes.object.isRequired,
+        navigation: PropTypes.object.isRequired,
+    }
+    state = {
+        question: '',
+        answer: ''
+    }
 
-	onSubmit = () => {
-		const { deckId } = this.props.route.params
-		const { dispatch } = this.props
-		const card = this.state
-		addCardToDeck(deckId, card)
-			.then(()=> {
-				dispatch(addQuestion(deckId, card))
-			})
-		this.navigateToDeckView()
-	}
-	navigateToDeckView = () => {
-		const { deckId } = this.props.route.params
-		const {navigation} = this.props
-		navigation.navigate('DeckView', {deckId})
-	}
+    onChangeText(name) {
+        return (text) => {
+            this.setState(() => ({
+                [name]: text
+            }))
+        }
 
-	render(){
-		const { question, answer } = this.state
-		return(
-			<View style={styles.container}>
+    }
+
+    onSubmit = () => {
+        const { deckId } = this.props.route.params
+        const { dispatch } = this.props
+        const card = this.state
+        addCardToDeck(deckId, card)
+            .then(() => {
+                dispatch(addQuestion(deckId, card))
+            })
+        this.navigateToDeckView()
+    }
+    navigateToDeckView = () => {
+        const { deckId } = this.props.route.params
+        const { navigation } = this.props
+        navigation.navigate('DeckView', { deckId })
+    }
+
+    render() {
+        const { question, answer } = this.state
+        return (
+            <View style={styles.container}>
 				<View>
 					<Text style={styles.textTitle}>Question</Text>
 					<StyledTextInput
@@ -67,8 +67,8 @@ class NewQuestion extends Component{
 				    	onPress={this.onSubmit}>Submit</SubmitBtn>
 			    </View>
 			</View>
-		)
-	}
+        )
+    }
 }
 
 
@@ -76,12 +76,12 @@ export default connect()(NewQuestion)
 
 
 const styles = StyleSheet.create({
-  container: {
-  	flex: 1,
-    justifyContent: "space-around",
-  },
-  textTitle: {
-  	textAlign:'center',
-  	fontSize: 30
-  },
+    container: {
+        flex: 1,
+        justifyContent: "space-around",
+    },
+    textTitle: {
+        textAlign: 'center',
+        fontSize: 30
+    },
 });

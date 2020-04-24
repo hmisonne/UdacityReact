@@ -4,30 +4,30 @@ export const RECEIVE_DATA = 'RECEIVE_DATA'
 export const REMOVE_DECK = 'REMOVE_DECK'
 
 export function addDeck(newDeck) {
-	return {
-		type: ADD_DECK,
-		newDeck
-	}
+    return {
+        type: ADD_DECK,
+        newDeck
+    }
 }
 
 export function addQuestion(deck, question) {
-	return {
-		type: ADD_QUESTION,
-		question, 
-		deck
-	}
+    return {
+        type: ADD_QUESTION,
+        question,
+        deck
+    }
 }
 
 export function receiveData(decks) {
-	return {
-		type: RECEIVE_DATA,
-		decks, 
-	}
+    return {
+        type: RECEIVE_DATA,
+        decks,
+    }
 }
 
-export function removeDeck(id){
-	return {
-		type: REMOVE_DECK,
-		id
-	}
+export function removeDeck(id) {
+    return {
+        type: REMOVE_DECK,
+        id
+    }
 }
