@@ -84,13 +84,15 @@ npm install -g expo-cli`
 
 To run this app, on your terminal, cd to 03_Mobile_Flashcards :
 
-install all project dependencies with `expo install`
-start the development server with `expo start`
-Open the localhost:3000 to view the App in development mode on the local server.
+Install all project dependencies with `expo install` and start the development server with `expo start`.
+Use your android device to scan the QR code generated.
+
 
 ### Backend Server
 
 Currently, there is no backend server setup. The `utils/helpers` file regroups the methods to access the data from AsyncStorage.
+
+
 
 ## Acknowledgements
 
