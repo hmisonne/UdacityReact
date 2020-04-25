@@ -30,7 +30,7 @@ Goal:  Improve the predictability of the application’s state; establish strict
 
 Goal: Learn the fundamental aspects of building a native application including handling infinite lists, routing, and user input. Gain an understanding of how to use React Native to build an iOS and Android application.
 
-## Description of ungraded Projects :
+## Description of non graded Projects :
 
 ### Project 0: Chirper master
 
