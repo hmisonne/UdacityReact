@@ -2,7 +2,7 @@
 
 Sets of projects using Javascript, React, Redux, Auth0, AsyncStorage 
 
-## Description of Projects:
+## Description of graded Projects  :
 
 ### Project 1: MyReads
 
@@ -15,9 +15,18 @@ Sets of projects using Javascript, React, Redux, Auth0, AsyncStorage
 
 - Build a "Would You Rather" application from scratch where users are given questions and must choose one of them.
 - Combine the state management features of Redux with component model of React.
-- Allow users to create their own sets of questions, choose between them, and keep track of question popularity.
+- Allow users to create their own sets of questions, choose between them, keep track of question popularity, and see the ranking of users on the leaderboard.
+
+Goal:  Improving the predictability of the application’s state; establish strict rules for getting, listening, and updating the store; and identify what state should live inside of Redux and what state should live inside of React components.
 
 ### Project 3: Mobile Flashcards
 
 - Build a mobile flashcard app from scratch with React Native, AsyncStorage to simulate API calls to database,
 - Allow users to create custom cards and decks, and set up notifications to remind them to study. 
+
+## Description of ungraded Projects :
+
+### Project 0: Chirper master
+
+- React app that mimics Tweeter app functionality where users can see and write tweets but also reply to other tweets, and "like". 
+- This app is using redux to manage the state of the tweets, users, and user authentificated of the application.
