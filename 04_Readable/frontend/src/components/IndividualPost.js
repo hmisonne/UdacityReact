@@ -1,11 +1,12 @@
 import React from 'react';
 
-function IndividualPost() {
+function IndividualPost (props) {
+	const {id, author, body, category, commentCount, timestamp, title, voteScore} = props.post
   return (
   	<li>
-  		<div>Post timestamp</div> 
-  		<div>Post content</div> 
-  		<div># Votes</div> 
+  		<div>Post {timestamp}</div> 
+  		<div>Post {body}</div> 
+  		<div>{voteScore} Votes</div> 
   		<button>+</button>
   		<button>-</button>
   		<button>edit</button>

@@ -5,6 +5,7 @@ class CreateEdit extends Component {
   	value: '',
   }
 
+
   handleChange = (e) => {
   	const {value} = e.target
   	this.setState(()=>({
@@ -21,7 +22,7 @@ class CreateEdit extends Component {
   				type="text" 
   				value={value}
   				onChange={this.handleChange}/>
-  			<button>Submit</button>
+  			<button onClick={this.handleSubmit}>Submit</button>
   		</form>
 	</div>
   );

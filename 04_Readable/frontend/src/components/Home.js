@@ -1,32 +1,64 @@
-import React from 'react';
+import React, { Component } from 'react';
 import IndividualPost from './IndividualPost'
 import CategoryList from './CategoryList'
 
-function Home() {
-  return (
-  	<div>
-  		<button>Sort</button>
-  		<button>Add post</button>
-	  	<div>
-		    <div>
-		      Category
-		    </div>
-		    <ul>
-		    	<CategoryList/>
-		    	
-		    </ul>
-		</div>
+class Home extends Component {
+	state = {
+		posts: []
+	}
 
-		<div>
-		    <div>
-		      Post
-		    </div>
-		    <ul>
-		    	<IndividualPost/>	
-		    </ul>
-		</div>
-	</div>
-  );
+	componentDidMount() {
+		this.fetchData()
+		
+	}
+	fetchData = () => {
+	  	fetch(
+		    "http://127.0.0.1:3001/posts",
+		    {
+		        headers: { 'Authorization': 'receive_posts' }
+		    }
+		)
+			.then(res => res.json())
+			.then(posts => this.setState(()=> ({
+			posts
+		})))
+	  }
+
+	render() {
+		const { posts } = this.state
+		return (
+		  	<div>
+		  		<button>Sort</button>
+		  		<button>Add post</button>
+			  	<div>
+				    <div>
+				      Category
+				    </div>
+				    <ul>
+				    	<CategoryList />	
+				    	
+				    </ul>
+				</div>
+
+				<div>
+				    <div>
+				      Post
+				    </div>
+				    <ul>
+				    	{ posts.map((post) =>
+							< IndividualPost
+								key={post.id}
+								post={post}/>
+				    		)
+				    	
+				    	}
+				    	
+				    </ul>
+				</div>
+			</div>
+		  );
+			}
+  
 }
 
 export default Home;
