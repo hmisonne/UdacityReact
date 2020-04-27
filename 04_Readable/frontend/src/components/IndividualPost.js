@@ -22,10 +22,9 @@ class IndividualPost extends Component {
 
 
 function mapStateToProps(state, { id }) {
-    console.log('postit', state)
-    console.log('id', id)
+	console.log(state, id)
     return {
-        post: state[id]
+        state
     }
 }
 

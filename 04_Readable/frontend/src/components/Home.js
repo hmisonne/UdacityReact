@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 class Home extends Component {
 
     render() {
+    	console.log('props', this.props)
         const { posts } = this.props
         return (
             <div>
