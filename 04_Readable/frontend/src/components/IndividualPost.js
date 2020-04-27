@@ -22,7 +22,6 @@ class IndividualPost extends Component {
 
 
 function mapStateToProps(state, { id }) {
-	console.log(state, id)
     return {
         state
     }

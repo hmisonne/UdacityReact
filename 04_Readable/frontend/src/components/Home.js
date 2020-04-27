@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import IndividualPost from './IndividualPost'
 import CategoryList from './CategoryList'
 import { connect } from 'react-redux'
+import { Link, withRouter } from 'react-router-dom'
 
 class Home extends Component {
 
     render() {
-    	console.log('props', this.props)
         const { posts } = this.props
         return (
             <div>
@@ -28,10 +28,12 @@ class Home extends Component {
 				    </div>
 				    <ul>
 				    	{ posts.map((post) =>
+				    		<Link to={`/post/${post.id}`}>
 							< IndividualPost
 								key={post.id}
 								id={post.id}
 								postDetail={post}/>
+							</Link>
 				    		)
 				    	
 				    	}
@@ -51,13 +53,4 @@ function mapStateToProps({posts}) {
     }
 }
 
-export default connect(mapStateToProps)(Home);
-
-// - List all available categories, which link to a category view for that category
-// - List all of the posts
-// - Display the number of comments associated with the post.
-
-// Actions:
-// - Change the sort method for the list, including order by voteScore and order by timestamp
-// - Add a new post
-// - Increment or decrement the voteScore of posts
+export default withRouter(connect(mapStateToProps)(Home));

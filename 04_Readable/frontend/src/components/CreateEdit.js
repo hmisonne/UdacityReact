@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 
 class CreateEdit extends Component {
     state = {
@@ -30,4 +31,11 @@ class CreateEdit extends Component {
 
 }
 
-export default CreateEdit;
+function mapStateToProps({posts}) {
+
+    return {
+        posts
+    }
+}
+
+export default connect(mapStateToProps)(CreateEdit);
