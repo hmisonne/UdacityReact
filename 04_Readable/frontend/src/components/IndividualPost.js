@@ -1,18 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux'
 
-function IndividualPost (props) {
-	const {id, author, body, category, commentCount, timestamp, title, voteScore} = props.post
-  return (
-  	<li>
-  		<div>Post {timestamp}</div> 
-  		<div>Post {body}</div> 
-  		<div>{voteScore} Votes</div> 
-  		<button>+</button>
-  		<button>-</button>
-  		<button>edit</button>
-  		<button>delete</button>
-  	</li>
-  );
+class IndividualPost extends Component {
+    render() {
+        const { author, body, category, commentCount, timestamp, title, voteScore } = this.props.postDetail
+        return (
+            <li>
+		  		<div>Post {timestamp}</div> 
+		  		<div>Post {body}</div> 
+		  		<div>{voteScore} Votes</div> 
+		  		<button>+</button>
+		  		<button>-</button>
+		  		<button>edit</button>
+		  		<button>delete</button>
+		  	</li>
+        );
+    }
+
+
 }
 
-export default IndividualPost;
+
+function mapStateToProps(state, { id }) {
+    console.log('postit', state)
+    console.log('id', id)
+    return {
+        post: state[id]
+    }
+}
+
+export default connect(mapStateToProps)(IndividualPost);

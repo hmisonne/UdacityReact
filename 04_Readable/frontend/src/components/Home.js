@@ -1,34 +1,15 @@
 import React, { Component } from 'react';
 import IndividualPost from './IndividualPost'
 import CategoryList from './CategoryList'
+import { connect } from 'react-redux'
 
 class Home extends Component {
-	state = {
-		posts: []
-	}
 
-	componentDidMount() {
-		this.fetchData()
-		
-	}
-	fetchData = () => {
-	  	fetch(
-		    "http://127.0.0.1:3001/posts",
-		    {
-		        headers: { 'Authorization': 'receive_posts' }
-		    }
-		)
-			.then(res => res.json())
-			.then(posts => this.setState(()=> ({
-			posts
-		})))
-	  }
-
-	render() {
-		const { posts } = this.state
-		return (
-		  	<div>
-		  		<button>Sort</button>
+    render() {
+        const { posts } = this.props
+        return (
+            <div>
+		  	<button>Sort</button>
 		  		<button>Add post</button>
 			  	<div>
 				    <div>
@@ -48,20 +29,28 @@ class Home extends Component {
 				    	{ posts.map((post) =>
 							< IndividualPost
 								key={post.id}
-								post={post}/>
+								id={post.id}
+								postDetail={post}/>
 				    		)
 				    	
 				    	}
 				    	
 				    </ul>
-				</div>
+				</div>	
 			</div>
-		  );
-			}
-  
+        );
+    }
+
 }
 
-export default Home;
+function mapStateToProps(state) {
+
+    return {
+        posts: state
+    }
+}
+
+export default connect(mapStateToProps)(Home);
 
 // - List all available categories, which link to a category view for that category
 // - List all of the posts
