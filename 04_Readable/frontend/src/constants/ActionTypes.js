@@ -1,0 +1,7 @@
+export const RECEIVE_DATA = 'RECEIVE_DATA'
+export const ADD_POST = 'ADD_POST'
+export const DELETE_POST = 'DELETE_POST'
+export const UPDATE_POST_CONTENT = 'UPDATE_POST_CONTENT'
+export const UPDATE_POST_VOTE = 'UPDATE_POST_VOTE'
+
+export const GET_POST_COMMENTS = 'GET_POST_COMMENTS'
