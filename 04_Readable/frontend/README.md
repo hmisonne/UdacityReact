@@ -1,68 +1,86 @@
+# Readable
+
+This project is part of the Udacity React NanoDegree Program.
+The goal of this project is to build the front end of a Content and comment web application using React and Redux. 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## App functionalities
 
-In the project directory, you can run:
+On this app, Users are able to post content to predefined categories, comment on their posts and other users' posts, and vote on posts and comments. Users are be able to edit and delete posts and comments.
 
-### `yarn start`
+## Getting started
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Pre-requisites and Local Development
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Developers using this project should already have node installed on their local machines.
 
-### `yarn test`
+## About the stack
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Frontend Server
 
-### `yarn build`
+To run this app, on your terminal, cd to 04_Readable :
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* install all project dependencies with `npm install`
+* start the development server with `npm start`
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Open the localhost:3000 to view the App in development mode on the local server.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Backend Server
 
-### `yarn eject`
+A local backend development server has already been provided for this project. It is a simple server built in Node.
+The server's endpoints contains the methods  to perform the following operations: manage storing, reading, updating, and deleting data for our application.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+* Install and start the API server
+    - `cd backend/api-server`
+    - `npm install`
+    - `node server`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Information about the API server and how to use it can be found in its [README file](backend/api-server/README.md) (provided by Udacity).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Data
+There are three types of objects stored on the server:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Categories: Categories are simple objects containing a name and a URL path
+Posts: Posts are the building blocks of our application
+Comments: Comments are attached to parent posts
 
-## Learn More
+## Authentification
+This application is anonymous, with _no_ authentication or authorization. There are no user objects, and comments and posts accept any username/name for creation and editing.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Views
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Default (Root)
 
-### Code Splitting
+- List all available categories, which link to a category view for that category
+- List all of the posts
+- Display the number of comments associated with the post.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Actions:
+- Change the sort method for the list, including order by voteScore and order by timestamp
+- Add a new post
+- Increment or decrement the voteScore of posts
 
-### Analyzing the Bundle Size
+### Category View
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+- Identical to the default view, but filtered to only include posts with the selected category
 
-### Making a Progressive Web App
+### Post Detail View
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+- Show the details of a post, including: Title, Body, Author, timestamp (in user readable format), and vote score
+- List all of the comments for that post
 
-### Advanced Configuration
+Actions:
+- Edit or delete the post
+- Add a new comment.
+- Edit or delete comments
+- Increment or decrement the voteScore of the post
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+### Create/Edit View
 
-### Deployment
+- Form to create new post or edit existing posts
+when editing, existing data is populated in the form
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+## Acknowledgements
 
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+I want to thank Udacity for providing the framework and guidelines for this great project.
