@@ -1,14 +1,19 @@
 import React from 'react';
+import IndividualPost from './IndividualPost'
+import CategoryList from './CategoryList'
 
 function Home() {
   return (
   	<div>
+  		<button>Sort</button>
+  		<button>Add post</button>
 	  	<div>
 		    <div>
 		      Category
 		    </div>
 		    <ul>
-		    	<li> Cat 1</li>
+		    	<CategoryList/>
+		    	
 		    </ul>
 		</div>
 
@@ -17,7 +22,7 @@ function Home() {
 		      Post
 		    </div>
 		    <ul>
-		    	<li> Post 1</li>
+		    	<IndividualPost/>	
 		    </ul>
 		</div>
 	</div>
