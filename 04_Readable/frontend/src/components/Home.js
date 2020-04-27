@@ -44,10 +44,10 @@ class Home extends Component {
 
 }
 
-function mapStateToProps(state) {
+function mapStateToProps({posts}) {
 
     return {
-        posts: state
+        posts
     }
 }
 
