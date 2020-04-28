@@ -58,6 +58,7 @@ function get (token, id) {
 function getAll (token) {
   return new Promise((res) => {
     const posts = getData(token)
+    console.log('getAll',posts)
     let keys = Object.keys(posts)
     let filtered_keys = keys.filter(key => !posts[key].deleted)
     res(filtered_keys.map(key => posts[key]))
@@ -67,8 +68,9 @@ function getAll (token) {
 function add (token, post) {
   return new Promise((res) => {
     let posts = getData(token)
-
-    posts[post.id] = {
+    let id = post.id
+    let idString = id.toString()
+    posts[idString] = {
       id: post.id,
       timestamp: post.timestamp,
       title: post.title,
@@ -79,7 +81,7 @@ function add (token, post) {
       deleted: false,
       commentCount: 0
     }
-
+    console.log('add',posts)
     res(posts[post.id])
   })
 }
@@ -105,6 +107,7 @@ function vote (token, id, option) {
 function disable (token, id) {
     return new Promise((res) => {
       let posts = getData(token)
+      console.log('disable',posts)
       posts[id].deleted = true
       res(posts[id])
     })
