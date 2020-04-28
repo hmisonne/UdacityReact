@@ -4,9 +4,11 @@ This project is part of the Udacity React NanoDegree Program. The goal of this p
 
 This project was bootstraped with [Create React App](https://github.com/facebook/create-react-app).
 
+![FlashCards Demo](demo/demo.gif)
+
 ## Platform
 
-Currently this app has only been tested on an Android phone using the Expo app, 
+Currently this app has only been tested on an Android phone and Android Emulator using the Expo app, 
 
 ## Functionalities
 
