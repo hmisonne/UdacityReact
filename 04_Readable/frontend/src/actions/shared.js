@@ -1,4 +1,3 @@
-import { getInitialData } from '../utils/api'
 import { receivePosts } from '../actions/posts'
 
 export function handleInitialData() {

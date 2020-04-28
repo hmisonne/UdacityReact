@@ -11,10 +11,7 @@ export default function posts(state = [], action) {
         case RECEIVE_DATA:
             return state.concat(action.posts)
         case ADD_POST:
-            return {
-                ...state,
-                ...action.post
-            }
+            return state.concat(action.post)
         default:
             return state
     }
