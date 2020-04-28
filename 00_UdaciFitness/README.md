@@ -8,6 +8,8 @@ Most of the commits in this repository correspond to videos in the program howev
 
 To develop these features I created actions to be dispatched to reducers to update the store as well as asyncronous calls to update the database through redux thank.
 
+![Udafitness Demo](demo/demo.gif)
+
 ## Getting started
 
 ### Pre-requisites and Local Development
