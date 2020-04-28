@@ -11,7 +11,6 @@ class Home extends Component {
         return (
             <div>
 		  	<button>Sort</button>
-		  		<button>Add post</button>
 			  	<div>
 				    <div>
 				      Category
