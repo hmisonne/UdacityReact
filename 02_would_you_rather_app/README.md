@@ -4,6 +4,8 @@ This project is part of the Udacity React NanoDegree Program. The goal of this p
 
 This project was bootstraped with [Create React App](https://github.com/facebook/create-react-app).
 
+![WouldYouRather Demo](demo/wouldyourather.gif)
+
 ## Functionalities
 
 Before being able to use this application, users are prompted to log in. They can do so by selecting a user from a dropdown menu.
