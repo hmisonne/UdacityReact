@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import { handleDeletePost } from '../actions/shared'
 
 class IndividualPost extends Component {
+    handleDelete = (e) => {
+    	e.preventDefault()
+    	const { dispatch } = this.props
+    	const { id } = this.props.postDetail
+    	dispatch(handleDeletePost(id))
+    }
     render() {
         const { author, body, category, commentCount, timestamp, title, voteScore } = this.props.postDetail
         return (
@@ -12,7 +19,7 @@ class IndividualPost extends Component {
 		  		<button>+</button>
 		  		<button>-</button>
 		  		<button>edit</button>
-		  		<button>delete</button>
+		  		<button onClick={this.handleDelete}>delete</button>
 		  	</li>
         );
     }

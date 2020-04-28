@@ -12,6 +12,8 @@ export default function posts(state = [], action) {
             return state.concat(action.posts)
         case ADD_POST:
             return state.concat(action.post)
+         case DELETE_POST:
+            return state.filter(post => post.id !== action.post_id)
         default:
             return state
     }

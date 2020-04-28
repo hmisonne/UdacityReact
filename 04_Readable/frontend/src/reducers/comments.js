@@ -1,5 +1,6 @@
 import {
     GET_POST_COMMENTS,
+    DELETE_POST,
 } from '../constants/ActionTypes'
 
 export default function comments(state = [], action) {
@@ -10,3 +11,6 @@ export default function comments(state = [], action) {
             return state
     }
 }
+
+        // case DELETE_POST:
+        //     return state.filter(post => post.parentId !== action.post_id)

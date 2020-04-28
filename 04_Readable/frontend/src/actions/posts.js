@@ -1,7 +1,6 @@
 import {
     RECEIVE_DATA,
     ADD_POST,
-    DELETE_POST,
     UPDATE_POST_CONTENT,
     UPDATE_POST_VOTE
 } from '../constants/ActionTypes'
@@ -20,12 +19,6 @@ export function addPost(post) {
     }
 }
 
-export function deletePost(post_id) {
-    return {
-        type: DELETE_POST,
-        post_id
-    }
-}
 
 export function updatePostContent(post_id, post_content) {
     return {
