@@ -2,6 +2,8 @@
 
 This project is part of the Udacity React NanoDegree Program. The goal was to convert a static example of the CSS and HTML markup into a dynamic React App with interactivity. 
 
+![MyReads Demo](demo/MyReads.gif)
+
 ## App functionalities
 
 This app allows users to organize their books into 3 categories (shelves): "Currently Reading", "Want to Read" and "Read". The user can search for new books and add or remove books from their shelves.
