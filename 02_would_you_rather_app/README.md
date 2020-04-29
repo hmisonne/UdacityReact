@@ -9,14 +9,7 @@ This project was bootstraped with [Create React App](https://github.com/facebook
 ## Functionalities
 
 Before being able to use this application, users are prompted to log in. They can do so by selecting a user from a dropdown menu.
-Once logged in, users can:
-
-- Navigate between screens to:
-  - See all the polls
-  - See the ranking of users on the leaderboard
-  - Submit new polling question
-  - See the details of a poll and vote
-- Log out
+Once logged in, users can navigate between screens to perform actions. Currently there are 4 screens as described below.
 
 ## Screens
 
@@ -32,6 +25,10 @@ Upon voting in a poll, information about how many people voted for one particula
 ### Submit new polling question
 
 The user can submit a new question by entering 2 options. Once created, the new question will be automatically added on top of the unanswered questions of the dashboard.
+
+### Leaderboard
+
+See the ranking of users on the leaderboard
 
 ## Getting started
 
