@@ -10,6 +10,14 @@ To develop these features I created actions to be dispatched to reducers to upda
 
 ![Udafitness Demo](demo/demo.gif)
 
+## Skills learned:
+
+- Add built in components React Native such as Touchables, picker, slidders
+- Implement Navigation through TabNavigator and StackNavigator
+- Build component layout with CSS's flexbox properties
+- Implement AsyncStorage to persist data across application
+- Leverage animations to help create a great user experience
+
 ## Getting started
 
 ### Pre-requisites and Local Development
