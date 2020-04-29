@@ -1,6 +1,6 @@
 # MyReads Project
 
-This project is part of the Udacity React NanoDegree Program. The goal was to convert a static example of the CSS and HTML markup into a dynamic React App with interactivity. 
+MyReads is a React app that provides a virtual bookcase for users to store books and keep track what they are reading. This project is part of the Udacity React NanoDegree Program. The goal of this project is to convert a static example of the CSS and HTML markup into a dynamic React App with interactivity. 
 
 ![MyReads Demo](demo/MyReads.gif)
 
@@ -24,7 +24,7 @@ To run this app, on your terminal, cd to 01_MyReads :
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
 
-Open the localhost:3000 to view the App in development mode on the local server.
+Open the `localhost:3000` to view the App in development mode on the local server.
 
 ### Backend Server
 
@@ -78,6 +78,9 @@ The backend API uses a fixed set of cached search results and is limited to a pa
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You can find more information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
+## Author
+
+Helene Misonne
 
 ## Acknowledgements
 
