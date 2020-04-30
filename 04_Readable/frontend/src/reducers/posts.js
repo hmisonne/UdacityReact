@@ -14,6 +14,11 @@ export default function posts(state = [], action) {
             return state.concat(action.post)
          case DELETE_POST:
             return state.filter(post => post.id !== action.post_id)
+        case UPDATE_POST_CONTENT:
+        // remove old post 
+            const new_state = state.filter(post => post.id !== action.updated_post.id)
+        // add updated post
+            return new_state.concat(action.updated_post) 
         default:
             return state
     }

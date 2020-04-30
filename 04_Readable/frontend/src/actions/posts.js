@@ -49,3 +49,22 @@ export function handleAddPost(new_post) {
     }
 }
 
+export function editPost(updated_post) {
+    return {
+        type: UPDATE_POST_CONTENT,
+        updated_post
+    }
+}
+
+export function handleEditPost(updated_post) {
+    return dispatch => {
+        return fetch(`http://127.0.0.1:3001/posts/${updated_post.id}`,
+            {
+                method: 'PUT', 
+                headers: { 'Authorization': 'receive_posts', 'Content-Type': 'application/json' },
+                body: JSON.stringify(updated_post) 
+            })
+            .then(res => res.json())
+            .then(updated_post => dispatch(editPost(updated_post)))
+    }
+}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { handleAddPost } from '../actions/posts'
+import { handleAddPost, handleEditPost } from '../actions/posts'
 import { generateUID } from '../utils/helpers'
 
 class CreateEdit extends Component {
@@ -36,16 +36,24 @@ class CreateEdit extends Component {
         e.preventDefault()
         const { body, category, title, author} = this.state
         const { dispatch, history } = this.props
-        const new_post = {
-            id: generateUID(),
-            timestamp: Date.now(),
-            title,
-            body,
-            author,
-            category,
+        let new_post = {
+                title,
+                body,
+                author,
+                category,
+            }
+        if (this.props.post) {
+            new_post.id = this.props.post.id
+            new_post.timestamp = this.props.post.timestamp
+            dispatch(handleEditPost(new_post))
         }
-        dispatch(handleAddPost(new_post))
+        else {
+            new_post.id = generateUID()
+            new_post.timestamp = Date.now()
+            dispatch(handleAddPost(new_post))
+        }
         history.push('/')
+        
     }
 
     render() {
