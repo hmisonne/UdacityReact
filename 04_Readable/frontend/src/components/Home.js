@@ -27,10 +27,12 @@ class Home extends Component {
 				    </div>
 				    <ul>
 				    	{ posts.map((post) =>
+				    		<li>
 							< IndividualPost
 								key={post.id}
 								id={post.id}
 								postDetail={post}/>
+							</li>
 				    		)
 				    	
 				    	}

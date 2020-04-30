@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { handleDeletePost } from '../actions/shared'
 import { handleUpdatePostVote } from '../actions/posts'
+import { formatDate } from '../utils/helpers'
 
 import { Link, withRouter } from 'react-router-dom'
 
@@ -34,9 +35,9 @@ class IndividualPost extends Component {
         const { id, author, body, category, commentCount, timestamp, title, voteScore } = this.props.postDetail
 
         return (
-            <li>
+                <div>
                 <Link to={`/post/${id}`}>
-    		  		<div>Post {timestamp}</div> 
+    		  		<div>{formatDate(timestamp)} {author}</div> 
     		  		<div>Post {body}</div> 
     		  		<div>{voteScore} Votes</div> 
                 </Link>
@@ -48,7 +49,7 @@ class IndividualPost extends Component {
                     onClick={this.handleVote}>-</button>
 		  		<button onClick={this.handleEdit}>edit</button>
 		  		<button onClick={this.handleDelete}>delete</button>
-		  	</li>
+                </div>
         );
     }
 
