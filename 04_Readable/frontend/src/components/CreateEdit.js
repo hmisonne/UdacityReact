@@ -11,6 +11,19 @@ class CreateEdit extends Component {
         category: 'react'
     }
 
+    componentDidMount() {
+        if (this.props.post) {
+            const { title, category, author, body} = this.props.post
+            this.setState(()=> ({
+                title,
+                body,
+                author,
+                category
+            }))
+        }  
+        
+        
+    }
 
     handleInputChange = (e) => {
         const { name, value } = e.target
@@ -22,6 +35,7 @@ class CreateEdit extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         const { body, category, title, author} = this.state
+        const { dispatch, history } = this.props
         const new_post = {
             id: generateUID(),
             timestamp: Date.now(),
@@ -30,7 +44,8 @@ class CreateEdit extends Component {
             author,
             category,
         }
-        this.props.dispatch(handleAddPost(new_post))
+        dispatch(handleAddPost(new_post))
+        history.push('/')
     }
 
     render() {
@@ -44,7 +59,7 @@ class CreateEdit extends Component {
                   <input
                     name="title"
                     type="text"
-                    checked={title}
+                    value={title}
                     onChange={this.handleInputChange} />
                 </label>
                 <br />
@@ -82,5 +97,15 @@ class CreateEdit extends Component {
 }
 
 
+function mapStateToProps({posts}, props) {
+    const { id } = props.match.params
+    let postDetail = {}
+    if (posts.length !== 0) {
+        postDetail=posts.filter(post => post.id === id)[0]
+    }
+    return {
+        post: postDetail
+    }
+}
 
-export default connect()(CreateEdit);
+export default connect(mapStateToProps)(CreateEdit);

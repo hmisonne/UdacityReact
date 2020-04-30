@@ -27,12 +27,10 @@ class Home extends Component {
 				    </div>
 				    <ul>
 				    	{ posts.map((post) =>
-				    		<Link to={`/post/${post.id}`}>
 							< IndividualPost
 								key={post.id}
 								id={post.id}
 								postDetail={post}/>
-							</Link>
 				    		)
 				    	
 				    	}

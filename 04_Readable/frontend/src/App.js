@@ -22,6 +22,7 @@ class App extends Component {
                     <Route exact path='/' component={Home}/>
                     <Route path='/new' component={CreateEdit}/>
                     <Route path='/post/:id' component={PostDetail}/>
+                    <Route path='/update/:id' component={CreateEdit}/>
                   </div>
                 </div>
               </Fragment>

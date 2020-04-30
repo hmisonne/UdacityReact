@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { handleDeletePost } from '../actions/shared'
+import { Link, withRouter } from 'react-router-dom'
 
 class IndividualPost extends Component {
     handleDelete = (e) => {
@@ -9,16 +10,25 @@ class IndividualPost extends Component {
     	const { id } = this.props.postDetail
     	dispatch(handleDeletePost(id))
     }
+    handleEdit = (e) => {
+        const {id, history} = this.props
+        e.preventDefault()
+        history.push(`/update/${id}`)
+    }
     render() {
         const { author, body, category, commentCount, timestamp, title, voteScore } = this.props.postDetail
+        const {id} = this.props
+
         return (
             <li>
-		  		<div>Post {timestamp}</div> 
-		  		<div>Post {body}</div> 
-		  		<div>{voteScore} Votes</div> 
+                <Link to={`/post/${id}`}>
+    		  		<div>Post {timestamp}</div> 
+    		  		<div>Post {body}</div> 
+    		  		<div>{voteScore} Votes</div> 
+                </Link>
 		  		<button>+</button>
 		  		<button>-</button>
-		  		<button>edit</button>
+		  		<button onClick={this.handleEdit}>edit</button>
 		  		<button onClick={this.handleDelete}>delete</button>
 		  	</li>
         );
@@ -28,10 +38,10 @@ class IndividualPost extends Component {
 }
 
 
-function mapStateToProps(state, { id }) {
+function mapStateToProps(props, { id }) {
     return {
-        state
+        post: null
     }
 }
 
-export default connect(mapStateToProps)(IndividualPost);
+export default withRouter(connect(mapStateToProps)(IndividualPost));
