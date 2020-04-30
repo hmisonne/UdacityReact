@@ -13,8 +13,9 @@ class IndividualPost extends Component {
     	dispatch(handleDeletePost(id))
     }
     handleEdit = (e) => {
-        const {id, history} = this.props
         e.preventDefault()
+        const { id } = this.props.postDetail
+        const { history} = this.props
         history.push(`/update/${id}`)
     }
     handleVote = (e) => {
@@ -22,16 +23,15 @@ class IndividualPost extends Component {
         const option = e.target.name
         const { dispatch } = this.props
         let updated_post = this.props.postDetail
-        console.log('o',option)
+
         option === 'upVote'
         ? updated_post.voteScore = updated_post.voteScore + 1
         : updated_post.voteScore = updated_post.voteScore - 1
-        console.log('u',updated_post)
+        
         dispatch(handleUpdatePostVote(updated_post, option))
     }
     render() {
-        const { author, body, category, commentCount, timestamp, title, voteScore } = this.props.postDetail
-        const {id} = this.props
+        const { id, author, body, category, commentCount, timestamp, title, voteScore } = this.props.postDetail
 
         return (
             <li>
@@ -55,10 +55,4 @@ class IndividualPost extends Component {
 }
 
 
-function mapStateToProps(props, { id }) {
-    return {
-        post: null
-    }
-}
-
-export default withRouter(connect(mapStateToProps)(IndividualPost));
+export default withRouter(connect()(IndividualPost));
