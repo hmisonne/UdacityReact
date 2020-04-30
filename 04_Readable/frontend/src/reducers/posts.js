@@ -9,7 +9,7 @@ import {
 export default function posts(state = [], action) {
     switch (action.type) {
         case RECEIVE_DATA:
-            return state.concat(action.posts)
+            return action.posts
         case ADD_POST:
             return state.concat(action.post)
          case DELETE_POST:

@@ -1,9 +1,9 @@
 import React from 'react';
 
 
-function CategoryList() {
+function CategoryList({category}) {
     return (
-        <li> Cat 1</li>
+        <li> {category.name}</li>
     );
 }
 

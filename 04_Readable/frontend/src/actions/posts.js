@@ -67,3 +67,16 @@ export function handleUpdatePostVote(updated_post, option){
             .then(updated_post => dispatch(updatePostContent(updated_post)))
     }
 }
+
+
+export function handleFilterByCat(cat) {
+    return dispatch => {
+        return fetch(`http://127.0.0.1:3001/${cat}/posts`,
+        {
+            method: 'GET', 
+            headers: { 'Authorization': 'update_post', 'Content-Type': 'application/json' },
+        })
+        .then(res => res.json())
+        .then(posts => dispatch(receivePosts(posts)))
+    }
+}
