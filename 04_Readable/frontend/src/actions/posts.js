@@ -20,21 +20,13 @@ export function addPost(post) {
 }
 
 
-export function updatePostContent(post_id, post_content) {
+export function updatePostContent(updated_post) {
     return {
         type: UPDATE_POST_CONTENT,
-        post_id,
-        post_content
+        updated_post
     }
 }
 
-export function updatePostVote(post_id, vote) {
-    return {
-        type: UPDATE_POST_VOTE,
-        post_id,
-        vote
-    }
-}
 
 export function handleAddPost(new_post) {
     return dispatch => {
@@ -49,22 +41,29 @@ export function handleAddPost(new_post) {
     }
 }
 
-export function editPost(updated_post) {
-    return {
-        type: UPDATE_POST_CONTENT,
-        updated_post
-    }
-}
 
-export function handleEditPost(updated_post) {
+export function handleUpdatePostContent(updated_post) {
     return dispatch => {
         return fetch(`http://127.0.0.1:3001/posts/${updated_post.id}`,
             {
                 method: 'PUT', 
-                headers: { 'Authorization': 'receive_posts', 'Content-Type': 'application/json' },
+                headers: { 'Authorization': 'update_post', 'Content-Type': 'application/json' },
                 body: JSON.stringify(updated_post) 
             })
             .then(res => res.json())
-            .then(updated_post => dispatch(editPost(updated_post)))
+            .then(updated_post => dispatch(updatePostContent(updated_post)))
+    }
+}
+
+export function handleUpdatePostVote(updated_post, option){
+    return dispatch => {
+        return fetch(`http://127.0.0.1:3001/posts/${updated_post.id}`,
+            {
+                method: 'POST', 
+                headers: { 'Authorization': 'update_post', 'Content-Type': 'application/json' },
+                body: JSON.stringify({option}) 
+            })
+            .then(res => res.json())
+            .then(updated_post => dispatch(updatePostContent(updated_post)))
     }
 }

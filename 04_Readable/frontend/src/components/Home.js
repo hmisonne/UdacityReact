@@ -46,7 +46,7 @@ class Home extends Component {
 function mapStateToProps({posts}) {
 
     return {
-        posts
+        posts: posts.sort((a,b) => b.timestamp - a.timestamp)
     }
 }
 
