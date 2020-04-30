@@ -22,7 +22,7 @@ class PostDetail extends Component {
 			  			{comments.map(comment =>
 			  				<IndividualComment
 				  				key={comment.id}
-				  				comments={comment}/>
+				  				comment={comment}/>
 			  				)
 
 			  			}

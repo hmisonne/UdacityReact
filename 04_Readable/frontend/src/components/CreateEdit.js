@@ -5,36 +5,43 @@ import { generateUID } from '../utils/helpers'
 
 class CreateEdit extends Component {
     state = {
-        title: '',
-        body: '',
-        author: '',
-        category: 'react'
+        currPost: {
+            title: '',
+            body: '',
+            author: '',
+            category: 'react'
+        },
+        categories: []
     }
 
     componentDidMount() {
         if (this.props.post) {
             const { title, category, author, body} = this.props.post
             this.setState(()=> ({
-                title,
-                body,
-                author,
-                category
+               currPost : this.props.post
             }))
+
         }  
-        
+        fetch(`http://127.0.0.1:3001/categories`, { headers: { 'Authorization': 'mySecretToken' } })
+            .then(res => res.json())
+            .then(response => this.setState({categories: response.categories}))
         
     }
 
     handleInputChange = (e) => {
         const { name, value } = e.target
-        this.setState(() => ({
-            [name]:value
+        this.setState((currState) => ({
+            ...currState,
+            currPost: {
+                ...currState.currPost,
+                [name]:value
+            }
         }))
     }
 
     handleSubmit = (e) => {
         e.preventDefault()
-        const { body, category, title, author} = this.state
+        const { body, category, title, author} = this.state.currPost
         const { dispatch, history } = this.props
         let new_post = {
                 title,
@@ -57,7 +64,8 @@ class CreateEdit extends Component {
     }
 
     render() {
-        const { body, category, title, author } = this.state
+        const { body, category, title, author } = this.state.currPost
+        const { categories } = this.state
         return (
             <div>
 
@@ -91,9 +99,9 @@ class CreateEdit extends Component {
                 <label>
                   Category:
                   <select name="category" value={category} onChange={this.handleInputChange}>
-                    <option value="react">React</option>
-                    <option value="redux">Redux</option>
-                    <option value="udacity">Udacity</option>
+                  {categories.map(category=> 
+                    <option value={category.name}>{category.name}</option>
+                    )}
                   </select>
                 </label>
                 <input type="submit" value="Submit" />

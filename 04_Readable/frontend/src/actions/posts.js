@@ -33,7 +33,7 @@ export function handleAddPost(new_post) {
         return fetch("http://127.0.0.1:3001/posts", 
             {
                 method: 'POST', 
-                headers: { 'Authorization': 'receive_posts', 'Content-Type': 'application/json' },
+                headers: { 'Authorization': 'mySecretToken', 'Content-Type': 'application/json' },
                 body: JSON.stringify(new_post) 
             })
             .then(res => res.json())
@@ -47,7 +47,7 @@ export function handleUpdatePostContent(updated_post) {
         return fetch(`http://127.0.0.1:3001/posts/${updated_post.id}`,
             {
                 method: 'PUT', 
-                headers: { 'Authorization': 'update_post', 'Content-Type': 'application/json' },
+                headers: { 'Authorization': 'mySecretToken', 'Content-Type': 'application/json' },
                 body: JSON.stringify(updated_post) 
             })
             .then(res => res.json())
@@ -60,7 +60,7 @@ export function handleUpdatePostVote(updated_post, option){
         return fetch(`http://127.0.0.1:3001/posts/${updated_post.id}`,
             {
                 method: 'POST', 
-                headers: { 'Authorization': 'update_post', 'Content-Type': 'application/json' },
+                headers: { 'Authorization': 'mySecretToken', 'Content-Type': 'application/json' },
                 body: JSON.stringify({option}) 
             })
             .then(res => res.json())
@@ -74,7 +74,7 @@ export function handleFilterByCat(cat) {
         return fetch(`http://127.0.0.1:3001/${cat}/posts`,
         {
             method: 'GET', 
-            headers: { 'Authorization': 'update_post', 'Content-Type': 'application/json' },
+            headers: { 'Authorization': 'mySecretToken', 'Content-Type': 'application/json' },
         })
         .then(res => res.json())
         .then(posts => dispatch(receivePosts(posts)))

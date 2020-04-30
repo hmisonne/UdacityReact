@@ -40,6 +40,7 @@ class IndividualPost extends Component {
     		  		<div>{formatDate(timestamp)} {author}</div> 
     		  		<div>Post {body}</div> 
     		  		<div>{voteScore} Votes</div> 
+                    <div>{commentCount} Comments</div>
                 </Link>
 		  		<button 
                     name='upVote'

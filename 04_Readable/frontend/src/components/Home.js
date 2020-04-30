@@ -8,10 +8,13 @@ import { handleInitialData } from '../actions/shared'
 
 class Home extends Component {
 	state = {
-		categories: []
+		categories: [],
+		sortByRecentDate: true,
+		sortByVote: false,
+
 	}
 	componentDidMount () {
-		fetch(`http://127.0.0.1:3001/categories`, { headers: { 'Authorization': 'receive_categories' } })
+		fetch(`http://127.0.0.1:3001/categories`, { headers: { 'Authorization': 'mySecretToken' } })
             .then(res => res.json())
             .then(response => this.setState({categories: response.categories}))
 	}
@@ -24,12 +27,32 @@ class Home extends Component {
 		: dispatch(handleFilterByCat(name))
 	}
 
+	handleSort = (e) => {
+		e.preventDefault()
+		const {name} = e.target
+		this.setState((prevState)=> ({
+			[name]: !prevState[name],
+		}))
+		}
+
     render() {
-    	const { categories } = this.state
+    	const { categories, sortByRecentDate, sortByVote } = this.state
         const { posts } = this.props
+
+        sortByRecentDate
+        ? posts.sort((a,b) => a.timestamp - b.timestamp)
+        : posts.sort((a,b) => b.timestamp - a.timestamp)
+
+        sortByVote && posts.sort((a,b) => a.voteScore - b.voteScore)
+
         return (
             <div>
-		  	<button>Sort</button>
+		  	<button 
+		  		onClick={this.handleSort}
+		  		name='sortByRecentDate'>Sort By Date</button>
+			<button
+				onClick={this.handleSort}
+		  		name='sortByVote'>Sort By Vote</button>  	
 			  	<div>
 				    <div>
 				      Category
@@ -79,7 +102,7 @@ class Home extends Component {
 function mapStateToProps({posts}) {
 
     return {
-        posts: posts.sort((a,b) => b.timestamp - a.timestamp)
+        posts
     }
 }
 

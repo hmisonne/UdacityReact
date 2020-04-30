@@ -12,10 +12,9 @@ export function getPostComments(comments) {
 
 export function handleGetPostComments(id) {
     return dispatch => {
-        return fetch(`http://127.0.0.1:3001/posts/${id}/comments`, { headers: { 'Authorization': 'receive_comments' } })
+        return fetch(`http://127.0.0.1:3001/posts/${id}/comments`, { headers: { 'Authorization': 'mySecretToken' } })
             .then(res => res.json())
             .then(comments => {
-                console.log('comm',comments) 
                 return dispatch(getPostComments(comments))})
     }
 }
