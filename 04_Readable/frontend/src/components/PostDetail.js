@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import {handleGetPostComments} from '../actions/comments'
 import IndividualComment from './IndividualComment'
+import IndividualPost from './IndividualPost'
 
 class PostDetail extends Component {
 	componentDidMount() {
@@ -10,20 +11,13 @@ class PostDetail extends Component {
 		
 	}
     render() {
-        const { id, author, body, category, commentCount, timestamp, title, voteScore } = this.props.postDetail
-        const {comments} = this.props
+        const { postDetail} = this.props
+        const { comments } = this.props
         return (
 
 	            <div>
-			  		<div>Post {timestamp}</div> 
-			  		<div>Post {body}</div> 
-			  		<div>{voteScore} Votes</div> 
-			  		<button>+</button>
-			  		<button>-</button>
-			  		<button>edit</button>
-			  		<button>delete</button>
-			  		<button>Add Comment</button>
-			  		<div>Comments {commentCount}</div>
+	            	<div>Post Detail</div>
+			  		<IndividualPost postDetail={postDetail}/>
 			  		<ul>
 			  			{comments.map(comment =>
 			  				<IndividualComment
