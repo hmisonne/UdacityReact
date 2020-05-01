@@ -1,6 +1,7 @@
 import {
     GET_POST_COMMENTS,
     DELETE_COMMENT,
+    ADD_COMMENT
 } from '../constants/ActionTypes'
 
 export default function comments(state = [], action) {
@@ -9,6 +10,8 @@ export default function comments(state = [], action) {
             return action.comments
         case DELETE_COMMENT:
             return state.filter(comment => comment.id !== action.comment_id)
+        case ADD_COMMENT:
+            return state.concat(action.comment)
         default:
             return state
     }

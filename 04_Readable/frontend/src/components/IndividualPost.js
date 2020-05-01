@@ -31,6 +31,10 @@ class IndividualPost extends Component {
 
         dispatch(handleUpdatePostVote(updated_post, option))
     }
+    handleReply = (e) => {
+        e.preventDefault()
+
+    }
     render() {
         const { id, author, body, category, commentCount, timestamp, title, voteScore } = this.props.postDetail
 
@@ -51,6 +55,7 @@ class IndividualPost extends Component {
                     onClick={this.handleVote}>-</button>
                 <button onClick={this.handleEdit}>edit</button>
                 <button onClick={this.handleDelete}>delete</button>
+                <button onClick={this.handleReply}>reply</button>
             </div>
         );
     }
