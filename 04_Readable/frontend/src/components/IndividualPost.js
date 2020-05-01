@@ -8,15 +8,15 @@ import { Link, withRouter } from 'react-router-dom'
 
 class IndividualPost extends Component {
     handleDelete = (e) => {
-    	e.preventDefault()
-    	const { dispatch } = this.props
-    	const { id } = this.props.postDetail
-    	dispatch(handleDeletePost(id))
+        e.preventDefault()
+        const { dispatch } = this.props
+        const { id } = this.props.postDetail
+        dispatch(handleDeletePost(id))
     }
     handleEdit = (e) => {
         e.preventDefault()
         const { id } = this.props.postDetail
-        const { history} = this.props
+        const { history } = this.props
         history.push(`/update/${id}`)
     }
     handleVote = (e) => {
@@ -25,32 +25,33 @@ class IndividualPost extends Component {
         const { dispatch } = this.props
         let updated_post = this.props.postDetail
 
-        option === 'upVote'
-        ? updated_post.voteScore = updated_post.voteScore + 1
-        : updated_post.voteScore = updated_post.voteScore - 1
-        
+        option === 'upVote' ?
+            updated_post.voteScore = updated_post.voteScore + 1 :
+            updated_post.voteScore = updated_post.voteScore - 1
+
         dispatch(handleUpdatePostVote(updated_post, option))
     }
     render() {
         const { id, author, body, category, commentCount, timestamp, title, voteScore } = this.props.postDetail
 
         return (
-                <div>
+            <div>
                 <Link to={`/post/${id}`}>
-    		  		<div>{formatDate(timestamp)} {author}</div> 
-    		  		<div>Post {body}</div> 
-    		  		<div>{voteScore} Votes</div> 
+                    <div>{formatDate(timestamp)} {author}</div> 
+                    <div>Title {title}</div> 
+                    <div>Post {body}</div> 
+                    <div>{voteScore} Votes</div> 
                     <div>{commentCount} Comments</div>
                 </Link>
-		  		<button 
+                <button 
                     name='upVote'
                     onClick={this.handleVote}>+</button>
-		  		<button
+                <button
                     name='downVote'
                     onClick={this.handleVote}>-</button>
-		  		<button onClick={this.handleEdit}>edit</button>
-		  		<button onClick={this.handleDelete}>delete</button>
-                </div>
+                <button onClick={this.handleEdit}>edit</button>
+                <button onClick={this.handleDelete}>delete</button>
+            </div>
         );
     }
 

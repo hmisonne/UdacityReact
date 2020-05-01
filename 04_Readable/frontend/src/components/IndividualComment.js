@@ -13,7 +13,7 @@ import { handleDeleteComment } from '../actions/shared'
     	const {author, body, timestamp, voteScore} = this.props.comment
         return (
 	            <li> 
-	            	<div>Post {timestamp}</div> 
+	            	<div>Post {timestamp} {author}</div> 
 			  		<div>Post {body}</div> 
 			  		<div>{voteScore} Votes</div> 
 			  		<button>+</button>

@@ -1,49 +1,48 @@
 import React, { Component } from 'react';
 import IndividualPost from './IndividualPost'
-import CategoryList from './CategoryList'
 import { connect } from 'react-redux'
-import { Link, withRouter } from 'react-router-dom'
 import { handleFilterByCat } from '../actions/posts'
 import { handleInitialData } from '../actions/shared'
 
 class Home extends Component {
-	state = {
-		categories: [],
-		sortByRecentDate: true,
-		sortByVote: false,
+    state = {
+        categories: [],
+        sortByRecentDate: true,
+        sortByVote: false,
 
-	}
-	componentDidMount () {
-		fetch(`http://127.0.0.1:3001/categories`, { headers: { 'Authorization': 'mySecretToken' } })
+    }
+    componentDidMount() {
+        fetch(`http://127.0.0.1:3001/categories`, { headers: { 'Authorization': 'mySecretToken' } })
             .then(res => res.json())
-            .then(response => this.setState({categories: response.categories}))
-	}
-	handleFilterCat = (e) => {
-		e.preventDefault()
-		const { name } = e.target
-		const { dispatch } = this.props
-		name === 'reset'
-		? dispatch(handleInitialData())
-		: dispatch(handleFilterByCat(name))
-	}
+            .then(response => this.setState({ categories: response.categories }))
+    }
+    handleFilterCat = (e) => {
+        e.preventDefault()
+        const { name } = e.target
+        const { dispatch } = this.props
+        name === 'reset' ?
+            dispatch(handleInitialData()) :
+            dispatch(handleFilterByCat(name))
+    }
 
-	handleSort = (e) => {
-		e.preventDefault()
-		const {name} = e.target
-		this.setState((prevState)=> ({
-			[name]: !prevState[name],
-		}))
-		}
+    handleSort = (e) => {
+        e.preventDefault()
+        const { name } = e.target
+        this.setState((prevState) => ({
+            [name]: !prevState[name],
+        }))
+    }
 
     render() {
-    	const { categories, sortByRecentDate, sortByVote } = this.state
+        const { categories, sortByRecentDate, sortByVote } = this.state
         const { posts } = this.props
 
         sortByRecentDate
-        ? posts.sort((a,b) => a.timestamp - b.timestamp)
-        : posts.sort((a,b) => b.timestamp - a.timestamp)
+            ?
+            posts.sort((a, b) => a.timestamp - b.timestamp) :
+            posts.sort((a, b) => b.timestamp - a.timestamp)
 
-        sortByVote && posts.sort((a,b) => a.voteScore - b.voteScore)
+        sortByVote && posts.sort((a, b) => a.voteScore - b.voteScore)
 
         return (
             <div>
@@ -81,9 +80,8 @@ class Home extends Component {
 				    </div>
 				    <ul>
 				    	{ posts.map((post) =>
-				    		<li>
+				    		<li key={post.id}>
 							< IndividualPost
-								key={post.id}
 								id={post.id}
 								postDetail={post}/>
 							</li>
@@ -99,11 +97,11 @@ class Home extends Component {
 
 }
 
-function mapStateToProps({posts}) {
+function mapStateToProps({ posts }) {
 
     return {
         posts
     }
 }
 
-export default withRouter(connect(mapStateToProps)(Home));
+export default connect(mapStateToProps)(Home);

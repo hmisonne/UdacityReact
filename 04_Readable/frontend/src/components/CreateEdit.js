@@ -16,16 +16,15 @@ class CreateEdit extends Component {
 
     componentDidMount() {
         if (this.props.post) {
-            const { title, category, author, body} = this.props.post
-            this.setState(()=> ({
-               currPost : this.props.post
+            this.setState(() => ({
+                currPost: this.props.post
             }))
 
-        }  
+        }
         fetch(`http://127.0.0.1:3001/categories`, { headers: { 'Authorization': 'mySecretToken' } })
             .then(res => res.json())
-            .then(response => this.setState({categories: response.categories}))
-        
+            .then(response => this.setState({ categories: response.categories }))
+
     }
 
     handleInputChange = (e) => {
@@ -34,33 +33,32 @@ class CreateEdit extends Component {
             ...currState,
             currPost: {
                 ...currState.currPost,
-                [name]:value
+                [name]: value
             }
         }))
     }
 
     handleSubmit = (e) => {
         e.preventDefault()
-        const { body, category, title, author} = this.state.currPost
+        const { body, category, title, author } = this.state.currPost
         const { dispatch, history } = this.props
         let new_post = {
-                title,
-                body,
-                author,
-                category,
-            }
+            title,
+            body,
+            author,
+            category,
+        }
         if (this.props.post) {
             new_post.id = this.props.post.id
             new_post.timestamp = this.props.post.timestamp
             dispatch(handleUpdatePostContent(new_post))
-        }
-        else {
+        } else {
             new_post.id = generateUID()
             new_post.timestamp = Date.now()
             dispatch(handleAddPost(new_post))
         }
         history.push('/')
-        
+
     }
 
     render() {
@@ -100,7 +98,9 @@ class CreateEdit extends Component {
                   Category:
                   <select name="category" value={category} onChange={this.handleInputChange}>
                   {categories.map(category=> 
-                    <option value={category.name}>{category.name}</option>
+                    <option
+                        key = {category.name} 
+                        value={category.name}>{category.name}</option>
                     )}
                   </select>
                 </label>
@@ -113,11 +113,11 @@ class CreateEdit extends Component {
 }
 
 
-function mapStateToProps({posts}, props) {
+function mapStateToProps({ posts }, props) {
     const { id } = props.match.params
     let postDetail = {}
     if (posts.length !== 0) {
-        postDetail=posts.filter(post => post.id === id)[0]
+        postDetail = posts.filter(post => post.id === id)[0]
     }
     return {
         post: postDetail

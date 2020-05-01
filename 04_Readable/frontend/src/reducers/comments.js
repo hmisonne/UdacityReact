@@ -1,6 +1,5 @@
 import {
     GET_POST_COMMENTS,
-    DELETE_POST,
     DELETE_COMMENT,
 } from '../constants/ActionTypes'
 
