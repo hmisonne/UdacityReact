@@ -15,14 +15,18 @@ class Home extends Component {
         fetch(`http://127.0.0.1:3001/categories`, { headers: { 'Authorization': 'mySecretToken' } })
             .then(res => res.json())
             .then(response => this.setState({ categories: response.categories }))
+        const { dispatch } = this.props
+        const {category} = this.props.match.params
+        category
+        ? dispatch(handleFilterByCat(category))
+        : dispatch(handleInitialData())
     }
     handleFilterCat = (e) => {
         e.preventDefault()
         const { name } = e.target
         const { dispatch } = this.props
-        name === 'reset' ?
-            dispatch(handleInitialData()) :
-            dispatch(handleFilterByCat(name))
+        const { history } = this.props
+        history.push(`/${name}`)
     }
 
     handleSort = (e) => {
@@ -34,6 +38,7 @@ class Home extends Component {
     }
 
     render() {
+    	
         const { categories, sortByRecentDate, sortByVote } = this.state
         const { posts } = this.props
 
@@ -60,7 +65,7 @@ class Home extends Component {
 				    <ul>
 				    	<button 
 							key = 'reset'
-							name = 'reset'
+							name = ''
 							onClick = {this.handleFilterCat}> All</button>	
 				    	{ categories.map(category =>
 							<button 
@@ -97,8 +102,7 @@ class Home extends Component {
 
 }
 
-function mapStateToProps({ posts }) {
-
+function mapStateToProps({ posts }, props) {
     return {
         posts
     }

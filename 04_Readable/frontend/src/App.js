@@ -9,9 +9,6 @@ import { handleInitialData } from './actions/shared'
 import Nav from './components/Nav'
 
 class App extends Component {
-    componentDidMount() {
-        this.props.dispatch(handleInitialData())
-    }
     render() {
         return (
             <Router>
@@ -20,9 +17,10 @@ class App extends Component {
                   <Nav />
                   <div className="App">
                     <Route exact path='/' component={Home}/>
-                    <Route path='/new' component={CreateEdit}/>
-                    <Route path='/post/:id' component={PostDetail}/>
-                    <Route path='/update/:id' component={CreateEdit}/>
+                    <Route exact path='/:category' component={Home}/>
+                    <Route exact path='/new/post/create/now' component={CreateEdit}/>
+                    <Route exact path='/:category/:id' component={PostDetail}/>
+                    <Route exact path='/:category/:id/update' component={CreateEdit}/>
                   </div>
                 </div>
               </Fragment>

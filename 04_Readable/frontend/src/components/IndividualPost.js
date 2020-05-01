@@ -15,9 +15,9 @@ class IndividualPost extends Component {
     }
     handleEdit = (e) => {
         e.preventDefault()
-        const { id } = this.props.postDetail
+        const { id, category } = this.props.postDetail
         const { history } = this.props
-        history.push(`/update/${id}`)
+        history.push(`/${category}/${id}/update`)
     }
     handleVote = (e) => {
         e.preventDefault()
@@ -36,7 +36,7 @@ class IndividualPost extends Component {
 
         return (
             <div>
-                <Link to={`/post/${id}`}>
+                <Link to={`/${category}/${id}`}>
                     <div>{formatDate(timestamp)} {author}</div> 
                     <div>Title {title}</div> 
                     <div>Post {body}</div> 
