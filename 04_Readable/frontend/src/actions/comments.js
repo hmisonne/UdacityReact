@@ -20,24 +20,22 @@ export function handleGetPostComments(id) {
     }
 }
 
-export function addComments(comment) {
+export function addComment(comment) {
     return {
         type: ADD_COMMENT,
         comment
     }
 }
 
-export function handleAddComment(comment) {
+export function handleAddComment(new_comment) {
     return dispatch => {
-        return fetch(`http://127.0.0.1:3001/comments`, { headers: { 'Authorization': 'mySecretToken' } })
+        return fetch(`http://127.0.0.1:3001/comments`, 
+            {
+                method: 'POST', 
+                headers: { 'Authorization': 'mySecretToken', 'Content-Type': 'application/json' },
+                body: JSON.stringify(new_comment) 
+            })
             .then(res => res.json())
-            .then(new_comment => dispatch(addComments(new_comment)))
+            .then(comment => dispatch(addComment(comment)))
     }
 }
-// TODO Increment comment counter 
-
-      // id: comment.id,
-      // timestamp: comment.timestamp,
-      // body: comment.body,
-      // author: comment.author,
-      // parentId: comment.parentId,

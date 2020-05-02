@@ -3,10 +3,14 @@ import { connect } from 'react-redux'
 import { handleDeletePost } from '../actions/shared'
 import { handleUpdatePostVote } from '../actions/posts'
 import { formatDate } from '../utils/helpers'
+import ReplyComment from './ReplyComment'
 
 import { Link, withRouter } from 'react-router-dom'
 
 class IndividualPost extends Component {
+    state = {
+        replyActive: false
+    }
     handleDelete = (e) => {
         e.preventDefault()
         const { dispatch } = this.props
@@ -33,7 +37,9 @@ class IndividualPost extends Component {
     }
     handleReply = (e) => {
         e.preventDefault()
-
+        this.setState((prevState)=> ({
+            replyActive: !prevState.replyActive
+        }))
     }
     render() {
         const { id, author, body, category, commentCount, timestamp, title, voteScore } = this.props.postDetail
@@ -56,6 +62,10 @@ class IndividualPost extends Component {
                 <button onClick={this.handleEdit}>edit</button>
                 <button onClick={this.handleDelete}>delete</button>
                 <button onClick={this.handleReply}>reply</button>
+                {this.state.replyActive &&
+                    <ReplyComment parentId={id}/>
+                }
+                
             </div>
         );
     }
