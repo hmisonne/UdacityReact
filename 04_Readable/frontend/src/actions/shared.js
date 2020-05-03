@@ -1,4 +1,5 @@
 import { receivePosts, updatePostCommentCount } from './posts'
+import { addComment } from './comments'
 import {
     DELETE_POST,
     DELETE_COMMENT,
@@ -52,5 +53,21 @@ export function deleteComment(comment_id) {
     return {
         type: DELETE_COMMENT,
         comment_id
+    }
+}
+
+export function handleAddComment(new_comment) {
+    return dispatch => {
+        return fetch(`http://127.0.0.1:3001/comments`, 
+            {
+                method: 'POST', 
+                headers: { 'Authorization': 'mySecretToken', 'Content-Type': 'application/json' },
+                body: JSON.stringify(new_comment) 
+            })
+            .then(res => res.json())
+            .then(comment => {
+                dispatch(addComment(comment))
+                dispatch(updatePostCommentCount(comment.parentId))
+            })
     }
 }

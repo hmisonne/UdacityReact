@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { handleAddComment } from '../actions/comments'
+import { handleAddComment } from '../actions/shared'
 import { generateUID } from '../utils/helpers'
 
 class ReplyComment extends Component {

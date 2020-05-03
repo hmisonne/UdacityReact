@@ -27,15 +27,3 @@ export function addComment(comment) {
     }
 }
 
-export function handleAddComment(new_comment) {
-    return dispatch => {
-        return fetch(`http://127.0.0.1:3001/comments`, 
-            {
-                method: 'POST', 
-                headers: { 'Authorization': 'mySecretToken', 'Content-Type': 'application/json' },
-                body: JSON.stringify(new_comment) 
-            })
-            .then(res => res.json())
-            .then(comment => dispatch(addComment(comment)))
-    }
-}
