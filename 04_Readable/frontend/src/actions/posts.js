@@ -1,7 +1,7 @@
 import {
     RECEIVE_DATA,
     ADD_POST,
-    UPDATE_POST_CONTENT
+    UPDATE_POST
 } from '../constants/ActionTypes'
 
 export function receivePosts(posts) {
@@ -19,9 +19,9 @@ export function addPost(post) {
 }
 
 
-export function updatePostContent(updated_post) {
+export function updatePost(updated_post) {
     return {
-        type: UPDATE_POST_CONTENT,
+        type: UPDATE_POST,
         updated_post
     }
 }
@@ -40,7 +40,7 @@ export function handleAddPost(new_post) {
 }
 
 
-export function handleUpdatePostContent(updated_post) {
+export function handleUpdatePost(updated_post) {
     return dispatch => {
         return fetch(`http://127.0.0.1:3001/posts/${updated_post.id}`, {
                 method: 'PUT',
@@ -48,19 +48,7 @@ export function handleUpdatePostContent(updated_post) {
                 body: JSON.stringify(updated_post)
             })
             .then(res => res.json())
-            .then(updated_post => dispatch(updatePostContent(updated_post)))
-    }
-}
-
-export function handleUpdatePostVote(updated_post, option) {
-    return dispatch => {
-        return fetch(`http://127.0.0.1:3001/posts/${updated_post.id}`, {
-                method: 'POST',
-                headers: { 'Authorization': 'mySecretToken', 'Content-Type': 'application/json' },
-                body: JSON.stringify({ option })
-            })
-            .then(res => res.json())
-            .then(updated_post => dispatch(updatePostContent(updated_post)))
+            .then(updated_post => dispatch(updatePost(updated_post)))
     }
 }
 
@@ -91,7 +79,7 @@ export function updatePostCommentCount(post_id) {
                 headers: { 'Authorization': 'mySecretToken', 'Content-Type': 'application/json' },
             })
             .then(res => res.json())
-            .then(post => dispatch(updatePostContent(post)))
+            .then(post => dispatch(updatePost(post)))
     }
 
 }

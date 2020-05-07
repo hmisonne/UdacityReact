@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { handleDeletePost } from '../actions/shared'
-import { handleUpdatePostVote } from '../actions/posts'
+import {  handleUpdatePost } from '../actions/posts'
 import { formatDate } from '../utils/helpers'
 import ReplyComment from './ReplyComment'
 
@@ -33,7 +33,7 @@ class IndividualPost extends Component {
             updated_post.voteScore = updated_post.voteScore + 1 :
             updated_post.voteScore = updated_post.voteScore - 1
 
-        dispatch(handleUpdatePostVote(updated_post, option))
+        dispatch(handleUpdatePost(updated_post))
     }
     handleReply = (e) => {
         e.preventDefault()
@@ -46,26 +46,35 @@ class IndividualPost extends Component {
 
         return (
             <div>
-                <Link to={`/${category}/${id}`}>
-                    <div>{formatDate(timestamp)} {author}</div> 
-                    <div>Title {title}</div> 
-                    <div>Post {body}</div> 
-                    <div>{voteScore} Votes</div> 
-                    <div>{commentCount} Comments</div>
-                </Link>
-                <button 
-                    name='upVote'
-                    onClick={this.handleVote}>+</button>
-                <button
-                    name='downVote'
-                    onClick={this.handleVote}>-</button>
-                <button onClick={this.handleEdit}>edit</button>
-                <button onClick={this.handleDelete}>delete</button>
-                <button onClick={this.handleReply}>reply</button>
+                <div className='post'>
+                    <Link to={`/${category}/${id}`}>
+                        <div className="post-info">
+                            <div>
+                                <span>{author}: {title}</span>
+                                <div>{formatDate(timestamp)}</div> 
+                                <p>{body}</p> 
+                            </div>
+                            <div className='post-icons'>
+                                <div>{voteScore} Votes</div> 
+                                <div>{commentCount} Comments</div>
+                            
+                                <button 
+                                    name='upVote'
+                                    onClick={this.handleVote}>+</button>
+                                <button
+                                    name='downVote'
+                                    onClick={this.handleVote}>-</button>
+                                <button onClick={this.handleEdit}>edit</button>
+                                <button onClick={this.handleDelete}>delete</button>
+                                <button onClick={this.handleReply}>reply</button>
+                            </div>
+                        </div>
+                    </Link>
+
+                </div>
                 {this.state.replyActive &&
                     <ReplyComment parentId={id}/>
                 }
-                
             </div>
         );
     }
@@ -74,3 +83,4 @@ class IndividualPost extends Component {
 
 
 export default withRouter(connect()(IndividualPost));
+

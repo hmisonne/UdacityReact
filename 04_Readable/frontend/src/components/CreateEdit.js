@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { handleAddPost, handleUpdatePostContent } from '../actions/posts'
+import { handleAddPost, handleUpdatePost } from '../actions/posts'
 import { generateUID } from '../utils/helpers'
 
 class CreateEdit extends Component {
@@ -51,7 +51,7 @@ class CreateEdit extends Component {
         if (this.props.post) {
             new_post.id = this.props.post.id
             new_post.timestamp = this.props.post.timestamp
-            dispatch(handleUpdatePostContent(new_post))
+            dispatch(handleUpdatePost(new_post))
         } else {
             new_post.id = generateUID()
             new_post.timestamp = Date.now()

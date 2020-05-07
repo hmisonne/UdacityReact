@@ -2,7 +2,7 @@ import {
     RECEIVE_DATA,
     ADD_POST,
     DELETE_POST,
-    UPDATE_POST_CONTENT,
+    UPDATE_POST,
 } from '../constants/ActionTypes'
 
 export default function posts(state = [], action) {
@@ -13,7 +13,7 @@ export default function posts(state = [], action) {
             return state.concat(action.post)
         case DELETE_POST:
             return state.filter(post => post.id !== action.post_id)
-        case UPDATE_POST_CONTENT:
+        case UPDATE_POST:
             // remove old post 
             const new_state = state.filter(post => post.id !== action.updated_post.id)
             // add updated post
