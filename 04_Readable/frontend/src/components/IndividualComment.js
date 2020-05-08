@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { handleDeleteComment } from '../actions/shared'
 import { handleUpdateCommentVote } from '../actions/comments'
+import PostDesign from './PostDesign'
 
 class IndividualComment extends Component {
 
@@ -25,19 +26,15 @@ class IndividualComment extends Component {
     render() {
         const { author, body, timestamp, voteScore } = this.props.comment
         return (
-            <li> 
-	            	<div>Post {timestamp} {author}</div> 
-			  		<div>Post {body}</div> 
-			  		<div>{voteScore} Votes</div> 
-			  		<button 
-	                    name='upVote'
-	                    onClick={this.handleVote}>+</button>
-               		 <button
-	                    name='downVote'
-	                    onClick={this.handleVote}>-</button>
-			  		<button>edit</button>
-			  		<button onClick = {this.handleDelete}>delete</button>
-	            </li>
+            <li className='post'> 
+	            <PostDesign 
+                    postDetail={this.props.comment}
+                    handleVote={this.handleVote}
+                    handleEdit={this.handleEdit}
+                    handleDelete={this.handleDelete}
+                    />
+                    
+	        </li>
         );
     }
 

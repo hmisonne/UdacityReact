@@ -37,6 +37,16 @@ class CreateEdit extends Component {
             }
         }))
     }
+    handleBodyChange = (e) => {
+        const body = e.target.value
+        this.setState((currState) => ({
+            ...currState,
+            currPost: {
+                ...currState.currPost,
+                body
+            }
+        }))
+    }
 
     handleSubmit = (e) => {
         e.preventDefault()
@@ -67,33 +77,33 @@ class CreateEdit extends Component {
         return (
             <div>
 
-            <form onSubmit={this.handleSubmit}>
-                <label>
-                  Title:
+            <form className='new-post' onSubmit={this.handleSubmit}>
+
                   <input
                     name="title"
+                    placeholder="Title"
                     type="text"
+                    className='inputarea'
                     value={title}
                     onChange={this.handleInputChange} />
-                </label>
                 <br />
-                <label>
-                  Body:
-                  <input
-                    name="body"
-                    type="text"
+
+                  <textarea
+                    className='textarea'
+                    placeholder="Post content..."
                     value={body}
-                    onChange={this.handleInputChange} />
-                </label>
+                    onChange={this.handleBodyChange}
+                    className='textarea'
+                    maxLength={280}/>
                 <br />
-                <label>
-                  author:
                   <input
+                    className='inputarea'
                     name="author"
+                    placeholder="Author"
                     type="text"
                     value={author}
                     onChange={this.handleInputChange} />
-                </label>
+
                 <label>
                   Category:
                   <select name="category" value={category} onChange={this.handleInputChange}>

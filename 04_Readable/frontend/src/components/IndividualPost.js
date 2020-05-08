@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { handleDeletePost } from '../actions/shared'
 import {  handleUpdatePost } from '../actions/posts'
-import { formatDate } from '../utils/helpers'
-import ReplyComment from './ReplyComment'
 
+import ReplyComment from './ReplyComment'
+import PostDesign from './PostDesign'
 import { Link, withRouter } from 'react-router-dom'
 
 class IndividualPost extends Component {
@@ -48,27 +48,13 @@ class IndividualPost extends Component {
             <div>
                 <div className='post'>
                     <Link to={`/${category}/${id}`}>
-                        <div className="post-info">
-                            <div>
-                                <span>{author}: {title}</span>
-                                <div>{formatDate(timestamp)}</div> 
-                                <p>{body}</p> 
-                            </div>
-                            <div className='post-icons'>
-                                <div>{voteScore} Votes</div> 
-                                <div>{commentCount} Comments</div>
-                            
-                                <button 
-                                    name='upVote'
-                                    onClick={this.handleVote}>+</button>
-                                <button
-                                    name='downVote'
-                                    onClick={this.handleVote}>-</button>
-                                <button onClick={this.handleEdit}>edit</button>
-                                <button onClick={this.handleDelete}>delete</button>
-                                <button onClick={this.handleReply}>reply</button>
-                            </div>
-                        </div>
+                        <PostDesign 
+                            postDetail={this.props.postDetail}
+                            handleVote={this.handleVote}
+                            handleEdit={this.handleEdit}
+                            handleDelete={this.handleDelete}
+                            handleReply={this.handleReply}
+                            />
                     </Link>
 
                 </div>
@@ -83,4 +69,3 @@ class IndividualPost extends Component {
 
 
 export default withRouter(connect()(IndividualPost));
-
