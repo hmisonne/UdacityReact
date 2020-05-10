@@ -25,8 +25,8 @@ class ReplyComment extends Component {
         const body = e.target.value
         this.setState((currState) => ({
             ...currState,
-            currPost: {
-                ...currState.currPost,
+            currComment: {
+                ...currState.currComment,
                 body
             }
         }))
