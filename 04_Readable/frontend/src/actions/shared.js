@@ -1,4 +1,5 @@
 import { receivePosts, updatePostCommentCount } from './posts'
+import { receiveCategories } from './categories'
 import { addComment } from './comments'
 import {
     DELETE_POST,
@@ -8,9 +9,12 @@ import {
 
 export function handleInitialData() {
     return dispatch => {
-        return fetch("http://127.0.0.1:3001/posts", { headers: { 'Authorization': 'mySecretToken' } })
+        fetch("http://127.0.0.1:3001/posts", { headers: { 'Authorization': 'mySecretToken' } })
             .then(res => res.json())
             .then(posts => dispatch(receivePosts(posts)))
+        // fetch(`http://127.0.0.1:3001/categories`, { headers: { 'Authorization': 'mySecretToken' } })
+        //     .then(res => res.json())
+        //     .then(result => dispatch(receiveCategories(result.categories)))
     }
 }
 

@@ -103,6 +103,9 @@ class Home extends Component {
 }
 
 function mapStateToProps({ posts }, props) {
+    console.log('props', props)
+    const {category} = props.match.params
+
     return {
         posts
     }
