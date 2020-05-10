@@ -21,6 +21,16 @@ class ReplyComment extends Component {
             }
         }))
     }
+    handleBodyChange = (e) => {
+        const body = e.target.value
+        this.setState((currState) => ({
+            ...currState,
+            currPost: {
+                ...currState.currPost,
+                body
+            }
+        }))
+    }
 
     handleSubmit = (e) => {
         e.preventDefault()
@@ -42,30 +52,28 @@ class ReplyComment extends Component {
         const { body , author } = this.state.currComment
         return (
             <div>
-
-            <form onSubmit={this.handleSubmit}>
-                
-                <label>
-                  Body:
-                  <input
+                <form onSubmit={this.handleSubmit}>
+                <br />
+                  <textarea
+                    className='textarea'
+                    placeholder="Comment"
                     name="body"
                     type="text"
                     value={body}
-                    onChange={this.handleInputChange} />
-                </label>
+                    onChange={this.handleBodyChange} />
+
                 <br />
-                <label>
-                  author:
                   <input
+                    placeholder="Author"
                     name="author"
                     type="text"
                     value={author}
                     onChange={this.handleInputChange} />
-                </label>
-               
+                <br />
                 <input type="submit" value="Submit" />
               </form>
             </div>
+            
         );
     }
 

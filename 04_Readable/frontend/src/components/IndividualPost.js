@@ -59,7 +59,8 @@ class IndividualPost extends Component {
 
                 </div>
                 {this.state.replyActive &&
-                    <ReplyComment parentId={id}/>
+                    <ReplyComment 
+                        parentId={id}/>
                 }
             </div>
         );

@@ -93,7 +93,6 @@ class CreateEdit extends Component {
                     placeholder="Post content..."
                     value={body}
                     onChange={this.handleBodyChange}
-                    className='textarea'
                     maxLength={280}/>
                 <br />
                   <input
@@ -104,16 +103,17 @@ class CreateEdit extends Component {
                     value={author}
                     onChange={this.handleInputChange} />
 
-                <label>
-                  Category:
-                  <select name="category" value={category} onChange={this.handleInputChange}>
+                <br />
+                  <select 
+                  name="category" value={category} onChange={this.handleInputChange}>
+                      <option disabled>Select Category</option>
                   {categories.map(category=> 
                     <option
                         key = {category.name} 
                         value={category.name}>{category.name}</option>
                     )}
                   </select>
-                </label>
+                <br />
                 <input type="submit" value="Submit" />
               </form>
             </div>
