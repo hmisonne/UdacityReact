@@ -6,7 +6,20 @@ import { handleInitialData } from '../actions/shared'
 
 class Home extends Component {
     state = {
-        categories: [],
+        categories: [
+            {
+              name: 'react',
+              path: 'react'
+            },
+            {
+              name: 'redux',
+              path: 'redux'
+            },
+            {
+              name: 'udacity',
+              path: 'udacity'
+            }
+        ],
         sortByRecentDate: true,
         sortByVote: false,
 
@@ -14,7 +27,7 @@ class Home extends Component {
     componentDidMount() {
         fetch(`http://127.0.0.1:3001/categories`, { headers: { 'Authorization': 'mySecretToken' } })
             .then(res => res.json())
-            .then(response => this.setState({ categories: response.categories }))
+            .then(result => this.setState({ categories: result.categories }))
         const { dispatch } = this.props
         const {category} = this.props.match.params
         category
@@ -27,6 +40,7 @@ class Home extends Component {
         const { dispatch } = this.props
         const { history } = this.props
         history.push(`/${name}`)
+        dispatch(handleFilterByCat(name))
     }
 
     handleSort = (e) => {
@@ -102,12 +116,9 @@ class Home extends Component {
 
 }
 
-function mapStateToProps({ posts }, props) {
-    console.log('props', props)
-    const {category} = props.match.params
-
+function mapStateToProps({ posts }) {
     return {
-        posts
+        posts,
     }
 }
 

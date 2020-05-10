@@ -5,10 +5,10 @@ import './App.css';
 import Home from './components/Home'
 import CreateEdit from './components/CreateEdit'
 import PostDetail from './components/PostDetail'
-import { handleInitialData } from './actions/shared'
 import Nav from './components/Nav'
 
 class App extends Component {
+
     render() {
         return (
             <Router>
