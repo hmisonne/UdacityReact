@@ -13,6 +13,11 @@ class PostDetail extends Component {
     render() {
         const { postDetail } = this.props
         const { comments } = this.props
+        if (postDetail.title === undefined) {
+            return (
+                <div>404 not found</div>
+            )
+        }
         return (
 
             <div>

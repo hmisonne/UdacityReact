@@ -65,6 +65,7 @@ class CreateEdit extends Component {
         } else {
             new_post.id = generateUID()
             new_post.timestamp = Date.now()
+            console.log('new post', new_post)
             dispatch(handleAddPost(new_post))
         }
         history.push('/')

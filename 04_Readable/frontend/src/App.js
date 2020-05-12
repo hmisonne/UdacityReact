@@ -18,7 +18,7 @@ class App extends Component {
                   <div className="App">
                     <Route exact path='/' component={Home}/>
                     <Route exact path='/:category' component={Home}/>
-                    <Route exact path='/new/post/create/now' component={CreateEdit}/>
+                    <Route exact path='/new/post/create' component={CreateEdit}/>
                     <Route exact path='/:category/:id' component={PostDetail}/>
                     <Route exact path='/:category/:id/update' component={CreateEdit}/>
                   </div>

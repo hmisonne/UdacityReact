@@ -11,7 +11,7 @@ export default function Nav () {
           </NavLink>
         </li>
         <li>
-          <NavLink to='/new/post/create/now' activeClassName='active'>
+          <NavLink to='/new/post/create' activeClassName='active'>
             New Post
           </NavLink>
         </li>
