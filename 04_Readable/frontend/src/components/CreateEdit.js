@@ -67,7 +67,7 @@ class CreateEdit extends Component {
             author,
             category,
         }
-        if (this.props.post) {
+        if (this.props.post.id) {
             new_post.id = this.props.post.id
             new_post.timestamp = this.props.post.timestamp
             dispatch(handleUpdatePost(new_post))
@@ -81,6 +81,7 @@ class CreateEdit extends Component {
     }
 
     render() {
+        console.log(this.props)
         if (this.props.post.parentId) {
             return (
             <CreateEditComment
