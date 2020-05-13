@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { handleAddPost, handleUpdatePost } from '../actions/posts'
 import { generateUID } from '../utils/helpers'
+import CreateEditPost from './CreateEditPost'
+import CreateEditComment from './CreateEditComment'
 
 class CreateEdit extends Component {
     state = {
@@ -11,6 +13,9 @@ class CreateEdit extends Component {
             author: '',
             category: 'react'
         },
+        currComment: {
+            body: '',
+        },
         categories: []
     }
 
@@ -19,11 +24,11 @@ class CreateEdit extends Component {
             this.setState(() => ({
                 currPost: this.props.post
             }))
-
+            fetch(`http://127.0.0.1:3001/categories`, { headers: { 'Authorization': 'mySecretToken' } })
+                .then(res => res.json())
+                .then(response => this.setState({ categories: response.categories }))
         }
-        fetch(`http://127.0.0.1:3001/categories`, { headers: { 'Authorization': 'mySecretToken' } })
-            .then(res => res.json())
-            .then(response => this.setState({ categories: response.categories }))
+
 
     }
 
@@ -65,7 +70,6 @@ class CreateEdit extends Component {
         } else {
             new_post.id = generateUID()
             new_post.timestamp = Date.now()
-            console.log('new post', new_post)
             dispatch(handleAddPost(new_post))
         }
         history.push('/')
@@ -73,65 +77,44 @@ class CreateEdit extends Component {
     }
 
     render() {
-        const { body, category, title, author } = this.state.currPost
-        const { categories } = this.state
+        if (this.props.post.parentId) {
+            return (
+            <CreateEditComment
+                handleSubmit={this.handleSubmit}
+                handleBodyChange={this.handleBodyChange}
+                currComment={this.state.currPost}
+            />
+        );
+        }
+        
         return (
-            <div>
-
-            <form className='new-post' onSubmit={this.handleSubmit}>
-
-                  <input
-                    name="title"
-                    placeholder="Title"
-                    type="text"
-                    className='inputarea'
-                    value={title}
-                    onChange={this.handleInputChange} />
-                <br />
-
-                  <textarea
-                    className='textarea'
-                    placeholder="Post content..."
-                    value={body}
-                    onChange={this.handleBodyChange}
-                    maxLength={280}/>
-                <br />
-                  <input
-                    className='inputarea'
-                    name="author"
-                    placeholder="Author"
-                    type="text"
-                    value={author}
-                    onChange={this.handleInputChange} />
-
-                <br />
-                  <select 
-                  name="category" value={category} onChange={this.handleInputChange}>
-                      <option disabled>Select Category</option>
-                  {categories.map(category=> 
-                    <option
-                        key = {category.name} 
-                        value={category.name}>{category.name}</option>
-                    )}
-                  </select>
-                <br />
-                <input type="submit" value="Submit" />
-              </form>
-            </div>
+            <CreateEditPost
+                handleSubmit={this.handleSubmit}
+                handleInputChange={this.handleInputChange}
+                handleBodyChange={this.handleBodyChange}
+                currPost={this.state.currPost}
+                categories={this.state.categories}
+            />
         );
     }
 
 }
 
 
-function mapStateToProps({ posts }, props) {
+function mapStateToProps({ posts, comments }, props) {
+    console.log('para',props.match.params)
     const { id } = props.match.params
+    const { category } = props.match.params
+    const categories = ['react', 'redux', 'udacity']
     let postDetail = {}
-    if (posts.length !== 0) {
+    if ((posts.length !== 0) && (categories.includes(category))) {
         postDetail = posts.filter(post => post.id === id)[0]
     }
+    if ((comments.length !== 0) && (category === 'comments')){
+        postDetail = comments.filter(comment => comment.id === id)[0]
+    }
     return {
-        post: postDetail
+        post: postDetail,
     }
 }
 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { handleDeleteComment } from '../actions/shared'
 import { handleUpdateCommentVote } from '../actions/comments'
 import PostDesign from './PostDesign'
-
+import { withRouter } from 'react-router-dom'
 class IndividualComment extends Component {
 
     handleDelete = (e) => {
@@ -22,6 +22,12 @@ class IndividualComment extends Component {
             updated_comment.voteScore = updated_comment.voteScore - 1
 
         dispatch(handleUpdateCommentVote(updated_comment, option))
+    }
+    handleEdit = (e) => {
+        e.preventDefault()
+        const { id, parentId } = this.props.comment
+        const { history } = this.props
+        history.push(`/comments/${id}/update`)
     }
     render() {
         const { author, body, timestamp, voteScore } = this.props.comment
@@ -42,4 +48,4 @@ class IndividualComment extends Component {
 }
 
 
-export default connect()(IndividualComment)
+export default withRouter(connect()(IndividualComment))
