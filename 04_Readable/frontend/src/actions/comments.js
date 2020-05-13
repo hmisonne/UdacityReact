@@ -47,3 +47,16 @@ export function handleUpdateCommentVote(updated_comment, option) {
             .then(updated_comment => dispatch(updateComment(updated_comment)))
     }
 }
+
+export function handleUpdateComment(comment) {
+    console.log('comm', comment)
+    return dispatch => {
+        return fetch(`http://127.0.0.1:3001/comments/${comment.id}`, {
+                method: 'PUT',
+                headers: { 'Authorization': 'mySecretToken', 'Content-Type': 'application/json' },
+                body: JSON.stringify({ timestamp: Date.now(), body: comment.body })
+            })
+            .then(res => res.json())
+            .then(updated_comment => dispatch(updateComment(updated_comment)))
+    }
+}

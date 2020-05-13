@@ -4,6 +4,7 @@ import { handleAddPost, handleUpdatePost } from '../actions/posts'
 import { generateUID } from '../utils/helpers'
 import CreateEditPost from './CreateEditPost'
 import CreateEditComment from './CreateEditComment'
+import { handleUpdateComment } from '../actions/comments'
 
 class CreateEdit extends Component {
     state = {
@@ -12,9 +13,6 @@ class CreateEdit extends Component {
             body: '',
             author: '',
             category: 'react'
-        },
-        currComment: {
-            body: '',
         },
         categories: []
     }
@@ -52,7 +50,12 @@ class CreateEdit extends Component {
             }
         }))
     }
-
+    handleSubmitComment = (e) => {
+        const { body, id } = this.state.currPost
+        const { dispatch, history } = this.props
+        dispatch(handleUpdateComment({id, body}))
+        history.push('/')
+    }
     handleSubmit = (e) => {
         e.preventDefault()
         const { body, category, title, author } = this.state.currPost
@@ -80,7 +83,7 @@ class CreateEdit extends Component {
         if (this.props.post.parentId) {
             return (
             <CreateEditComment
-                handleSubmit={this.handleSubmit}
+                handleSubmit={this.handleSubmitComment}
                 handleBodyChange={this.handleBodyChange}
                 currComment={this.state.currPost}
             />
