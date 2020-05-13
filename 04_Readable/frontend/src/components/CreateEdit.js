@@ -52,8 +52,9 @@ class CreateEdit extends Component {
     }
     handleSubmitComment = (e) => {
         const { body, id } = this.state.currPost
+        const timestamp = Date.now()
         const { dispatch, history } = this.props
-        dispatch(handleUpdateComment({id, body}))
+        dispatch(handleUpdateComment({id, body, timestamp}))
         history.push('/')
     }
     handleSubmit = (e) => {
