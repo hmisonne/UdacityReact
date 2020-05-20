@@ -44,11 +44,10 @@ class ReplyComment extends Component {
             timestamp: Date.now()
         }
         dispatch(handleAddComment(new_comment))
-
+        this.props.toggleReply()
     }
 
     render() {
-        console.log(this.props)
         const { body , author } = this.state.currComment
         return (
             <div>

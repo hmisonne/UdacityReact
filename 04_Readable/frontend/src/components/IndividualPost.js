@@ -37,6 +37,9 @@ class IndividualPost extends Component {
     }
     handleReply = (e) => {
         e.preventDefault()
+        this.toggleReply()
+    }
+    toggleReply = () => {
         this.setState((prevState)=> ({
             replyActive: !prevState.replyActive
         }))
@@ -60,7 +63,8 @@ class IndividualPost extends Component {
                 </div>
                 {this.state.replyActive &&
                     <ReplyComment 
-                        parentId={id}/>
+                        parentId={id}
+                        toggleReply={this.toggleReply}/>
                 }
             </div>
         );
