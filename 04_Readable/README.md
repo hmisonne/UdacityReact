@@ -5,6 +5,8 @@ The goal of this project is to build the front end of a Content and comment web 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+![Readable Demo](demo/demo.gif)
+
 ## App functionalities
 
 On this app, Users are able to post content to predefined categories, comment on their posts and other users' posts, and vote on posts and comments. Users are be able to edit and delete posts and comments.
