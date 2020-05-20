@@ -17,6 +17,11 @@ Sets of projects using Javascript, React, React Native, Redux, AsyncStorage
 - Build a mobile flashcard app from scratch with React Native, AsyncStorage to simulate API calls to database,
 - Allow users to create custom cards and decks, and set up notifications to remind them to study. 
 
+### Project 4: Readable (React Native, Redux, NodeJS)
+
+- Build a content and comment web app. Users will be able to post content to predefined categories, comment on their posts and other users' posts, and vote on posts and comments. 
+- Users will also be able to edit and delete posts and comments.
+
 ## Description of non graded Projects :
 
 ### Project 0: Chirper master (React, Redux)
