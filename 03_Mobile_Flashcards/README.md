@@ -78,7 +78,7 @@ Here is the format of the data
 Developers using this project should already have node installed on their local machines and install [expo](https://docs.expo.io/get-started/installation/?redirected) globally
 
 ```
-npm install -g expo-cli`
+npm install -g expo-cli
 ```
 
 ## About the stack
