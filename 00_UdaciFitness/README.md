@@ -1,5 +1,7 @@
 # Udafitness
 
+
+<img align="right" src="demo/demo.gif" alt="Udafitness demo" width="199" height="419">
 This project was created by Udacity and is part of the [React Nanodegree program](https://www.udacity.com/course/react-nanodegree--nd019).
 This is a React Native app for triathlon where users can record their daily achievements.
 
@@ -8,7 +10,7 @@ Most of the commits in this repository correspond to videos in the program howev
 
 To develop these features I created actions to be dispatched to reducers to update the store as well as asyncronous calls to update the database through redux thank.
 
-![Udafitness Demo](demo/demo.gif)
+
 
 ## Skills learned:
 
