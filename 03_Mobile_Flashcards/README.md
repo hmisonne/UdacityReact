@@ -1,11 +1,10 @@
 # FlashCards Project
-
+<img align="right" src="demo/demo.gif" alt="FlashCards demo" width="199" height="419">
 This app also allows users to test their memory on different topics by creating flashcards!
 This project is part of the Udacity React NanoDegree Program. The goal of this project is to build a React Native/Redux front-end app from scratch to learn the fundamental aspects of building a native application including and to gain an understanding of AsyncStorage to simulate API calls to database
 
 This project was bootstraped with [Create React App](https://github.com/facebook/create-react-app).
 
-![FlashCards Demo](demo/demo.gif)
 
 ## Platform
 
