@@ -34,9 +34,11 @@ A local backend development server has already been provided for this project. I
 The server's endpoints contains the methods  to perform the following operations: manage storing, reading, updating, and deleting data for our application.
 
 * Install and start the API server
-    - `cd backend/api-server`
-    - `npm install`
-    - `node server`
+```
+cd backend/api-server
+npm install
+node server
+```
 
 Open the `localhost:3001/` to view the backend local server.
 Information about the API server and how to use it can be found in its [README file](backend/api-server/README.md) (provided by Udacity).
